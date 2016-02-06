@@ -22,7 +22,7 @@
             android:text="Login Email"
             android:id="@+id/textView6"
             android:layout_alignParentStart="false"
-            android:textSize="18dp"
+            android:textSize="19dp"
             android:layout_gravity="left" />
 
         <EditText
@@ -38,7 +38,7 @@
             android:id="@+id/textView7"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:textSize="18dp"
+            android:textSize="19dp"
             android:layout_gravity="left" />
 
         <EditText
