@@ -50,4 +50,7 @@ public class LoginActivity extends AppCompatActivity {
         //Intent intent = new Intent(this, LoginActivity.class);
         //startActivity(intent);
     }
+
+    //TODO add method that opens this page when logout button is pressed
+    //similar to one above
 }
