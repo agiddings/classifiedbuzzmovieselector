@@ -15,6 +15,15 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        //For testing purposes
+        UserManager um = new UserManager();
+        try {
+            um.addUser("test", "test@test.test", "password");
+        } catch(UserAlreadyExistsException e){
+            //
+        }
+
     }
 
     public void onLoginButtonPressed(View v) {
@@ -53,4 +62,29 @@ public class LoginActivity extends AppCompatActivity {
 
     //TODO add method that opens this page when logout button is pressed
     //similar to one above
+
+
+    //Makes this the first screen that appears
+    @Override
+    public void onStart() {
+        super.onStart();
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d("**MYAPP**", "Pausing the opening screen");
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("**MYAPP**", "Resuming the opening screen");
+        System.out.println("resuming");
+    }
 }
