@@ -20,7 +20,7 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.registration_screen);
     }
 
-    public void onRegistrationButtonPressed(View v) {
+    public void onRegisterButtonPressed(View v) {
         Log.d("REGISTRATION ACTIVITY", "Registration button was pressed");
         UserManager usermanager = new UserManager();
         EditText name = (EditText) findViewById(R.id.editName);
