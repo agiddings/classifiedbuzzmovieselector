@@ -30,7 +30,7 @@ public class UserManager {
         } else if (users.get(email) != null) {
             throw new UserAlreadyExistsException(email + " is already registered");
         }
-        User user = new User(name, email, email2, password, password2);
+        User user = new User(name, email, password);
         users.put(name, user);
     }
 
