@@ -14,6 +14,7 @@ import android.widget.Toolbar;
  */
 public class RegistrationActivity extends AppCompatActivity {
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registration_screen);
@@ -30,6 +31,11 @@ public class RegistrationActivity extends AppCompatActivity {
         if (!password1.equals(password2)) {
             message = "Registration failed: Passwords did not match.";
         } else {
+            try {
+                usermanager.addUser(name.toString(), email.toString(), password1.toString());
+            } catch (UserAlreadyExistsException a) {
+                message = "Registration failed: That user already exists.";
+            }
             message = "Registration succeeded";
         }
         Context context = getApplicationContext();
