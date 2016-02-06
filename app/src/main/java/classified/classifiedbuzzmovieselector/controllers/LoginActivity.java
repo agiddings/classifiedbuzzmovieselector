@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText passBox = (EditText) findViewById(R.id.loginPassword);
         //For testing purposes
         try {
-            manager.addUser("test", "Email@.", "Password");
+            manager.addUser("test", "Email@test.com", "Password");
         } catch(UserAlreadyExistsException e){
             Log.d("LOGIN ACTIVITY","Error adding");
         }
@@ -40,11 +40,12 @@ public class LoginActivity extends AppCompatActivity {
             // Log.d("**MYAPP**", "Login button pressed!");
             //Intent intent = new Intent(this, LoginActivity.class);
             //startActivity(intent);
-
+            Log.d("LoginActivity", "Login Successful");
             text = "Login Successful";
 
         } else {
             text = "Login Failed";
+            Log.d("LoginActivity", "Login Failed");
         }
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
@@ -86,6 +87,5 @@ public class LoginActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         Log.d("**MYAPP**", "Resuming the opening screen");
-        System.out.println("resuming");
     }
 }
