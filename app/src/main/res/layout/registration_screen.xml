@@ -13,7 +13,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/editName"
         android:layout_gravity="center_horizontal" />
 
     <TextView
@@ -26,7 +26,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText4" />
+        android:id="@+id/editEmail" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -38,7 +38,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText2"
+        android:id="@+id/editPassword1"
         android:layout_gravity="center_horizontal" />
 
     <TextView
@@ -51,7 +51,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText3"
+        android:id="@+id/editPassword2"
         android:layout_gravity="center_horizontal" />
 
     <Button
