@@ -1,4 +1,4 @@
-package classified.classifiedbuzzmovieselector;
+package classified.classifiedbuzzmovieselector.model;
 
 /**
  * Created by steven on 2/6/16.

@@ -1,7 +1,10 @@
-package classified.classifiedbuzzmovieselector;
+package classified.classifiedbuzzmovieselector.model;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import classified.classifiedbuzzmovieselector.model.User;
+import classified.classifiedbuzzmovieselector.model.UserAlreadyExistsException;
 
 /**
  * Created by steven on 2/5/16.

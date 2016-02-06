@@ -1,4 +1,4 @@
-package classified.classifiedbuzzmovieselector;
+package classified.classifiedbuzzmovieselector.controllers;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

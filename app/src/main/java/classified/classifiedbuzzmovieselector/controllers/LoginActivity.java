@@ -1,13 +1,16 @@
-package classified.classifiedbuzzmovieselector;
+package classified.classifiedbuzzmovieselector.controllers;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import classified.classifiedbuzzmovieselector.R;
+import classified.classifiedbuzzmovieselector.model.UserAlreadyExistsException;
+import classified.classifiedbuzzmovieselector.model.UserManager;
 
 public class LoginActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package classified.classifiedbuzzmovieselector;
+package classified.classifiedbuzzmovieselector.controllers;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,7 +7,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.widget.Toolbar;
+
+import classified.classifiedbuzzmovieselector.R;
+import classified.classifiedbuzzmovieselector.model.UserAlreadyExistsException;
+import classified.classifiedbuzzmovieselector.model.UserManager;
 
 /**
  * Created by Allie on 2/5/2016.

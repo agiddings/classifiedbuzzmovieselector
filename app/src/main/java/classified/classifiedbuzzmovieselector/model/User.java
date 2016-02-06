@@ -1,4 +1,4 @@
-package classified.classifiedbuzzmovieselector;
+package classified.classifiedbuzzmovieselector.model;
 
 import java.util.InputMismatchException;
 
