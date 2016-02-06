@@ -19,13 +19,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //For testing purposes
-        UserManager um = new UserManager();
-        try {
-            um.addUser("test", "test@test.test", "password");
-        } catch(UserAlreadyExistsException e){
-            //
-        }
 
     }
 
@@ -34,7 +27,12 @@ public class LoginActivity extends AppCompatActivity {
         UserManager manager = new UserManager();
         EditText emailBox = (EditText) findViewById(R.id.loginEmail);
         EditText passBox = (EditText) findViewById(R.id.loginPassword);
-
+        //For testing purposes
+        try {
+            manager.addUser("test", "Email@.", "Password");
+        } catch(UserAlreadyExistsException e){
+            Log.d("LOGIN ACTIVITY","Error adding");
+        }
         CharSequence text;
         if (manager.handleLoginRequest(emailBox.getText().toString(), passBox.getText().toString())) {
             //TODO Go to postLogin Screen
