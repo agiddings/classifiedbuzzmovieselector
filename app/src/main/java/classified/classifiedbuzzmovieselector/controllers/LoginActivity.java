@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         CharSequence text;
         if (manager.handleLoginRequest(emailBox.getText().toString(), passBox.getText().toString())) {
             //TODO Go to postLogin Screen
-            //This method might go in the postLogin screen with the following:
+            //This method might go in the postLogin.java with the following:
             // Log.d("**MYAPP**", "Login button pressed!");
             //Intent intent = new Intent(this, LoginActivity.class);
             //startActivity(intent);
@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onRegistrationLinkPressed(View v){
         Log.d("LOGIN ACTIVITY", "Registration Link Pressed");
         //TODO GO to registration screen
-        //This method might go in the registration screen with the following:
+        //This method might go in the registration.java with the following:
         //Log.d("**MYAPP**", "Registration Link pressed!");
         //Intent intent = new Intent(this, LoginActivity.class);
         //startActivity(intent);
