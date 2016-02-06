@@ -15,18 +15,14 @@ public class UserManager {
         return users.get(email);
     }
 
-    public void addUser(String name, String email, String email2, String password, String password2)
-    throws IllegalArgumentException, InputDoesNotMatchException, UserAlreadyExistsException {
+    public void addUser(String name, String email, String password)
+    throws IllegalArgumentException, UserAlreadyExistsException {
         if(name == null) {
             throw new IllegalArgumentException("The name field is invalid");
         } else if (email == null || !email.matches("(.*)@(.*).(.*)")) { // rough email check
             throw new IllegalArgumentException("The email field is invalid");
         } else if (password == null) {
             throw new IllegalArgumentException("The password field is invalid");
-        } else if (!email.equals(email2)){
-            throw  new InputDoesNotMatchException("The emails do not match");
-        } else if (!password.equals(password2)) {
-            throw new InputDoesNotMatchException("The passwords do not match");
         } else if (users.get(email) != null) {
             throw new UserAlreadyExistsException(email + " is already registered");
         }
