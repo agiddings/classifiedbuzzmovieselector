@@ -1,5 +1,7 @@
 package classified.classifiedbuzzmovieselector.model;
 
+import android.util.Log;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,11 +32,19 @@ public class UserManager {
             throw new UserAlreadyExistsException(email + " is already registered");
         }
         User user = new User(name, email, password);
-        users.put(name, user);
+        users.put(email, user);
+    }
+
+    public String toString() {
+        String returnVal = "";
+        for (String s : users.keySet()) {
+            returnVal += s + " " + users.get(s) + "\n";
+        }
+        return returnVal;
     }
 
     public boolean handleLoginRequest(String email, String pass) {
-        User user = findUserByEmail(email);
+        User user = users.get(email);
         return user != null && user.checkPassword(pass);
     }
 }

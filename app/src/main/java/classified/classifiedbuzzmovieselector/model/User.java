@@ -1,6 +1,6 @@
 package classified.classifiedbuzzmovieselector.model;
 
-import java.util.InputMismatchException;
+import android.util.Log;
 
 /**
  * Created by steven on 2/5/16.
@@ -18,5 +18,9 @@ public class User {
 
     public boolean checkPassword(String entry) {
         return password.equals(entry);
+    }
+
+    public String toString() {
+        return name + " " + email + " " + password;
     }
 }
