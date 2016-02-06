@@ -33,4 +33,9 @@ public class LoginActivity extends AppCompatActivity {
             t.show();
         }
     }
+
+    public void onRegistrationLinkPressed(View v){
+        Log.d("LOGIN ACTIVITY", "Registration Link Pressed");
+        //TODO GO to registration screen
+    }
 }
