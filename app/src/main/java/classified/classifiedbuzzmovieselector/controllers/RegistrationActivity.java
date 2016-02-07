@@ -32,12 +32,12 @@ public class RegistrationActivity extends AppCompatActivity {
         EditText password1 = (EditText) findViewById(R.id.editPassword1);
         EditText password2 = (EditText) findViewById(R.id.editPassword2);
         CharSequence message;
-        if (!(password1.toString().equals(password2.toString()))) {
+        if (!(password1.getText().toString().equals(password2.getText().toString()))) {
             message = "Registration failed: Passwords did not match.";
         } else {
-            message = "Registration succeeded";
+            message = "Registration succeeded.";
             try {
-                usermanager.addUser(name.toString(), email.toString(), password1.toString());
+                usermanager.addUser(name.getText().toString(), email.getText().toString(), password1.getText().toString());
                 Intent intent = new Intent(this, PostLoginActivity.class);
                 startActivity(intent);
             } catch (UserAlreadyExistsException a) {
