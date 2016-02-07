@@ -1,6 +1,7 @@
 package classified.classifiedbuzzmovieselector.controllers;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -46,4 +47,6 @@ public class RegistrationActivity extends AppCompatActivity {
         Toast output = Toast.makeText(context, message, duration);
         output.show();
     }
+
+
 }

@@ -1,6 +1,7 @@
 package classified.classifiedbuzzmovieselector.controllers;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,12 +36,12 @@ public class LoginActivity extends AppCompatActivity {
         }
         CharSequence text;
         if (manager.handleLoginRequest(emailBox.getText().toString(), passBox.getText().toString())) {
-            //TODO Go to postLogin Screen
-            //This method might go in the postLogin.java with the following:
-            // Log.d("**MYAPP**", "Login button pressed!");
-            //Intent intent = new Intent(this, LoginActivity.class);
-            //startActivity(intent);
             Log.d("LoginActivity", "Login Successful");
+
+            //should go to login Screen
+            Intent intent = new Intent(this, PostLogin.class);
+            startActivity(intent);
+
             text = "Login Successful";
 
         } else {
@@ -55,15 +56,12 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onRegistrationLinkPressed(View v){
         Log.d("LOGIN ACTIVITY", "Registration Link Pressed");
-        //TODO GO to registration screen
-        //This method might go in the registration.java with the following:
-        //Log.d("**MYAPP**", "Registration Link pressed!");
-        //Intent intent = new Intent(this, LoginActivity.class);
-        //startActivity(intent);
+
+        //should go to registration page
+        Intent intent = new Intent(this, RegistrationActivity.class);
+        startActivity(intent);
     }
 
-    //TODO add method that opens this page when logout button is pressed
-    //similar to one above
 
 
     //Makes this the first screen that appears
