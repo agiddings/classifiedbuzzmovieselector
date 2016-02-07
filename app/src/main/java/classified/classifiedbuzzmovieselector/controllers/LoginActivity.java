@@ -38,11 +38,11 @@ public class LoginActivity extends AppCompatActivity {
         if (manager.handleLoginRequest(emailBox.getText().toString(), passBox.getText().toString())) {
             Log.d("LoginActivity", "Login Successful");
 
+            text = "Login Successful";
+            
             //should go to login Screen
             Intent intent = new Intent(this, PostLogin.class);
             startActivity(intent);
-
-            text = "Login Successful";
 
         } else {
             text = "Login Failed";

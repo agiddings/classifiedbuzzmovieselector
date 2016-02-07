@@ -32,6 +32,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import classified.classifiedbuzzmovieselector.R;
+
 /**
  * Created by Allie on 2/5/2016.
  */
