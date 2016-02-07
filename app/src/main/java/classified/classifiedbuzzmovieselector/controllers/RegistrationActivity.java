@@ -25,7 +25,7 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     public void onRegisterButtonPressed(View v) {
-        Log.d("REGISTRATION ACTIVITY", "Registration button was pressed");
+        Log.d("REGISTRATION ACTIVITY", "Registration button was pressed.");
         UserManager usermanager = new UserManager();
         EditText name = (EditText) findViewById(R.id.editName);
         EditText email = (EditText) findViewById(R.id.editEmail);
@@ -35,18 +35,19 @@ public class RegistrationActivity extends AppCompatActivity {
         if (!password1.equals(password2)) {
             message = "Registration failed: Passwords did not match.";
         } else {
+            message = "Registration succeeded";
             try {
                 usermanager.addUser(name.toString(), email.toString(), password1.toString());
+                Intent intent = new Intent(this, PostLoginActivity.class);
+                startActivity(intent);
             } catch (UserAlreadyExistsException a) {
                 message = "Registration failed: That user already exists.";
             }
-            message = "Registration succeeded";
         }
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
         Toast output = Toast.makeText(context, message, duration);
         output.show();
     }
-
 
 }
