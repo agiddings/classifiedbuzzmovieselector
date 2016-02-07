@@ -39,9 +39,9 @@ public class LoginActivity extends AppCompatActivity {
             Log.d("LoginActivity", "Login Successful");
 
             text = "Login Successful";
-            
+
             //should go to login Screen
-            Intent intent = new Intent(this, PostLogin.class);
+            Intent intent = new Intent(this, PostLoginActivity.class);
             startActivity(intent);
 
         } else {
