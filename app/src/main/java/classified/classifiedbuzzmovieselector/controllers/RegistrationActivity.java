@@ -32,7 +32,7 @@ public class RegistrationActivity extends AppCompatActivity {
         EditText password1 = (EditText) findViewById(R.id.editPassword1);
         EditText password2 = (EditText) findViewById(R.id.editPassword2);
         CharSequence message;
-        if (!password1.equals(password2)) {
+        if (!(password1.toString().equals(password2.toString()))) {
             message = "Registration failed: Passwords did not match.";
         } else {
             message = "Registration succeeded";
