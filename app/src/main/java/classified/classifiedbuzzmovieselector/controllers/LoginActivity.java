@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText passBox = (EditText) findViewById(R.id.loginPassword);
         //For testing purposes
         try {
-            manager.addUser("test", "test@gmail.com", "pass");
+            manager.addUser("user", "user@gmail.com", "passs");
         } catch(UserAlreadyExistsException e){
             Log.d("LOGIN ACTIVITY","Error adding");
         }
