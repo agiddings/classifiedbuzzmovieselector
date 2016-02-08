@@ -18,6 +18,7 @@ public class UserManager {
     public UserManager() {
         //create a temporary user for M3 demo
         tempUser = new User("John", "user@gmail.com", "pass");
+        //Log.d("added tempUser = "+ tempUser);
     }
 
     //what is the method below trying to do? - Justeen

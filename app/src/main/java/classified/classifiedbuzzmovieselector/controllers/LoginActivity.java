@@ -26,14 +26,16 @@ public class LoginActivity extends AppCompatActivity {
     public void onLoginButtonPressed(View v) {
         Log.d("LOGIN ACTIVITY", "Login Button Pressed");
         UserManager manager = new UserManager();
+        Log.d("LOGIN ACTIVITY", manager.toString());
         EditText emailBox = (EditText) findViewById(R.id.loginEmail);
         EditText passBox = (EditText) findViewById(R.id.loginPassword);
         //For testing purposes
         try {
-            manager.addUser("test", "Email@test.com", "Password");
+            manager.addUser("test", "test@gmail.com", "pass");
         } catch(UserAlreadyExistsException e){
             Log.d("LOGIN ACTIVITY","Error adding");
         }
+
         CharSequence text;
         if (manager.handleLoginRequest(emailBox.getText().toString(), passBox.getText().toString())) {
             Log.d("LoginActivity", "Login Successful");
