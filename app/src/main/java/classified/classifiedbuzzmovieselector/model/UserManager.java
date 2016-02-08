@@ -49,7 +49,12 @@ public class UserManager {
     }
 
     public boolean handleLoginRequest(String email, String pass) {
-        User user = users.get(email);
-        return user != null && user.checkPassword(pass);
+        //if the email is recorded before
+        if (users.containsKey(email)) {
+            return users.get(email).checkPassword(pass);
+        } else {
+            // false if email is not recorded before
+            return false;
+        }
     }
 }
