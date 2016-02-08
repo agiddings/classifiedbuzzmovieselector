@@ -26,7 +26,6 @@ public class RegistrationActivity extends AppCompatActivity {
 
     public void onRegisterButtonPressed(View v) {
         Log.d("REGISTRATION ACTIVITY", "Registration button was pressed.");
-        UserManager usermanager = new UserManager();
         EditText name = (EditText) findViewById(R.id.editName);
         EditText email = (EditText) findViewById(R.id.editEmail);
         EditText password1 = (EditText) findViewById(R.id.editPassword1);
@@ -36,8 +35,11 @@ public class RegistrationActivity extends AppCompatActivity {
             message = "Registration failed: Passwords did not match.";
         } else {
             message = "Registration succeeded.";
+            if (LoginActivity.getManager() == null) {
+                LoginActivity.setManager(new UserManager());
+            }
             try {
-                usermanager.addUser(name.getText().toString(), email.getText().toString(), password1.getText().toString());
+                LoginActivity.getManager().addUser(name.getText().toString(), email.getText().toString(), password1.getText().toString());
                 Intent intent = new Intent(this, PostLoginActivity.class);
                 startActivity(intent);
             } catch (UserAlreadyExistsException a) {
