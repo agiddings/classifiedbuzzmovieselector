@@ -42,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         Log.d("LOGIN ACTIVITY", manager.toString());
         EditText emailBox = (EditText) findViewById(R.id.loginEmail);
         EditText passBox = (EditText) findViewById(R.id.loginPassword);
+
         //For testing purposes
         try {
             manager.addUser("user", "user@gmail.com", "passs");
@@ -55,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
 
             text = "Login Successful";
 
-            //should go to login Screen
+            //should go to postlogin Screen
             Intent intent = new Intent(this, PostLoginActivity.class);
             startActivity(intent);
 
