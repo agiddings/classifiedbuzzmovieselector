@@ -51,6 +51,12 @@ public class RegistrationActivity extends AppCompatActivity {
                 int duration = Toast.LENGTH_SHORT;
                 Toast output = Toast.makeText(context, message, duration);
                 output.show();
+            } catch (IllegalArgumentException a) {
+                message = "One of the fields is invalid.";
+                Context context = getApplicationContext();
+                int duration = Toast.LENGTH_SHORT;
+                Toast output = Toast.makeText(context, message, duration);
+                output.show();
             }
         }
     }
