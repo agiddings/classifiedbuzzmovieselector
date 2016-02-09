@@ -15,6 +15,19 @@ import classified.classifiedbuzzmovieselector.model.UserManager;
 
 public class LoginActivity extends AppCompatActivity {
 
+    // Only one manager instance is created
+    private static UserManager manager;
+
+    //Make manager accessible to other classes
+    protected static UserManager getManager() {
+        return manager;
+    }
+
+    //Can set manager if not already existing in other classes
+    protected static void setManager(UserManager usermanager) {
+        manager = usermanager;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,13 +38,14 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginButtonPressed(View v) {
         Log.d("LOGIN ACTIVITY", "Login Button Pressed");
-        UserManager manager = new UserManager();
+        manager = new UserManager();
         Log.d("LOGIN ACTIVITY", manager.toString());
         EditText emailBox = (EditText) findViewById(R.id.loginEmail);
         EditText passBox = (EditText) findViewById(R.id.loginPassword);
+
         //For testing purposes
         try {
-            manager.addUser("test", "test@gmail.com", "pass");
+            manager.addUser("user", "user@gmail.com", "passs");
         } catch(UserAlreadyExistsException e){
             Log.d("LOGIN ACTIVITY","Error adding");
         }
@@ -42,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
 
             text = "Login Successful";
 
-            //should go to login Screen
+            //should go to postlogin Screen
             Intent intent = new Intent(this, PostLoginActivity.class);
             startActivity(intent);
 
