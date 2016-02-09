@@ -33,8 +33,11 @@ public class RegistrationActivity extends AppCompatActivity {
         CharSequence message;
         if (!(password1.getText().toString().equals(password2.getText().toString()))) {
             message = "Registration failed: Passwords did not match.";
+            Context context = getApplicationContext();
+            int duration = Toast.LENGTH_SHORT;
+            Toast output = Toast.makeText(context, message, duration);
+            output.show();
         } else {
-            message = "Registration succeeded.";
             if (LoginActivity.getManager() == null) {
                 LoginActivity.setManager(new UserManager());
             }
@@ -44,12 +47,12 @@ public class RegistrationActivity extends AppCompatActivity {
                 startActivity(intent);
             } catch (UserAlreadyExistsException a) {
                 message = "Registration failed: That user already exists.";
+                Context context = getApplicationContext();
+                int duration = Toast.LENGTH_SHORT;
+                Toast output = Toast.makeText(context, message, duration);
+                output.show();
             }
         }
-        Context context = getApplicationContext();
-        int duration = Toast.LENGTH_SHORT;
-        Toast output = Toast.makeText(context, message, duration);
-        output.show();
     }
 
 }
