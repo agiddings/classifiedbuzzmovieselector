@@ -1,4 +1,4 @@
-package classified.classifiedbuzzmovieselector.model;
+package classified.classifiedbuzzmovieselector.model.Exceptions;
 
 /**
  * Created by steven on 2/5/16.

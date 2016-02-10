@@ -1,12 +1,12 @@
 package classified.classifiedbuzzmovieselector.model;
 
-import android.util.Log;
-
 import java.util.HashMap;
 import java.util.Map;
 
-import classified.classifiedbuzzmovieselector.model.User;
-import classified.classifiedbuzzmovieselector.model.UserAlreadyExistsException;
+import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidEmailException;
+import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidNameException;
+import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidPasswordException;
+import classified.classifiedbuzzmovieselector.model.Exceptions.UserAlreadyExistsException;
 
 /**
  * Created by Steven on 2/5/16.

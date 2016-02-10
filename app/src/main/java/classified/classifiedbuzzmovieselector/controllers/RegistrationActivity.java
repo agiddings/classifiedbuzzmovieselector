@@ -10,10 +10,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import classified.classifiedbuzzmovieselector.R;
-import classified.classifiedbuzzmovieselector.model.InvalidEmailException;
-import classified.classifiedbuzzmovieselector.model.InvalidNameException;
-import classified.classifiedbuzzmovieselector.model.InvalidPasswordException;
-import classified.classifiedbuzzmovieselector.model.UserAlreadyExistsException;
+import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidEmailException;
+import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidNameException;
+import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidPasswordException;
+import classified.classifiedbuzzmovieselector.model.Exceptions.UserAlreadyExistsException;
 import classified.classifiedbuzzmovieselector.model.UserManager;
 
 /**
