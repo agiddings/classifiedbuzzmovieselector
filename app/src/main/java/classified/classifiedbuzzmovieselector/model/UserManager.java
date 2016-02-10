@@ -27,13 +27,13 @@ public class UserManager {
     }
 
     public void addUser(String name, String email, String password)
-    throws IllegalArgumentException, UserAlreadyExistsException {
+    throws InvalidPasswordException, InvalidEmailException, InvalidNameException, UserAlreadyExistsException {
         if(name == null) {
-            throw new IllegalArgumentException("The name field is invalid");
+            throw new InvalidNameException();
         } else if (email == null || !email.matches("(.*)@(.*).(.*)")) { // rough email check
-            throw new IllegalArgumentException("The email field is invalid");
+            throw new InvalidEmailException();
         } else if (password == null) {
-            throw new IllegalArgumentException("The password field is invalid");
+            throw new InvalidPasswordException();
         } else if (users.containsKey(email)) {
             throw new UserAlreadyExistsException(email + " is already registered");
         }

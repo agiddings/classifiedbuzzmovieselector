@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import classified.classifiedbuzzmovieselector.R;
+import classified.classifiedbuzzmovieselector.model.InvalidPasswordException;
 import classified.classifiedbuzzmovieselector.model.UserAlreadyExistsException;
 import classified.classifiedbuzzmovieselector.model.UserManager;
 
@@ -48,6 +49,8 @@ public class LoginActivity extends AppCompatActivity {
             manager.addUser("user", "user@gmail.com", "passs");
         } catch(UserAlreadyExistsException e){
             Log.d("LOGIN ACTIVITY","Error adding");
+        } catch(Exception a) {
+            Log.d("LOGIN ACTIVITY", "Invalid Field.");
         }
 
         CharSequence text;

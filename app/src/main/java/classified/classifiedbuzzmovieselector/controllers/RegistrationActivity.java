@@ -10,6 +10,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import classified.classifiedbuzzmovieselector.R;
+import classified.classifiedbuzzmovieselector.model.InvalidEmailException;
+import classified.classifiedbuzzmovieselector.model.InvalidNameException;
+import classified.classifiedbuzzmovieselector.model.InvalidPasswordException;
 import classified.classifiedbuzzmovieselector.model.UserAlreadyExistsException;
 import classified.classifiedbuzzmovieselector.model.UserManager;
 
@@ -41,24 +44,25 @@ public class RegistrationActivity extends AppCompatActivity {
             if (LoginActivity.getManager() == null) {
                 LoginActivity.setManager(new UserManager());
             }
+            message = "Registration succeeded.";
             try {
                 LoginActivity.getManager().addUser(name.getText().toString(), email.getText().toString(), password1.getText().toString());
                 Intent intent = new Intent(this, PostLoginActivity.class);
                 startActivity(intent);
             } catch (UserAlreadyExistsException a) {
                 message = "Registration failed: That user already exists.";
-                Context context = getApplicationContext();
-                int duration = Toast.LENGTH_SHORT;
-                Toast output = Toast.makeText(context, message, duration);
-                output.show();
-            } catch (IllegalArgumentException a) {
-                message = "One of the fields is invalid.";
-                Context context = getApplicationContext();
-                int duration = Toast.LENGTH_SHORT;
-                Toast output = Toast.makeText(context, message, duration);
-                output.show();
+            } catch (InvalidNameException b) {
+                message = "The name field is invalid.";
+            } catch (InvalidEmailException c) {
+                message = "The email field is invalid.";
+            } catch (InvalidPasswordException d) {
+                message = "The password field is invalid.";
+            } finally {
+                    Context context = getApplicationContext();
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast output = Toast.makeText(context, message, duration);
+                    output.show();
             }
         }
     }
-
 }
