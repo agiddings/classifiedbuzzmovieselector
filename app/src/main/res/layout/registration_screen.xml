@@ -10,7 +10,8 @@
         android:text="Cancel Registration"
         android:id="@+id/CancelRegistration"
         android:layout_gravity="right"
-        android:onClick="onCancelRegistrationButtonPressed" />
+        android:onClick="onCancelRegistrationButtonPressed"
+        android:background="0" />
 
     <TextView
         android:layout_width="wrap_content"
