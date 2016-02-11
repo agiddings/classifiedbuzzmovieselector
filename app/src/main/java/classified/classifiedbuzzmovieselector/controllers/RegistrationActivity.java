@@ -27,6 +27,12 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.registration_screen);
     }
 
+    public void onCancelRegistrationButtonPressed(View v) {
+        Log.d("REGISTRATION ACTIVITY", "Cancel registration button was pressed.");
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
     public void onRegisterButtonPressed(View v) {
         Log.d("REGISTRATION ACTIVITY", "Registration button was pressed.");
         EditText name = (EditText) findViewById(R.id.editName);
