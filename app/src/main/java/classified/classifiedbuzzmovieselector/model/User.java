@@ -10,6 +10,8 @@ public class User {
     String email;
     String password;
 
+    //Add user info, major from profile section
+
     public User(String name, String email, String password) {
         this.name = name;
         this.email = email;

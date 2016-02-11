@@ -11,7 +11,7 @@
         android:id="@+id/CancelRegistration"
         android:layout_gravity="right"
         android:onClick="onCancelRegistrationButtonPressed"
-        android:background="0" />
+        android:background="#dddee5" />
 
     <TextView
         android:layout_width="wrap_content"

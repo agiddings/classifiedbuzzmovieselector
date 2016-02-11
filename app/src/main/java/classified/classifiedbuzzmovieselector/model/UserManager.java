@@ -15,6 +15,8 @@ public class UserManager {
     private static Map<String, User> users = new HashMap<>();
     private User tempUser;
 
+    //For profile class, add a remove user and/or edit user method
+
     public UserManager() {
         //create a temporary user for M3 demo
         tempUser = new User("John", "user@gmail.com", "pass");
