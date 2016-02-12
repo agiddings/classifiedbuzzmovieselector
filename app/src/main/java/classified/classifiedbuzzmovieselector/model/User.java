@@ -4,14 +4,14 @@ package classified.classifiedbuzzmovieselector.model;
  * Created by steven on 2/5/16.
  */
 public class User {
-    private String name;
-    private String email;
-    private String password;
-    private String major;
-    private String info;
-    private boolean isLocked;
-    private boolean isBanned;
-    private int failedAttempts;
+    protected String name;
+    protected String email;
+    protected String password;
+    protected String major;
+    protected String info;
+    protected boolean isLocked;
+    protected boolean isBanned;
+    protected int failedAttempts;
 
     //Add user info, major from profile section
 
@@ -80,18 +80,6 @@ public class User {
 
     public void lockUser() {
         isLocked = true;
-    }
-
-    public void  unlockUser() {
-        isLocked = false;
-    }
-
-    public void banUser() {
-        isBanned = false;
-    }
-
-    public void unbanUser() {
-        isBanned = true;
     }
 
     public int getFailedAttempts() {
