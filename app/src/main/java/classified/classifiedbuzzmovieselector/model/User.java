@@ -6,13 +6,14 @@ import android.util.Log;
  * Created by steven on 2/5/16.
  */
 public class User {
-    String name;
-    String email;
-    String password;
-    String major;
-    String info;
-    boolean isLocked;
-    boolean isBanned;
+    private String name;
+    private String email;
+    private String password;
+    private String major;
+    private String info;
+    private boolean isLocked;
+    private boolean isBanned;
+    private int failedAttempts;
 
     //Add user info, major from profile section
 
@@ -22,10 +23,17 @@ public class User {
         this.password = password;
         isLocked = false;
         isBanned = false;
+        failedAttempts = 0;
     }
 
     public boolean checkPassword(String entry) {
-        return password.equals(entry);
+        if (password.equals(entry)) {
+            failedAttempts = 0;
+            return true;
+        } else {
+            failedAttempts++;
+            return false;
+        }
     }
 
     public String getName() {
@@ -88,7 +96,7 @@ public class User {
         isBanned = true;
     }
 
-    public String toString() {
-        return name + " " + email + " " + password;
+    public int getFailedAttempts() {
+        return failedAttempts;
     }
 }
