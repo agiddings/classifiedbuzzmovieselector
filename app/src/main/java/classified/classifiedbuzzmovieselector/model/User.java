@@ -1,7 +1,5 @@
 package classified.classifiedbuzzmovieselector.model;
 
-import android.util.Log;
-
 /**
  * Created by steven on 2/5/16.
  */
@@ -31,7 +29,7 @@ public class User {
             failedAttempts = 0;
             return true;
         } else {
-            failedAttempts++;
+            isLocked = ++failedAttempts >= 5;
             return false;
         }
     }

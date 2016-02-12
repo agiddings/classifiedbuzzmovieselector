@@ -24,6 +24,7 @@ public class UserManager {
     }
 
     //what is the method below trying to do? - Justeen
+    // it returns the user with the inputted email - Steven
     public User findUserByEmail(String email) {
         return users.get(email);
     }
@@ -54,7 +55,8 @@ public class UserManager {
     public boolean handleLoginRequest(String email, String pass) {
         //if the email is recorded before
         if (users.containsKey(email)) {
-            return users.get(email).checkPassword(pass);
+            User user = users.get(email);
+            return user.checkPassword(pass) && !user.isBanned() & !user.isLocked();
         } else {
             // false if email is not recorded before
             return false;
