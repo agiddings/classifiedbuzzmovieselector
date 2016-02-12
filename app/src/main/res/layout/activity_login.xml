@@ -7,6 +7,79 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="classified.classifiedbuzzmovieselector.LoginActivity">
+    tools:context=".controllers.LoginActivity"
+    android:background="#dddee5">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Welcome, Please Login"
+            android:id="@+id/textView8" />
+
+        <Space
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:clickable="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Login Email"
+            android:id="@+id/textView6"
+            android:layout_alignParentStart="false"
+            android:textSize="19dp"
+            android:layout_gravity="left" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/loginEmail"
+            android:text="Email" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:id="@+id/textView7"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textSize="19dp"
+            android:layout_gravity="left" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/loginPassword"
+            android:layout_alignParentStart="false"
+            android:text="Password" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:id="@+id/LoginBtn"
+            android:onClick="onLoginButtonPressed" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New user? Click here to Register!"
+            android:id="@+id/registrationText"
+            android:textSize="15dp"
+            android:textColor="#1dabee"
+            android:linksClickable="false"
+            android:longClickable="false"
+            android:onClick="onRegistrationLinkPressed" />
+    </LinearLayout>
 
 </RelativeLayout>
