@@ -78,10 +78,6 @@ public class User {
         return isBanned;
     }
 
-    public void lockUser() {
-        isLocked = true;
-    }
-
     public int getFailedAttempts() {
         return failedAttempts;
     }
