@@ -44,14 +44,6 @@ public class UserManager {
         users.put(email, user);
     }
 
-    public String toString() {
-        String returnVal = "";
-        for (String s : users.keySet()) {
-            returnVal += s + " " + users.get(s) + "\n";
-        }
-        return returnVal;
-    }
-
     public boolean handleLoginRequest(String email, String pass) {
         //if the email is recorded before
         if (users.containsKey(email)) {
