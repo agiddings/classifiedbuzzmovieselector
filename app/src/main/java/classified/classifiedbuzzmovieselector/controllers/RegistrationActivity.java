@@ -53,6 +53,10 @@ public class RegistrationActivity extends AppCompatActivity {
             message = "Registration succeeded.";
             try {
                 LoginActivity.getManager().addUser(name.getText().toString(), email.getText().toString(), password1.getText().toString());
+
+                //sets current user
+                LoginActivity.setUser(LoginActivity.getManager().findUserByEmail(email.getText().toString()));
+
                 Intent intent = new Intent(this, PostLoginActivity.class);
                 startActivity(intent);
             } catch (UserAlreadyExistsException a) {
