@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import classified.classifiedbuzzmovieselector.R;
 import classified.classifiedbuzzmovieselector.model.Exceptions.UserAlreadyExistsException;
+import classified.classifiedbuzzmovieselector.model.User;
 import classified.classifiedbuzzmovieselector.model.UserManager;
 
 public class LoginActivity extends AppCompatActivity {
@@ -27,6 +28,21 @@ public class LoginActivity extends AppCompatActivity {
     protected static void setManager(UserManager usermanager) {
         manager = usermanager;
     }
+
+    //So we know who teh current user is
+    private static User user;
+
+    //to access user form other classses
+    protected static User getUser() {
+        return user;
+    }
+
+    //to set user form registration page
+    protected static void setUser(User newUser) {
+        user = newUser;
+    }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +71,11 @@ public class LoginActivity extends AppCompatActivity {
         CharSequence text;
         if (manager.handleLoginRequest(emailBox.getText().toString(), passBox.getText().toString())) {
             Log.d("LoginActivity", "Login Successful");
-
             text = "Login Successful";
 
-            //should go to postlogin Screen
+            user = manager.findUserByEmail(emailBox.getText().toString());
+
+            //Goes to postlogin Screen
             Intent intent = new Intent(this, PostLoginActivity.class);
             startActivity(intent);
 
@@ -75,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onRegistrationLinkPressed(View v){
         Log.d("LOGIN ACTIVITY", "Registration Link Pressed");
 
-        //should go to registration page
+        //Goes to registration page
         Intent intent = new Intent(this, RegistrationActivity.class);
         startActivity(intent);
     }
