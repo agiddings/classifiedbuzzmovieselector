@@ -25,6 +25,19 @@ public class ProfileActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        EditText name = (EditText) findViewById(R.id.newName);
+        EditText email = (EditText) findViewById(R.id.newEmail);
+        //EditText password1 = (EditText) findViewById(R.id.newPassword1);
+        //EditText password2 = (EditText) findViewById(R.id.newPassword2);
+        EditText major = (EditText) findViewById(R.id.newMajor);
+        EditText info = (EditText) findViewById(R.id.newInfo);
+
+        name.setText(LoginActivity.getUser().getName());
+        email.setText(LoginActivity.getUser().getEmail());
+        //password1.setText(LoginActivity.getUser().getPassword());
+        major.setText(LoginActivity.getUser().getMajor());
+        info.setText(LoginActivity.getUser().getInfo());
     }
     public void onCancelProfileButtonPressed(View v) {
         Log.d("PROFILE ACTIVITY", "Cancel profile edits button was pressed.");

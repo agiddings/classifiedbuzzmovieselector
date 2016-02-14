@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
         manager = usermanager;
     }
 
-    //So we know who teh current user is
+    //So we know who the current user is
     private static User user;
 
     //to access user form other classses
@@ -58,15 +58,6 @@ public class LoginActivity extends AppCompatActivity {
         Log.d("LOGIN ACTIVITY", manager.toString());
         EditText emailBox = (EditText) findViewById(R.id.loginEmail);
         EditText passBox = (EditText) findViewById(R.id.loginPassword);
-
-        //For testing purposes
-        try {
-            manager.addUser("user", "user@gmail.com", "passs");
-        } catch(UserAlreadyExistsException e){
-            Log.d("LOGIN ACTIVITY","Error adding");
-        } catch(Exception a) {
-            Log.d("LOGIN ACTIVITY", "Invalid Field.");
-        }
 
         CharSequence text;
         if (manager.handleLoginRequest(emailBox.getText().toString(), passBox.getText().toString())) {
