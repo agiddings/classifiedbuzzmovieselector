@@ -15,11 +15,19 @@ public class PostLoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_post_login);
     }
 
+    /**
+     * Logouts user by switching to login screen
+     * @param v The current view
+     */
     public void onLogoutButtonClicked(View v) {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Goes to Edit Profile Activity
+     * @param v teh current view
+     */
     public void onEditProfileButtonClicked(View v) {
         Intent intent = new Intent(this, ProfileActivity.class);
         startActivity(intent);

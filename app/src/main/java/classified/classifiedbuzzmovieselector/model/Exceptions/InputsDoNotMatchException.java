@@ -5,10 +5,16 @@ package classified.classifiedbuzzmovieselector.model.Exceptions;
  */
 public class InputsDoNotMatchException extends Exception {
 
+    /**
+     * The default exception
+     */
     public InputsDoNotMatchException() {
         super();
     }
 
+    /**
+     * @param message The message to be passed along with exception
+     */
     public InputsDoNotMatchException(String message) {
         super(message);
     }
