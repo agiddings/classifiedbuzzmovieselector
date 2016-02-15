@@ -24,6 +24,17 @@ public class User {
         failedAttempts = 0;
     }
 
+
+    public boolean passwordMatched(String entry) {
+        if (password.equals(entry)) {
+            failedAttempts = 0;
+            return true;
+        } else {
+            isLocked = ++failedAttempts >= 5;
+            return false;
+        }
+    }
+
     public String getName() {
         return name;
     }
