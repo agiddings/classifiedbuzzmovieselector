@@ -64,7 +64,6 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-
     /**
      * Handles login for the user.
      * @param v The current view
