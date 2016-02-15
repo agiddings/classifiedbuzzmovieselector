@@ -100,14 +100,11 @@ public class UserManager {
             }
 
             if (users.containsKey(newEmail) && !newEmail.equals(currentEmail)) {
-
-                if (users.containsKey(newEmail) && !newEmail.equals(currentEmail)) {
-                    throw new InvalidEmailException("Email already exists");
-                }
-                toUpdate.setEmail(newEmail);
-                users.remove(currentEmail);
-                users.put(newEmail, toUpdate);
+                throw new InvalidEmailException("Email already exists");
             }
+            toUpdate.setEmail(newEmail);
+            users.remove(currentEmail);
+            users.put(newEmail, toUpdate);
         }
     }
 
