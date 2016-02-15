@@ -16,15 +16,21 @@ import classified.classifiedbuzzmovieselector.model.UserManager;
 
 public class LoginActivity extends AppCompatActivity {
 
-    // Only one manager instance is created
+    /**
+     * Only one manager instance is created
+     */
     private static UserManager manager;
 
-    //Make manager accessible to other classes
+    /**
+     * Make manager accessible to other classes
+     */
     protected static UserManager getManager() {
         return manager;
     }
 
-    //Can set manager if not already existing in other classes
+    /**
+     * @param usermanager Can set manager if not already existing in other classes
+     */
     protected static void setManager(UserManager usermanager) {
         manager = usermanager;
     }

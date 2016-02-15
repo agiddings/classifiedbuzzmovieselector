@@ -64,7 +64,7 @@ public class ProfileActivity extends AppCompatActivity{
         } else {
             if (LoginActivity.getManager() == null) {
                 LoginActivity.setManager(new UserManager());
-             } else {
+            } else {
                 if (!(password1.getText().toString().equals(password2.getText().toString()))) {
                     message = "Update failed: Passwords did not match.";
                     Context context = getApplicationContext();
