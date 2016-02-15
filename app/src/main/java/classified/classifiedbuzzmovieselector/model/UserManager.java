@@ -98,7 +98,11 @@ public class UserManager {
             if (!newEmail.matches("(.*)@(.*).(.*)")) {
                 throw new InvalidEmailException("Invalid Email");
             }
+<<<<<<< HEAD
+            if (users.containsKey(newEmail) && ! newEmail.equals(currentEmail)) {
+=======
             if (users.containsKey(newEmail) && !newEmail.equals(currentEmail)) {
+>>>>>>> 1b84e25ab043432f8d04a45f61d46f1be6035d00
                 throw new InvalidEmailException("Email already exists");
             }
             toUpdate.setEmail(newEmail);
