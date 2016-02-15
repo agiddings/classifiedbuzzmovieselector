@@ -7,6 +7,7 @@ import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidEmailExcep
 import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidNameException;
 import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidPasswordException;
 import classified.classifiedbuzzmovieselector.model.Exceptions.UserAlreadyExistsException;
+import classified.classifiedbuzzmovieselector.model.Exceptions.UserDoesNotExistException;
 
 /**
  * Created by Steven on 2/5/16.
@@ -42,6 +43,38 @@ public class UserManager {
         }
         User user = new User(name, email, password);
         users.put(email, user);
+    }
+
+    public void updateUser(String currentEmail, String name, String newEmail, String password, String major, String info)
+    throws UserDoesNotExistException, InvalidEmailException {
+        if(!users.containsKey(currentEmail) ) {
+            throw new UserDoesNotExistException("User does not exist");
+        }
+        User toUpdate = users.get(currentEmail);
+        if (name != null && name.length() != 0) {
+            toUpdate.setName(name);
+        }
+        if ( password != null && password.length() != 0) {
+            toUpdate.setPassword(password);
+        }
+        if ( major != null && major.length() != 0) {
+            toUpdate.setMajor(major);
+        }
+        if (info != null && info.length() != 0) {
+            toUpdate.setInfo(info);
+        }
+
+        if (newEmail != null && newEmail.length() != 0) {
+            if (!newEmail.matches("(.*)@(.*).(.*)")) {
+                throw new InvalidEmailException("Invalid Email");
+            }
+            if (users.containsKey(newEmail)) {
+                throw new InvalidEmailException("Email already exists");
+            }
+            toUpdate.setEmail(newEmail);
+            users.remove(currentEmail);
+            users.put(newEmail, toUpdate);
+        }
     }
 
 
