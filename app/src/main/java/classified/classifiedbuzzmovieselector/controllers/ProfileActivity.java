@@ -25,6 +25,19 @@ public class ProfileActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        EditText name = (EditText) findViewById(R.id.newName);
+        EditText email = (EditText) findViewById(R.id.newEmail);
+        //EditText password1 = (EditText) findViewById(R.id.newPassword1);
+        //EditText password2 = (EditText) findViewById(R.id.newPassword2);
+        EditText major = (EditText) findViewById(R.id.newMajor);
+        EditText info = (EditText) findViewById(R.id.newInfo);
+
+        name.setText(LoginActivity.getUser().getName());
+        email.setText(LoginActivity.getUser().getEmail());
+        //password1.setText(LoginActivity.getUser().getPassword());
+        major.setText(LoginActivity.getUser().getMajor());
+        info.setText(LoginActivity.getUser().getInfo());
     }
     public void onCancelProfileButtonPressed(View v) {
         Log.d("PROFILE ACTIVITY", "Cancel profile edits button was pressed.");
@@ -50,23 +63,20 @@ public class ProfileActivity extends AppCompatActivity{
         } else {
             if (LoginActivity.getManager() == null) {
                 LoginActivity.setManager(new UserManager());
-            }
-            message = "Profile update succeeded.";
-            try {
-                // Perhaps add an edit user method? And a remove user method?
-                // Also need to update the information for the user.
-                LoginActivity.getManager().addUser(name.getText().toString(), email.getText().toString(), password1.getText().toString());
+            } else {
+                message = "Profile update succeeded.";
+                // Here, we need to update the user.
+                // So you need to use the getters/setters in the User class to update the necessary information.
+                // Additionally, before you add things you need to check that the entries are valid
+                // For examples on how to check if an entry is valid, look in the usermanager adduser method.
+                // Put the code here to update the user. You can look in registration activity to make sure
+                // That you are getting the text and not memory address from the EditText items I initialized above.
+
+
+                // Returns to the post login page.
                 Intent intent = new Intent(this, PostLoginActivity.class);
                 startActivity(intent);
-            } catch (UserAlreadyExistsException a) {
-                message = "Profile update failed: That user already exists.";
-            } catch (InvalidNameException b) {
-                message = "The name field is invalid.";
-            } catch (InvalidEmailException c) {
-                message = "The email field is invalid.";
-            } catch (InvalidPasswordException d) {
-                message = "The password field is invalid.";
-            } finally {
+                // Shows a message to the user
                 Context context = getApplicationContext();
                 int duration = Toast.LENGTH_SHORT;
                 Toast output = Toast.makeText(context, message, duration);

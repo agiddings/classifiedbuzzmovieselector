@@ -1,14 +1,17 @@
 package classified.classifiedbuzzmovieselector.model;
 
-import android.util.Log;
-
 /**
  * Created by steven on 2/5/16.
  */
 public class User {
-    String name;
-    String email;
-    String password;
+    protected String name;
+    protected String email;
+    protected String password;
+    protected String major;
+    protected String info;
+    protected boolean isLocked;
+    protected boolean isBanned;
+    protected int failedAttempts;
 
     //Add user info, major from profile section
 
@@ -16,13 +19,56 @@ public class User {
         this.name = name;
         this.email = email;
         this.password = password;
+        isLocked = false;
+        isBanned = false;
+        failedAttempts = 0;
     }
 
-    public boolean checkPassword(String entry) {
-        return password.equals(entry);
+    public String getName() {
+        return name;
     }
 
-    public String toString() {
-        return name + " " + email + " " + password;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public boolean isLocked() {
+        return isLocked;
+    }
+
+    public boolean isBanned() {
+        return isBanned;
+    }
+
+    public int getFailedAttempts() {
+        return failedAttempts;
     }
 }

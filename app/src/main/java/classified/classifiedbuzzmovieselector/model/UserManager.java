@@ -24,6 +24,7 @@ public class UserManager {
     }
 
     //what is the method below trying to do? - Justeen
+    // it returns the user with the inputted email - Steven
     public User findUserByEmail(String email) {
         return users.get(email);
     }
@@ -43,21 +44,68 @@ public class UserManager {
         users.put(email, user);
     }
 
-    public String toString() {
-        String returnVal = "";
-        for (String s : users.keySet()) {
-            returnVal += s + " " + users.get(s) + "\n";
-        }
-        return returnVal;
-    }
 
+    /*
+     * log in user when the login button is pressed
+     *
+     * @param email email address user provides
+     * @param pass password user provides
+     * @return whether log in successful
+     *
+     */
     public boolean handleLoginRequest(String email, String pass) {
         //if the email is recorded before
         if (users.containsKey(email)) {
-            return users.get(email).checkPassword(pass);
+            User user = users.get(email);
+            return !user.isBanned() && !user.isLocked() && passwordMatched(pass, user);
         } else {
             // false if email is not recorded before
             return false;
         }
     }
+
+    /*
+     * check if two passwords match
+     *
+     * @param entry password checked against
+     * @return whether passwords match
+     *
+     */
+    private boolean passwordMatched(String entry, User user) {
+        if (entry.equals(user.password)) {
+            return true;
+        } else {
+            updateLockStatus(user);
+            return false;
+        }
+    }
+
+    /*
+     * update lock status of a user
+     *
+     * @param user user that needs lock status update after failed login attempt
+     *
+     */
+    private void updateLockStatus(User user) {
+        user.failedAttempts++;
+        if (user.failedAttempts >= 5) {
+            user.isLocked = true;
+        }
+    }
+
+    //back up
+//    private boolean passwordMatched(String entry) {
+//        if (password.equals(entry)) {
+//            failedAttempts = 0;
+//            return true;
+//        } else {
+//            isLocked = ++failedAttempts >= 5;
+//            return false;
+//        }
+//    }
+
+
+
+
+
 }

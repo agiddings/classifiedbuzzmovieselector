@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import classified.classifiedbuzzmovieselector.R;
 import classified.classifiedbuzzmovieselector.model.Exceptions.UserAlreadyExistsException;
+import classified.classifiedbuzzmovieselector.model.User;
 import classified.classifiedbuzzmovieselector.model.UserManager;
 
 public class LoginActivity extends AppCompatActivity {
@@ -28,6 +29,21 @@ public class LoginActivity extends AppCompatActivity {
         manager = usermanager;
     }
 
+    //So we know who the current user is
+    private static User user;
+
+    //to access user form other classses
+    protected static User getUser() {
+        return user;
+    }
+
+    //to set user form registration page
+    protected static void setUser(User newUser) {
+        user = newUser;
+    }
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,22 +59,14 @@ public class LoginActivity extends AppCompatActivity {
         EditText emailBox = (EditText) findViewById(R.id.loginEmail);
         EditText passBox = (EditText) findViewById(R.id.loginPassword);
 
-        //For testing purposes
-        try {
-            manager.addUser("user", "user@gmail.com", "passs");
-        } catch(UserAlreadyExistsException e){
-            Log.d("LOGIN ACTIVITY","Error adding");
-        } catch(Exception a) {
-            Log.d("LOGIN ACTIVITY", "Invalid Field.");
-        }
-
         CharSequence text;
         if (manager.handleLoginRequest(emailBox.getText().toString(), passBox.getText().toString())) {
             Log.d("LoginActivity", "Login Successful");
-
             text = "Login Successful";
 
-            //should go to postlogin Screen
+            user = manager.findUserByEmail(emailBox.getText().toString());
+
+            //Goes to postlogin Screen
             Intent intent = new Intent(this, PostLoginActivity.class);
             startActivity(intent);
 
@@ -75,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onRegistrationLinkPressed(View v){
         Log.d("LOGIN ACTIVITY", "Registration Link Pressed");
 
-        //should go to registration page
+        //Goes to registration page
         Intent intent = new Intent(this, RegistrationActivity.class);
         startActivity(intent);
     }
