@@ -14,6 +14,7 @@ import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidEmailExcep
 import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidNameException;
 import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidPasswordException;
 import classified.classifiedbuzzmovieselector.model.Exceptions.UserAlreadyExistsException;
+import classified.classifiedbuzzmovieselector.model.Exceptions.UserDoesNotExistException;
 import classified.classifiedbuzzmovieselector.model.UserManager;
 
 /**
@@ -63,14 +64,36 @@ public class ProfileActivity extends AppCompatActivity{
         } else {
             if (LoginActivity.getManager() == null) {
                 LoginActivity.setManager(new UserManager());
-            } else {
+             } else {
+                if (!(password1.getText().toString().equals(password2.getText().toString()))) {
+                    message = "Update failed: Passwords did not match.";
+                    Context context = getApplicationContext();
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast output = Toast.makeText(context, message, duration);
+                    output.show();
+                }
+
+                try {
+                    UserManager um = LoginActivity.getManager();
+                    um.updateUser(LoginActivity.getUser().getEmail(), name.getText().toString(),
+                            email.getText().toString(), password1.getText().toString(),
+                            major.getText().toString(), info.getText().toString());
+
+                } catch(UserDoesNotExistException e) {
+                    Context context = getApplicationContext();
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast output = Toast.makeText(context, e.getMessage(), duration);
+                    output.show();
+                } catch(InvalidEmailException e) {
+                    Context context = getApplicationContext();
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast output = Toast.makeText(context, e.getMessage(), duration);
+                    output.show();
+                }
+
+
+
                 message = "Profile update succeeded.";
-                // Here, we need to update the user.
-                // So you need to use the getters/setters in the User class to update the necessary information.
-                // Additionally, before you add things you need to check that the entries are valid
-                // For examples on how to check if an entry is valid, look in the usermanager adduser method.
-                // Put the code here to update the user. You can look in registration activity to make sure
-                // That you are getting the text and not memory address from the EditText items I initialized above.
 
 
                 // Returns to the post login page.
