@@ -18,18 +18,36 @@ public class UserManager {
 
     //For profile class, add a remove user and/or edit user method
 
+    /*
+     * Constructor create a new user manager that deals with users
+     * also creates temporary user for testing
+     *
+     */
     public UserManager() {
         //create a temporary user for M3 demo
         tempUser = new User("John", "user@gmail.com", "pass");
         users.put("user@gmail.com", tempUser);
     }
 
-    //what is the method below trying to do? - Justeen
-    // it returns the user with the inputted email - Steven
+    /*
+     * find user by email addresss
+     *
+     * @param email user's email
+     * @return user the user that's matched with the email
+     *
+     */
     public User findUserByEmail(String email) {
         return users.get(email);
     }
 
+    /*
+     * register new user
+     *
+     * @param name user's name
+     * @param email user's email
+     * @param password user's password
+     *
+     */
     public void addUser(String name, String email, String password)
     throws InvalidPasswordException, InvalidEmailException, InvalidNameException, UserAlreadyExistsException {
         if(name == null) {
@@ -45,6 +63,18 @@ public class UserManager {
         users.put(email, user);
     }
 
+
+    /*
+     * update user information
+     *
+     * @param currentEmail user current email
+     * @param name user's name
+     * @param newEmail user's new email
+     * @param password user's password
+     * @param major user's major
+     * @param info user's additional information
+     *
+     */
     public void updateUser(String currentEmail, String name, String newEmail, String password, String major, String info)
     throws UserDoesNotExistException, InvalidEmailException {
         if(!users.containsKey(currentEmail) ) {
