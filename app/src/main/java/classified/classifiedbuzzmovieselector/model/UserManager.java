@@ -19,7 +19,7 @@ public class UserManager {
     //For profile class, add a remove user and/or edit user method
 
     /*
-     * Constructor create a new user manager that deals with users
+     * Constructor A user manager that deals with users
      * also creates temporary user for testing
      *
      */
@@ -30,7 +30,7 @@ public class UserManager {
     }
 
     /*
-     * find user by email addresss
+     * find user by email address
      *
      * @param email user's email
      * @return user the user that's matched with the email
@@ -98,7 +98,7 @@ public class UserManager {
             if (!newEmail.matches("(.*)@(.*).(.*)")) {
                 throw new InvalidEmailException("Invalid Email");
             }
-            if (users.containsKey(newEmail)) {
+            if (users.containsKey(newEmail) && !newEmail.equals(currentEmail)) {
                 throw new InvalidEmailException("Email already exists");
             }
             toUpdate.setEmail(newEmail);
