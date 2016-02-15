@@ -77,17 +77,17 @@ public class UserManager {
      */
     public void updateUser(String currentEmail, String name, String newEmail, String password, String major, String info)
     throws UserDoesNotExistException, InvalidEmailException {
-        if(!users.containsKey(currentEmail) ) {
+        if (!users.containsKey(currentEmail)) {
             throw new UserDoesNotExistException("User does not exist");
         }
         User toUpdate = users.get(currentEmail);
         if (name != null && name.length() != 0) {
             toUpdate.setName(name);
         }
-        if ( password != null && password.length() != 0) {
+        if (password != null && password.length() != 0) {
             toUpdate.setPassword(password);
         }
-        if ( major != null && major.length() != 0) {
+        if (major != null && major.length() != 0) {
             toUpdate.setMajor(major);
         }
         if (info != null && info.length() != 0) {
@@ -98,16 +98,16 @@ public class UserManager {
             if (!newEmail.matches("(.*)@(.*).(.*)")) {
                 throw new InvalidEmailException("Invalid Email");
             }
-<<<<<<< HEAD
-            if (users.containsKey(newEmail) && ! newEmail.equals(currentEmail)) {
-=======
+
             if (users.containsKey(newEmail) && !newEmail.equals(currentEmail)) {
->>>>>>> 1b84e25ab043432f8d04a45f61d46f1be6035d00
-                throw new InvalidEmailException("Email already exists");
+
+                if (users.containsKey(newEmail) && !newEmail.equals(currentEmail)) {
+                    throw new InvalidEmailException("Email already exists");
+                }
+                toUpdate.setEmail(newEmail);
+                users.remove(currentEmail);
+                users.put(newEmail, toUpdate);
             }
-            toUpdate.setEmail(newEmail);
-            users.remove(currentEmail);
-            users.put(newEmail, toUpdate);
         }
     }
 
