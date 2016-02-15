@@ -68,7 +68,7 @@ public class UserManager {
             if (!newEmail.matches("(.*)@(.*).(.*)")) {
                 throw new InvalidEmailException("Invalid Email");
             }
-            if (users.containsKey(newEmail)) {
+            if (users.containsKey(newEmail) && ! newEmail.equals(currentEmail)) {
                 throw new InvalidEmailException("Email already exists");
             }
             toUpdate.setEmail(newEmail);
