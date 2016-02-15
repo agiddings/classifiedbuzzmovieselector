@@ -16,28 +16,40 @@ import classified.classifiedbuzzmovieselector.model.UserManager;
 
 public class LoginActivity extends AppCompatActivity {
 
-    // Only one manager instance is created
+    /**
+     * Only one manager instance is created
+     */
     private static UserManager manager;
 
-    //Make manager accessible to other classes
+    /**
+     * Make manager accessible to other classes
+     */
     protected static UserManager getManager() {
         return manager;
     }
 
-    //Can set manager if not already existing in other classes
+    /**
+     * @param usermanager Can set manager if not already existing in other classes
+     */
     protected static void setManager(UserManager usermanager) {
         manager = usermanager;
     }
 
-    //So we know who the current user is
+    /**
+     * So we know who the current user is
+     */
     private static User user;
 
-    //to access user form other classses
+    /**
+     * to access user form other classses
+     */
     protected static User getUser() {
         return user;
     }
 
-    //to set user form registration page
+    /**
+     * @param newUser set user form registration page
+     */
     protected static void setUser(User newUser) {
         user = newUser;
     }
@@ -52,6 +64,10 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Handles login for the user.
+     * @param v The current view
+     */
     public void onLoginButtonPressed(View v) {
         Log.d("LOGIN ACTIVITY", "Login Button Pressed");
         manager = new UserManager();
@@ -80,6 +96,10 @@ public class LoginActivity extends AppCompatActivity {
         t.show();
     }
 
+    /**
+     * Directs user to the registration page
+     * @param v The current view seen by the user
+     */
     public void onRegistrationLinkPressed(View v){
         Log.d("LOGIN ACTIVITY", "Registration Link Pressed");
 

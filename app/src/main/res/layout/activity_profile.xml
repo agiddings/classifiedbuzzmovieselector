@@ -6,13 +6,29 @@
     tools:context=".controllers.ProfileActivity"
     android:background="#dddee5">
 
-    <Button
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cancel Profile Edits"
-        android:id="@+id/CancelProfileEdit"
-        android:layout_gravity="right"
-        android:onClick="onCancelProfileButtonPressed" />
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Edit Profile"
+            android:id="@+id/textView9"
+            android:layout_gravity="center_vertical"
+            android:textSize="30dp"
+            android:layout_alignParentLeft="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel Profile Edits"
+            android:id="@+id/CancelProfileEdit"
+            android:layout_gravity="right"
+            android:onClick="onCancelProfileButtonPressed"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
 
     <TextView
         android:layout_width="wrap_content"
