@@ -120,55 +120,10 @@ public class UserManager {
         //if the email is recorded before
         if (users.containsKey(email)) {
             User user = users.get(email);
-            return !user.isBanned() && !user.isLocked() && passwordMatched(pass, user);
+            return !user.isBanned() && !user.isLocked() && user.passwordMatched(pass);
         } else {
             // false if email is not recorded before
             return false;
         }
     }
-
-    /*
-     * check if two passwords match
-     *
-     * @param entry password checked against
-     * @return whether passwords match
-     *
-     */
-    private boolean passwordMatched(String entry, User user) {
-        if (entry.equals(user.password)) {
-            return true;
-        } else {
-            updateLockStatus(user);
-            return false;
-        }
-    }
-
-    /*
-     * update lock status of a user
-     *
-     * @param user user that needs lock status update after failed login attempt
-     *
-     */
-    private void updateLockStatus(User user) {
-        user.failedAttempts++;
-        if (user.failedAttempts >= 5) {
-            user.isLocked = true;
-        }
-    }
-
-    //back up
-//    private boolean passwordMatched(String entry) {
-//        if (password.equals(entry)) {
-//            failedAttempts = 0;
-//            return true;
-//        } else {
-//            isLocked = ++failedAttempts >= 5;
-//            return false;
-//        }
-//    }
-
-
-
-
-
 }
