@@ -5,7 +5,13 @@ package classified.classifiedbuzzmovieselector.model.Exceptions;
  */
 public class InvalidPasswordException extends Exception{
 
+    /**
+     * The default exception
+     */
     public InvalidPasswordException() { super();}
 
+    /**
+     * @param message The message to be passed in with the exception.
+     */
     public InvalidPasswordException(String message) { super(message);}
 }
