@@ -28,6 +28,9 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     /**
+     *
+     * Event when the cancel registration button is pressed
+     *
      * @param v The view, for registration activity
      */
     public void onCancelRegistrationButtonPressed(View v) {
@@ -37,6 +40,9 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     /**
+     *
+     *  Event when the registration button is pressed
+     *
      * @param v The view, for registration activity
      */
     public void onRegisterButtonPressed(View v) {
