@@ -15,6 +15,12 @@ public class User {
 
     //Add user info, major from profile section
 
+    /**
+     * Makes a new User Object.
+     * @param name the name of the user
+     * @param email the email of the user
+     * @param password the password of the user
+     */
     public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
@@ -24,7 +30,11 @@ public class User {
         failedAttempts = 0;
     }
 
-
+    /**
+     * Checks whether the entered password is correct
+     * @param entry the entry being checked for equality with this user's password
+     * @return a boolean representing whether entry equals this user's password
+     */
     public boolean passwordMatched(String entry) {
         if (password.equals(entry)) {
             failedAttempts = 0;
@@ -35,50 +45,98 @@ public class User {
         }
     }
 
+    /**
+     * Gets user's name
+     * @return this user's name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Sets user's name
+     * @param name the new name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * returns user's email
+     * @return a string representing the users email
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * sets the user email to email
+     * @param email the new email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     * gets the user major
+     * @return a string representing the user major
+     */
     public String getMajor() {
         return major;
     }
 
+    /**
+     * set the user major
+     * @param major the new major
+     */
     public void setMajor(String major) {
         this.major = major;
     }
 
+    /**
+     * get user info
+     * @return a string representing user profile info
+     */
     public String getInfo() {
         return info;
     }
 
+    /**
+     * set the user info
+     * @param info new user info
+     */
     public void setInfo(String info) {
         this.info = info;
     }
 
+    /**
+     * set the user password
+     * @param password new password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     * checks if the user account is locked
+     * @return a boolean representing whether or not the user account is locked
+     */
     public boolean isLocked() {
         return isLocked;
     }
 
+    /**
+     * checks if the user account is banned
+     * @return a boolean representing whether or not the user account is locked
+     */
     public boolean isBanned() {
         return isBanned;
     }
 
+    /**
+     * gets the number of failed login attempts
+     * @return an int representing the number of failed login attempts
+     */
     public int getFailedAttempts() {
         return failedAttempts;
     }
