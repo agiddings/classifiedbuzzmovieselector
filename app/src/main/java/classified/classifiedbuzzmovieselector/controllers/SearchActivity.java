@@ -6,12 +6,30 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
+import org.json.JSONObject;
+
+import java.net.URL;
+import java.util.Scanner;
+
 import classified.classifiedbuzzmovieselector.R;
 
 /**
  * Created by Allie on 2/16/2016.
  */
 public class SearchActivity extends AppCompatActivity{
+    final String KEY = "yedukp76ffytfuy24zsqk7f5";
+
+    public static JSONObject urlToJson(String s) throws Exception {
+        URL url = new URL(s);
+        Scanner scan = new Scanner(url.openStream());
+        String str = new String();
+        while(scan.hasNext())
+            str += scan.nextLine();
+        scan.close();
+        JSONObject obj = new JSONObject(str);
+
+        return obj;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

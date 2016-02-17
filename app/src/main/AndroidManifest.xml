@@ -23,8 +23,9 @@
         <activity
             android:name=".controllers.RegistrationActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".controllers.PostLoginActivity" />
+        <activity android:name=".controllers.PostLoginActivity"/>
         <activity android:name=".controllers.ProfileActivity"/>
+        <activity android:name=".controllers.SearchActivity"/>
     </application>
 
 </manifest>
