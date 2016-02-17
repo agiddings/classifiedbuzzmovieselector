@@ -57,6 +57,9 @@ public class SearchActivity extends AppCompatActivity{
      */
     public void onSearchButtonPressed(View v) {
         Log.d("SEARCH ACTIVITY", "Search button was pressed.");
-        //Call methods to search for movies
+        //Get text from text box that user is inputting
+        //Check to see if Movie is in database
+            //If so display info about movie
+            //If not display message to the user saying the movie was not located.
     }
 }
