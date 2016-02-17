@@ -19,6 +19,7 @@ import classified.classifiedbuzzmovieselector.R;
 public class SearchActivity extends AppCompatActivity{
     final String KEY = "yedukp76ffytfuy24zsqk7f5";
 
+    //TODO switch to google gson and implement with volley
     public static JSONObject urlToJson(String s) throws Exception {
         URL url = new URL(s);
         Scanner scan = new Scanner(url.openStream());
