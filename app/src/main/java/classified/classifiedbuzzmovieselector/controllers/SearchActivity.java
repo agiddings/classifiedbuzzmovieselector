@@ -89,7 +89,11 @@ public class SearchActivity extends AppCompatActivity{
 
     }
 
-    public void onSearchNewREaleases(View v) {
+    /**
+     * Searches for new releases
+     * @param v current view
+     */
+    public void onSearchNewRealeases(View v) {
         int pagelimit = 10;
         String url = String.format("http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=%d&page=1&country=us&apikey=y%s", pagelimit, KEY);
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
@@ -111,7 +115,11 @@ public class SearchActivity extends AppCompatActivity{
         queue.add(jsObjRequest);
     }
 
-    public void onSearchnewDVDs(View v) {
+    /**
+     * Searches for new DVD releases
+     * @param v current view
+     */
+    public void onSearchNewDVDs(View v) {
         int pagelimit = 10;
         String url = String.format("http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?page_limit=%d&page=1&country=us&apikey=%s", pagelimit, KEY);
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
