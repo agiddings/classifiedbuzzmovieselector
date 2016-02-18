@@ -5,13 +5,21 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import classified.classifiedbuzzmovieselector.R;
@@ -22,18 +30,7 @@ import classified.classifiedbuzzmovieselector.R;
 public class SearchActivity extends AppCompatActivity{
     final String KEY = "yedukp76ffytfuy24zsqk7f5";
 
-    //TODO switch to google gson and implement with volley
-    public static JSONObject urlToJson(String s) throws Exception {
-        URL url = new URL(s);
-        Scanner scan = new Scanner(url.openStream());
-        String str = new String();
-        while(scan.hasNext())
-            str += scan.nextLine();
-        scan.close();
-        JSONObject obj = new JSONObject(str);
-
-        return obj;
-    }
+    RequestQueue queue =  Volley.newRequestQueue(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,5 +62,75 @@ public class SearchActivity extends AppCompatActivity{
         //Check to see if Movie is in database
             //If so display info about movie
             //If not display message to the user saying the movie was not located.
+
+
+        String userinput = "";//TODO fill this in when GUI is complete
+        int pagelimit = 10;
+
+        String url = String.format("http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=%s&page_limit=%d&page=1&apikey=%s",userinput, pagelimit, KEY);
+
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                (Request.Method.GET, url, "", new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject resp) {
+                        Log.d("SEARCH ACTIVITY", "Request Recieved.");
+                        //resp is the response JSON Obj
+                        //TODO Put info in movie objects
+                        //then add to view
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("SEARCH ACTIVITY", "Request Error.");
+                    }
+                });
+        queue.add(jsObjRequest);
+
+    }
+
+    public void onSearchNewREaleases(View v) {
+        int pagelimit = 10;
+        String url = String.format("http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=%d&page=1&country=us&apikey=y%s", pagelimit, KEY);
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                (Request.Method.GET, url, "", new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject resp) {
+                        Log.d("SEARCH ACTIVITY", "Request Recieved.");
+                        //resp is the response JSON Obj
+                        //TODO Put info in movie objects
+                        //then add to view
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("SEARCH ACTIVITY", "Request Error.");
+                    }
+                });
+        queue.add(jsObjRequest);
+    }
+
+    public void onSearchnewDVDs(View v) {
+        int pagelimit = 10;
+        String url = String.format("http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?page_limit=%d&page=1&country=us&apikey=%s", pagelimit, KEY);
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                (Request.Method.GET, url, "", new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject resp) {
+                        Log.d("SEARCH ACTIVITY", "Request Recieved.");
+                        //resp is the response JSON Obj
+                        //TODO Put info in movie objects
+                        //then add to view
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("SEARCH ACTIVITY", "Request Error.");
+                    }
+                });
+        queue.add(jsObjRequest);
+
     }
 }
