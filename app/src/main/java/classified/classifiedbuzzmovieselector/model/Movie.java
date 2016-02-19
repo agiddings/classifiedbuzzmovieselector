@@ -4,8 +4,8 @@ package classified.classifiedbuzzmovieselector.model;
  * Created by Zhendong(Justeen) on 2/18/16.
  */
 public class Movie {
-    private String movieTitle;
-    private int movieYear;
+    private String title;
+    private int year;
     //private String genre;
     //private int rating;
 
@@ -18,8 +18,8 @@ public class Movie {
      *
      */
     public Movie(String title, int year) {
-        movieTitle = title;
-        year = movieYear;
+        this.title = title;
+        this.year = year;
     }
 
 
@@ -31,9 +31,11 @@ public class Movie {
      *
      */
     public int getMovieYear(Movie title) {
-        return title.movieYear;
+        return title.year;
     }
 
-
+    public int getYear() {
+        return year;
+    }
 
 }
