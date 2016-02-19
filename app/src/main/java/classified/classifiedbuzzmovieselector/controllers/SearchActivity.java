@@ -39,7 +39,7 @@ public class SearchActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        ListView listview = (ListView) findViewById(R.id.movieResultList);
+       //ListView listview = (ListView) findViewById(R.id.movieResultList);
 
     }
 
