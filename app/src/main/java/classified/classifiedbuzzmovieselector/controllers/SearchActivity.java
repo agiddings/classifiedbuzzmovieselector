@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -81,6 +83,7 @@ public class SearchActivity extends AppCompatActivity{
                     public void onResponse(JSONObject resp) {
                         Log.d("SEARCH ACTIVITY", "Request Recieved.");
 
+
                         //resp is the response JSON Obj
                         //TODO Put info in movie objects
                         //then add to view
@@ -103,7 +106,9 @@ public class SearchActivity extends AppCompatActivity{
      */
     public void onSearchNewRealeases(View v) {
         int pagelimit = 10;
-        String url = String.format("http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=%d&page=1&country=us&apikey=y%s", pagelimit, KEY);
+        String url = String.format("http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=%d&page=1&country=us&apikey=%s", pagelimit, KEY);
+        //String url = "http://www.omdbapi.com/?t=Good+Will+Hunting&y=&plot=short&r=json";
+
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.GET, url, "", new Response.Listener<JSONObject>() {
                     @Override
@@ -112,6 +117,13 @@ public class SearchActivity extends AppCompatActivity{
                         //resp is the response JSON Obj
                         //TODO Put info in movie objects
                         //then add to view
+                        //Button info = (Button) findViewById(R.id.button2);
+                        try {
+                            //info.setText(resp.getJSONArray("movies").getJSONObject(0).getString("title"));
+                        } catch(Exception e) {
+                            Log.d("SEARCH ACTIVITY", "JSON Error.");
+                        }
+
                     }
                 }, new Response.ErrorListener() {
 
