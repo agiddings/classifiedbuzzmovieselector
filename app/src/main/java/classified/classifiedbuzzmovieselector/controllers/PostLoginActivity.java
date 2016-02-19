@@ -24,6 +24,7 @@ public class PostLoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_post_login);
     }
 
+
     /**
      * Logouts user by switching to login screen
      * @param v The current view
@@ -42,7 +43,7 @@ public class PostLoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void onSearchButtonClicked(View v) {
+    public void onGoToSearchButtonClicked(View v) {
         Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
     }

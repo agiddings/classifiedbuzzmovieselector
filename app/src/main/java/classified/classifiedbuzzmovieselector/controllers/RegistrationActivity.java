@@ -80,10 +80,10 @@ public class RegistrationActivity extends AppCompatActivity {
             } catch (InvalidPasswordException d) {
                 message = "The password field is invalid.";
             } finally {
-                    Context context = getApplicationContext();
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast output = Toast.makeText(context, message, duration);
-                    output.show();
+                Context context = getApplicationContext();
+                int duration = Toast.LENGTH_SHORT;
+                Toast output = Toast.makeText(context, message, duration);
+                output.show();
             }
         }
     }

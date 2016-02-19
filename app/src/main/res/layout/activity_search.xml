@@ -1,7 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#dddee5">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search Text Field"
+        android:id="@+id/textView10" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|right"
+        android:gravity="right"
+        android:dividerPadding="5dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New DVDs"
+            android:id="@+id/newDVDsButton"
+            android:onClick="onSearchNewDVDs" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search"
+            android:id="@+id/SearchTextFieldButton"
+            android:nestedScrollingEnabled="false"
+            android:onClick="onSearchButtonClicked" />
+
+        <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/NewReleasesButton"
+        android:layout_gravity="center_horizontal"
+        android:text="New Releases"
+        android:onClick="onSearchNewReleases" />
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -9,9 +53,10 @@
         android:id="@+id/scrollView2"
         android:layout_gravity="center_horizontal" >
 
-        <ListView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/movieResultList" />
     </ScrollView>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/movieResultList" />
 </LinearLayout>
