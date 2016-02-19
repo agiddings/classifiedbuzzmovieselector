@@ -23,4 +23,17 @@ public class Movie {
     }
 
 
+    /**
+     * Constructor a movie with relevant information
+     *
+     * @param title movie title
+     * @return  year of release
+     *
+     */
+    public int getMovieYear(Movie title) {
+        return title.movieYear;
+    }
+
+
+
 }
