@@ -42,7 +42,7 @@ public class PostLoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void onSearchButtonClicked(View v) {
+    public void onGoToSearchButtonClicked(View v) {
         Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
     }
