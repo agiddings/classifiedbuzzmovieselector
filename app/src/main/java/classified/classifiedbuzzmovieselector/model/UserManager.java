@@ -13,8 +13,7 @@ import classified.classifiedbuzzmovieselector.model.Exceptions.UserDoesNotExistE
  * Created by Steven on 2/5/16.
  */
 public class UserManager {
-    private static Map<String, User> users = new HashMap<>();
-    private User tempUser;
+    private static final Map<String, User> users = new HashMap<>();
 
     //For profile class, add a remove user and/or edit user method
 
@@ -23,11 +22,7 @@ public class UserManager {
      * also creates temporary user for testing
      *
      */
-    public UserManager() {
-        //create a temporary user for M3 demo
-        tempUser = new User("John", "user@gmail.com", "pass");
-        users.put("user@gmail.com", tempUser);
-    }
+    public UserManager() {}
 
     /*
      * find user by email address
