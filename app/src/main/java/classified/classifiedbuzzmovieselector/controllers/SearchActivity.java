@@ -31,16 +31,18 @@ import classified.classifiedbuzzmovieselector.R;
 public class SearchActivity extends AppCompatActivity{
     final String KEY = "yedukp76ffytfuy24zsqk7f5";
 
-    RequestQueue queue =  Volley.newRequestQueue(this);
+    RequestQueue queue;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        ListView listview = (ListView) findViewById(R.id.movieResultList);
+       //ListView listview = (ListView) findViewById(R.id.movieResultList);
 
     }
+
 
     /**
      *
@@ -78,6 +80,7 @@ public class SearchActivity extends AppCompatActivity{
                     @Override
                     public void onResponse(JSONObject resp) {
                         Log.d("SEARCH ACTIVITY", "Request Recieved.");
+
                         //resp is the response JSON Obj
                         //TODO Put info in movie objects
                         //then add to view
@@ -89,6 +92,7 @@ public class SearchActivity extends AppCompatActivity{
                         Log.d("SEARCH ACTIVITY", "Request Error.");
                     }
                 });
+        queue = Volley.newRequestQueue(this);
         queue.add(jsObjRequest);
 
     }
@@ -116,6 +120,7 @@ public class SearchActivity extends AppCompatActivity{
                         Log.d("SEARCH ACTIVITY", "Request Error.");
                     }
                 });
+        queue =  Volley.newRequestQueue(this);
         queue.add(jsObjRequest);
     }
 
@@ -142,6 +147,7 @@ public class SearchActivity extends AppCompatActivity{
                         Log.d("SEARCH ACTIVITY", "Request Error.");
                     }
                 });
+        queue =  Volley.newRequestQueue(this);
         queue.add(jsObjRequest);
 
     }
