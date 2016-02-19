@@ -10,7 +10,7 @@
         android:id="@+id/button2"
         android:layout_gravity="center_horizontal"
         android:nestedScrollingEnabled="false"
-        android:onClick="onSearchButtonPressed" />
+        android:onClick="onSearchButtonClicked" />
 
     <ScrollView
         android:layout_width="match_parent"
