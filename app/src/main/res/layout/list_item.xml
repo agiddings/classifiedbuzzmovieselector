@@ -37,4 +37,15 @@
         android:layout_alignLeft="@+id/MovieTitle"
         android:layout_alignStart="@+id/MovieTitle"
         android:layout_marginTop="20px" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ratingBar"
+        android:layout_alignLeft="@+id/movieYear"
+        android:layout_alignStart="@+id/movieYear"
+        android:layout_alignBottom="@+id/movieThumbnail"
+        android:layout_below="@+id/movieYear"
+        android:stepSize="10"
+        android:rating="3.5" />
 </RelativeLayout>

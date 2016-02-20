@@ -36,7 +36,6 @@ public class SearchActivity extends AppCompatActivity{
         setContentView(R.layout.activity_search);
 
        //ListView listview = (ListView) findViewById(R.id.movieResultList);
-
     }
 
 

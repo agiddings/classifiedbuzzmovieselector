@@ -27,20 +27,22 @@ public class Movie {
     }
 
     /**
-     * Constructor a movie with relevant information
+     * get movie year
      *
-     * @param title movie title
      * @return  year of release
      *
      */
-    public int getMovieYear(Movie title) {
-        return title.year;
-    }
-
     public int getYear() {
         return year;
     }
 
+    /**
+     * compare two movies to see if they are equal
+     *
+     * @param movie movie compared against
+     * @return  whether two movies are equal
+     *
+     */
     public boolean equals(Movie movie) {
         return title.equals(movie.title) && year == movie.year
                 && mpaa_rating.equals(movie.mpaa_rating) && runtime == movie.runtime;
