@@ -82,13 +82,14 @@ public class SearchActivity extends AppCompatActivity{
                         //Movie m = new Movie(resp.)
 
                         try {
-                            JSONArray movies = resp.getJSONArray("movies");
+                            /*JSONArray movies = resp.getJSONArray("movies");
                             JSONObject current = null;
                             for (int i = 0; i < movies.length(); i++) {
                                 current = movies.getJSONObject(i);
                                 Movie m = new Movie(current.get("Title").toString(), Integer.parseInt(current.get("Year").toString()));
-                                MovieManager.add(m);
-                            }
+                                MovieManager.add(m);*/
+                        //  }
+                            MovieManager m = new MovieManager(resp.toString());
                         } catch(Exception e) {
                             Log.d("SEARCH ACTIVITY", "JSON Error.");
                         }
@@ -125,13 +126,14 @@ public class SearchActivity extends AppCompatActivity{
                         //TODO Put info in movie objects
                         //then add to view
                         try {
-                            JSONArray movies = resp.getJSONArray("movies");
+                           /* JSONArray movies = resp.getJSONArray("movies");
                             JSONObject current = null;
                             for (int i = 0; i < movies.length(); i++) {
                                 current = movies.getJSONObject(i);
                                 Movie m = new Movie(current.get("Title").toString(), Integer.parseInt(current.get("Year").toString()));
                                 MovieManager.add(m);
-                            }
+                            }*/
+                            MovieManager m = new MovieManager(resp.toString());
                         } catch(Exception e) {
                             Log.d("SEARCH ACTIVITY", "JSON Error.");
                         }
@@ -165,13 +167,14 @@ public class SearchActivity extends AppCompatActivity{
                         //then add to view
 
                         try {
-                            JSONArray movies = resp.getJSONArray("movies");
+                           /* JSONArray movies = resp.getJSONArray("movies");
                             JSONObject current = null;
                             for (int i = 0; i < movies.length(); i++) {
                                 current = movies.getJSONObject(i);
                                 Movie m = new Movie(current.get("Title").toString(), Integer.parseInt(current.get("Year").toString()));
                                 MovieManager.add(m);
-                            }
+                            }*/
+                            MovieManager m = new MovieManager(resp.toString());
                         } catch(Exception e) {
                             Log.d("SEARCH ACTIVITY", "JSON Error.");
                         }
