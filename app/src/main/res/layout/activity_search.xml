@@ -13,7 +13,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText" />
+        android:id="@+id/movie" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -36,7 +36,7 @@
             android:text="Search"
             android:id="@+id/SearchTextFieldButton"
             android:nestedScrollingEnabled="false"
-            android:onClick="onSearchButtonClicked" />
+            android:onClick="onSearchButtonPressed" />
 
         <Button
         android:layout_width="wrap_content"

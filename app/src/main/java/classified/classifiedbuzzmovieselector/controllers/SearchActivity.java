@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import classified.classifiedbuzzmovieselector.R;
+import classified.classifiedbuzzmovieselector.model.Movie;
 
 /**
  * Created by Allie on 2/16/2016.
@@ -71,8 +72,8 @@ public class SearchActivity extends AppCompatActivity{
             //If so display info about movie
             //If not display message to the user saying the movie was not located.
 
-
-        String userinput = "";//TODO fill this in when GUI is complete
+        EditText movieinput = (EditText) findViewById(R.id.movie);
+        String userinput = movieinput.toString();
         int pagelimit = 10;
 
         String url = String.format("http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=%s&page_limit=%d&page=1&apikey=%s",userinput, pagelimit, KEY);
@@ -82,11 +83,13 @@ public class SearchActivity extends AppCompatActivity{
                     @Override
                     public void onResponse(JSONObject resp) {
                         Log.d("SEARCH ACTIVITY", "Request Recieved.");
-
+                        String movieObject = resp.toString();
+                        Log.d("SEARCH ACTIVITY", movieObject);
 
                         //resp is the response JSON Obj
                         //TODO Put info in movie objects
                         //then add to view
+                        //Movie m = new Movie(resp.)
                     }
                 }, new Response.ErrorListener() {
 
@@ -104,7 +107,7 @@ public class SearchActivity extends AppCompatActivity{
      * Searches for new releases
      * @param v current view
      */
-    public void onSearchNewRealeases(View v) {
+    public void onSearchNewReleases(View v) {
         int pagelimit = 10;
         String url = String.format("http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=%d&page=1&country=us&apikey=%s", pagelimit, KEY);
         //String url = "http://www.omdbapi.com/?t=Good+Will+Hunting&y=&plot=short&r=json";
@@ -114,6 +117,8 @@ public class SearchActivity extends AppCompatActivity{
                     @Override
                     public void onResponse(JSONObject resp) {
                         Log.d("SEARCH ACTIVITY", "Request Recieved.");
+                        String movieObject = resp.toString();
+                        Log.d("SEARCH ACTIVITY", movieObject);
                         //resp is the response JSON Obj
                         //TODO Put info in movie objects
                         //then add to view
@@ -148,6 +153,8 @@ public class SearchActivity extends AppCompatActivity{
                     @Override
                     public void onResponse(JSONObject resp) {
                         Log.d("SEARCH ACTIVITY", "Request Recieved.");
+                        String movieObject = resp.toString();
+                        Log.d("SEARCH ACTIVITY", movieObject);
                         //resp is the response JSON Obj
                         //TODO Put info in movie objects
                         //then add to view

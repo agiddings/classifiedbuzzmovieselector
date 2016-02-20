@@ -25,14 +25,14 @@ public class MovieManager {
         return movies;
     }
 
-    public void sortByRating() {
-        Collections.sort(movies, new Comparator<Movie>() {
-            @Override
-            public int compare(Movie lhs, Movie rhs) {
-                return lhs.getRating().compareTo(rhs.getRating());
-            }
-        });
-    }
+//    public void sortByRating() {
+//        Collections.sort(movies, new Comparator<Movie>() {
+//            @Override
+//            public int compare(Movie lhs, Movie rhs) {
+//                return lhs.getRating().compareTo(rhs.getRating());
+ //           }
+ //       });
+ //   }
 
     public void sortByMajorRating(String major) {
 
