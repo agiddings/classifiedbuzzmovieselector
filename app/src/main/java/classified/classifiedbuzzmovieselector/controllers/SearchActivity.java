@@ -5,10 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -18,15 +15,11 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 import classified.classifiedbuzzmovieselector.R;
 import classified.classifiedbuzzmovieselector.model.Movie;
+import classified.classifiedbuzzmovieselector.model.MovieManager;
 
 /**
  * Created by Allie on 2/16/2016.
@@ -83,13 +76,24 @@ public class SearchActivity extends AppCompatActivity{
                     @Override
                     public void onResponse(JSONObject resp) {
                         Log.d("SEARCH ACTIVITY", "Request Recieved.");
-                        String movieObject = resp.toString();
-                        Log.d("SEARCH ACTIVITY", movieObject);
 
                         //resp is the response JSON Obj
                         //TODO Put info in movie objects
                         //then add to view
                         //Movie m = new Movie(resp.)
+
+                        try {
+                            JSONArray movies = resp.getJSONArray("movies");
+                            JSONObject current = null;
+                            for (int i = 0; i < movies.length(); i++) {
+                                current = movies.getJSONObject(i);
+                                Movie m = new Movie(current.get("Title").toString(), Integer.parseInt(current.get("Year").toString()));
+                                MovieManager.add(m);
+                            }
+                        } catch(Exception e) {
+                            Log.d("SEARCH ACTIVITY", "JSON Error.");
+                        }
+
                     }
                 }, new Response.ErrorListener() {
 
@@ -117,14 +121,18 @@ public class SearchActivity extends AppCompatActivity{
                     @Override
                     public void onResponse(JSONObject resp) {
                         Log.d("SEARCH ACTIVITY", "Request Recieved.");
-                        String movieObject = resp.toString();
-                        Log.d("SEARCH ACTIVITY", movieObject);
+
                         //resp is the response JSON Obj
                         //TODO Put info in movie objects
                         //then add to view
-                        //Button info = (Button) findViewById(R.id.button2);
                         try {
-                            //info.setText(resp.getJSONArray("movies").getJSONObject(0).getString("title"));
+                            JSONArray movies = resp.getJSONArray("movies");
+                            JSONObject current = null;
+                            for (int i = 0; i < movies.length(); i++) {
+                                current = movies.getJSONObject(i);
+                                Movie m = new Movie(current.get("Title").toString(), Integer.parseInt(current.get("Year").toString()));
+                                MovieManager.add(m);
+                            }
                         } catch(Exception e) {
                             Log.d("SEARCH ACTIVITY", "JSON Error.");
                         }
@@ -153,11 +161,22 @@ public class SearchActivity extends AppCompatActivity{
                     @Override
                     public void onResponse(JSONObject resp) {
                         Log.d("SEARCH ACTIVITY", "Request Recieved.");
-                        String movieObject = resp.toString();
-                        Log.d("SEARCH ACTIVITY", movieObject);
                         //resp is the response JSON Obj
                         //TODO Put info in movie objects
                         //then add to view
+
+                        try {
+                            JSONArray movies = resp.getJSONArray("movies");
+                            JSONObject current = null;
+                            for (int i = 0; i < movies.length(); i++) {
+                                current = movies.getJSONObject(i);
+                                Movie m = new Movie(current.get("Title").toString(), Integer.parseInt(current.get("Year").toString()));
+                                MovieManager.add(m);
+                            }
+                        } catch(Exception e) {
+                            Log.d("SEARCH ACTIVITY", "JSON Error.");
+                        }
+
                     }
                 }, new Response.ErrorListener() {
 

@@ -34,6 +34,10 @@ public class MovieManager {
  //       });
  //   }
 
+    public static void add(Movie m) {
+        movies.add(m);
+    }
+
     public void sortByMajorRating(String major) {
 
     }
