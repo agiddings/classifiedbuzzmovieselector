@@ -6,6 +6,8 @@ package classified.classifiedbuzzmovieselector.model;
 public class Movie {
     private String title;
     private int year;
+    private String mpaa_rating;
+    private int runtime; // runtime in minutes
     //private String genre;
     //private int rating;
 
@@ -17,11 +19,12 @@ public class Movie {
      * @param year year of release
      *
      */
-    public Movie(String title, int year) {
+    public Movie(String title, int year, String mpaa_rating, int runtime, int audience_score, int critic_score) {
         this.title = title;
         this.year = year;
+        this.mpaa_rating = mpaa_rating;
+        this.runtime = runtime;
     }
-
 
     /**
      * Constructor a movie with relevant information
@@ -38,4 +41,8 @@ public class Movie {
         return year;
     }
 
+    public boolean equals(Movie movie) {
+        return title.equals(movie.title) && year == movie.year
+                && mpaa_rating.equals(movie.mpaa_rating) && runtime == movie.runtime;
+    }
 }

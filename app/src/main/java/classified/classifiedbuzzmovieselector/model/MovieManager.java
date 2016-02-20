@@ -25,16 +25,7 @@ public class MovieManager {
         return movies;
     }
 
-//    public void sortByRating() {
-//        Collections.sort(movies, new Comparator<Movie>() {
-//            @Override
-//            public int compare(Movie lhs, Movie rhs) {
-//                return lhs.getRating().compareTo(rhs.getRating());
- //           }
- //       });
- //   }
-
-    public static void add(Movie m) {
+    public void add(Movie m) {
         movies.add(m);
     }
 

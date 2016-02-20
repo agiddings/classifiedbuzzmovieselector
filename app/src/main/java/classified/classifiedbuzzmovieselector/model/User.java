@@ -1,5 +1,8 @@
 package classified.classifiedbuzzmovieselector.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by steven on 2/5/16.
  */
@@ -12,6 +15,8 @@ public class User {
     protected boolean isLocked;
     protected boolean isBanned;
     protected int failedAttempts;
+    protected List<UserRating> userRatings;
+    protected List<User> friends;
 
     //Add user info, major from profile section
 
@@ -28,6 +33,7 @@ public class User {
         isLocked = false;
         isBanned = false;
         failedAttempts = 0;
+        friends = new ArrayList<>();
     }
 
     /**
@@ -139,5 +145,17 @@ public class User {
      */
     public int getFailedAttempts() {
         return failedAttempts;
+    }
+
+    public List<User> getFriends() {
+        return friends;
+    }
+
+    public void addFriend(User friend) {
+        friends.add(friend);
+    }
+
+    public boolean equals(User user) {
+        return email.equals(user.email);
     }
 }
