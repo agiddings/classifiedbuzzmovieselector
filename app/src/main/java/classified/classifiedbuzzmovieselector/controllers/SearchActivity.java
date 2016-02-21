@@ -148,7 +148,6 @@ public class SearchActivity extends AppCompatActivity{
                                 MovieManager.add(m);*/
                         //  }
                             m = new MovieManager(resp.toString());
-                            changeView(m.getMovies());
                         } catch(Exception e) {
                             Log.d("SEARCH ACTIVITY", "JSON Error.");
                         }
