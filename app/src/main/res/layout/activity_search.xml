@@ -4,16 +4,11 @@
     android:layout_height="match_parent"
     android:background="#dddee5">
 
-    <TextView
+    <SearchView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search Text Field"
-        android:id="@+id/textView10" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/movie" />
+        android:id="@+id/searchView"
+        android:layout_gravity="center_horizontal" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -31,14 +26,6 @@
             android:onClick="onSearchNewDVDs" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Search"
-            android:id="@+id/SearchTextFieldButton"
-            android:nestedScrollingEnabled="false"
-            android:onClick="onSearchButtonPressed" />
-
-        <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/NewReleasesButton"
@@ -53,6 +40,10 @@
         android:id="@+id/scrollView2"
         android:layout_gravity="center_horizontal" >
 
+        <EditText
+            android:layout_width="313dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/movie" />
     </ScrollView>
 
     <ListView
