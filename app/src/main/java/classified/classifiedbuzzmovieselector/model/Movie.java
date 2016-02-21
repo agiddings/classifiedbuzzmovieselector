@@ -50,6 +50,13 @@ public class Movie {
         return title;
     }
 
+    public String getMpaa_rating() {
+        return mpaa_rating;
+    }
+
+    public int getRuntime() {
+        return runtime;
+    }
     /**
      * compare two movies to see if they are equal
      *
