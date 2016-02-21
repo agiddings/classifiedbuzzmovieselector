@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -29,16 +31,69 @@ import classified.classifiedbuzzmovieselector.model.MovieManager;
  */
 public class SearchActivity extends AppCompatActivity{
     final String KEY = "yedukp76ffytfuy24zsqk7f5";
+    private MovieManager m;
+    SearchView search;
 
     RequestQueue queue;
 
+
+    //for test purpose by Justeeeeen
+    static final String[] FRUITS = new String[] { "Apple", "Avocado", "Banana",
+            "Blueberry", "Coconut", "Durian", "Guava", "Kiwifruit",
+            "Jackfruit", "Mango", "Olive", "Pear", "Sugar-apple" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-       //ListView listview = (ListView) findViewById(R.id.movieResultList);
+        //connect search view to this controller
+        search = (SearchView) findViewById(R.id.searchMovieView);
+        search.setQueryHint("What movie do you have in mind?");
+
+        //setOnQueryTextFocusChangeListener
+        search.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                // TODO Auto-generated method stub
+                String click;
+                if (hasFocus) {
+                    click = "user clicked on search";
+                } else {
+                    click = "user withdraw from search";
+                }
+                Toast status = Toast.makeText(getBaseContext(),
+                        String.valueOf(click),
+                        Toast.LENGTH_SHORT);
+                status.show();
+
+
+            }
+        });
+
+        //setOnQueryTextListener, so it detects users input
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // TODO Auto-generated method stub
+
+                Toast.makeText(getBaseContext(), query,
+                        Toast.LENGTH_SHORT).show();
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                // TODO Auto-generated method stub
+
+                //	Toast.makeText(getBaseContext(), newText,
+                //Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
     }
 
 
@@ -92,11 +147,12 @@ public class SearchActivity extends AppCompatActivity{
                                 Movie m = new Movie(current.get("Title").toString(), Integer.parseInt(current.get("Year").toString()));
                                 MovieManager.add(m);*/
                         //  }
-                            MovieManager m = new MovieManager(resp.toString());
+                            m = new MovieManager(resp.toString());
                             changeView(m.getMovies());
                         } catch(Exception e) {
                             Log.d("SEARCH ACTIVITY", "JSON Error.");
                         }
+                        changeView(m.getMovies());
                     }
                 }, new Response.ErrorListener() {
 
@@ -136,11 +192,11 @@ public class SearchActivity extends AppCompatActivity{
                                 Movie m = new Movie(current.get("Title").toString(), Integer.parseInt(current.get("Year").toString()));
                                 MovieManager.add(m);
                             }*/
-                            MovieManager m = new MovieManager(resp.toString());
-                            changeView(m.getMovies());
+                            m = new MovieManager(resp.toString());
                         } catch(Exception e) {
                             Log.d("SEARCH ACTIVITY", "JSON Error.");
                         }
+                        changeView(m.getMovies());
                     }
                 }, new Response.ErrorListener() {
 
@@ -177,11 +233,10 @@ public class SearchActivity extends AppCompatActivity{
                                 Movie m = new Movie(current.get("Title").toString(), Integer.parseInt(current.get("Year").toString()));
                                 MovieManager.add(m);
                             }*/
-                            MovieManager m = new MovieManager(resp.toString());
-                            changeView(m.getMovies());
                         } catch(Exception e) {
                             Log.d("SEARCH ACTIVITY", "JSON Error.");
                         }
+                        changeView(m.getMovies());
                     }
                 }, new Response.ErrorListener() {
 
