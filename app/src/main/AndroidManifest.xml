@@ -31,6 +31,8 @@
             android:name=".controllers.ItemDetailActivity"
             android:label="@string/title_activity_item_detail"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".controllers.listItemActivity"/>
+        <activity android:name=".controllers.UnableLoginActivity"/>
     </application>
 
 </manifest>
