@@ -17,6 +17,9 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import classified.classifiedbuzzmovieselector.R;
 import classified.classifiedbuzzmovieselector.model.Movie;
 import classified.classifiedbuzzmovieselector.model.MovieManager;
@@ -90,10 +93,10 @@ public class SearchActivity extends AppCompatActivity{
                                 MovieManager.add(m);*/
                         //  }
                             MovieManager m = new MovieManager(resp.toString());
+                            changeView(m.getMovies());
                         } catch(Exception e) {
                             Log.d("SEARCH ACTIVITY", "JSON Error.");
                         }
-
                     }
                 }, new Response.ErrorListener() {
 
@@ -134,10 +137,10 @@ public class SearchActivity extends AppCompatActivity{
                                 MovieManager.add(m);
                             }*/
                             MovieManager m = new MovieManager(resp.toString());
+                            changeView(m.getMovies());
                         } catch(Exception e) {
                             Log.d("SEARCH ACTIVITY", "JSON Error.");
                         }
-
                     }
                 }, new Response.ErrorListener() {
 
@@ -175,10 +178,10 @@ public class SearchActivity extends AppCompatActivity{
                                 MovieManager.add(m);
                             }*/
                             MovieManager m = new MovieManager(resp.toString());
+                            changeView(m.getMovies());
                         } catch(Exception e) {
                             Log.d("SEARCH ACTIVITY", "JSON Error.");
                         }
-
                     }
                 }, new Response.ErrorListener() {
 
@@ -189,6 +192,11 @@ public class SearchActivity extends AppCompatActivity{
                 });
         queue =  Volley.newRequestQueue(this);
         queue.add(jsObjRequest);
+    }
 
+    private void changeView(List<Movie> movies) {
+        Intent intent = new Intent(this, listItemActivity.class);
+        intent.putExtra("Movies", movies.toString());
+        startActivity(intent);
     }
 }
