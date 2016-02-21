@@ -25,7 +25,7 @@ public class Movie {
         this.year = year;
         this.mpaa_rating = mpaa_rating;
         this.runtime = runtime;
-        this.avgRating = 0;
+        this.avgRating = (audience_score + critic_score)/2.0;
     }
 
     /**

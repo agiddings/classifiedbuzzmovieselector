@@ -228,13 +228,24 @@ public class SearchActivity extends AppCompatActivity{
                         //then add to view
 
                         try {
-                           /* JSONArray movies = resp.getJSONArray("movies");
+                            /*
+                           JSONArray movies = resp.getJSONArray("movies");
+
                             JSONObject current = null;
+
                             for (int i = 0; i < movies.length(); i++) {
                                 current = movies.getJSONObject(i);
-                                Movie m = new Movie(current.get("Title").toString(), Integer.parseInt(current.get("Year").toString()));
-                                MovieManager.add(m);
-                            }*/
+
+                                Movie m = new Movie(current.get("title").toString(),
+                                        Integer.parseInt(current.get("year").toString()),
+                                        current.getString("mpaa_rating"),
+                                        current.getInt("runtime"),
+                                        current.getJSONObject("ratings").getInt("audience_score"),
+                                        current.getJSONObject("ratings").getInt("critics_score")
+
+                                        );
+                            }
+                            */
                             MovieManager m = new MovieManager(resp.toString());
                             changeView(m.getMovies());
                         } catch(Exception e) {
