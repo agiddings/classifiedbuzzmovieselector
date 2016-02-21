@@ -105,7 +105,7 @@ public class SearchActivity extends AppCompatActivity{
                                 Movie m = new Movie(current.get("Title").toString(), Integer.parseInt(current.get("Year").toString()));
                                 MovieManager.add(m);*/
                                     //  }
-                                    MovieManager m = new MovieManager(resp.toString());
+                                    MovieManager m = new MovieManager(resp.getJSONArray("movies").toString());
                                     changeView(m.getMovies());
                                 } catch(Exception e) {
                                     Log.d("SEARCH ACTIVITY", "JSON Error.");
@@ -194,7 +194,8 @@ public class SearchActivity extends AppCompatActivity{
                                 Movie m = new Movie(current.get("Title").toString(), Integer.parseInt(current.get("Year").toString()));
                                 MovieManager.add(m);
                             }*/
-                            MovieManager m = new MovieManager(resp.toString());
+                            MovieManager m = new MovieManager(resp.getJSONArray("movies").toString());
+                            Log.d("SEARCH ACTIVITY", "success.");
                             changeView(m.getMovies());
                         } catch(Exception e) {
                             Log.d("SEARCH ACTIVITY", "JSON Error.");
@@ -246,7 +247,7 @@ public class SearchActivity extends AppCompatActivity{
                                         );
                             }
                             */
-                            MovieManager m = new MovieManager(resp.toString());
+                            MovieManager m = new MovieManager(resp.getJSONArray("movies").toString());
                             changeView(m.getMovies());
                         } catch(Exception e) {
                             Log.d("SEARCH ACTIVITY", "JSON Error.");
