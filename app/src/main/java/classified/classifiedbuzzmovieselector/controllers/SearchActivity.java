@@ -125,11 +125,6 @@ public class SearchActivity extends AppCompatActivity{
                 //queue = Volley.newRequestQueue(this);
                 //queue.add(jsObjRequest);
                 //move from onSearchButtonPressed to here | End
-
-
-
-
-
                 return false;
             }
 
