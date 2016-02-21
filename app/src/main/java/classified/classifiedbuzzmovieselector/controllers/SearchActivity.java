@@ -5,7 +5,15 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ListView;
+import android.app.ListActivity;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.SearchView;
+import android.widget.Toast;
+import android.widget.SearchView.OnQueryTextListener;
+import android.view.Menu; //testing
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -29,17 +37,71 @@ import classified.classifiedbuzzmovieselector.model.MovieManager;
  */
 public class SearchActivity extends AppCompatActivity{
     final String KEY = "yedukp76ffytfuy24zsqk7f5";
+    SearchView search;
 
     RequestQueue queue;
 
+
+    //for test purpose by Justeeeeen
+    static final String[] FRUITS = new String[] { "Apple", "Avocado", "Banana",
+            "Blueberry", "Coconut", "Durian", "Guava", "Kiwifruit",
+            "Jackfruit", "Mango", "Olive", "Pear", "Sugar-apple" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-       //ListView listview = (ListView) findViewById(R.id.movieResultList);
+        //connect search view to this controller
+        search = (SearchView) findViewById(R.id.searchMovieView);
+        search.setQueryHint("What movie do you have in mind?");
+
+        //setOnQueryTextFocusChangeListener
+        search.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                // TODO Auto-generated method stub
+                String click;
+                if (hasFocus) {
+                    click = "user clicked on search";
+                } else {
+                    click = "user withdraw from search";
+                }
+                Toast status = Toast.makeText(getBaseContext(),
+                        String.valueOf(click),
+                        Toast.LENGTH_SHORT);
+                status.show();
+
+
+            }
+        });
+
+        //setOnQueryTextListener, so it detects users input
+        search.setOnQueryTextListener(new OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // TODO Auto-generated method stub
+
+                Toast.makeText(getBaseContext(), query,
+                        Toast.LENGTH_SHORT).show();
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                // TODO Auto-generated method stub
+
+                //	Toast.makeText(getBaseContext(), newText,
+                //Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
     }
+
+
 
 
     /**
@@ -67,8 +129,9 @@ public class SearchActivity extends AppCompatActivity{
             //If so display info about movie
             //If not display message to the user saying the movie was not located.
 
-        EditText movieinput = (EditText) findViewById(R.id.movie);
-        String userinput = movieinput.toString();
+        //EditText movieinput = (EditText) findViewById(R.id.movie);
+        //String userinput = movieinput.toString();
+        String userinput = "hi";
         int pagelimit = 10;
 
         String url = String.format("http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=%s&page_limit=%d&page=1&apikey=%s",userinput, pagelimit, KEY);
