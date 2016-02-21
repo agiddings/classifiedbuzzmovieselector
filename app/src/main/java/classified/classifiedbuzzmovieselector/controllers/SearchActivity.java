@@ -111,7 +111,6 @@ public class SearchActivity extends AppCompatActivity{
                                 } catch(Exception e) {
                                     Log.d("SEARCH ACTIVITY", "JSON Error.");
                                 }
-                                changeView(m.getMovies());
                             }
                         }, new Response.ErrorListener() {
 
@@ -197,10 +196,10 @@ public class SearchActivity extends AppCompatActivity{
                                 MovieManager.add(m);
                             }*/
                             m = new MovieManager(resp.toString());
+                            changeView(m.getMovies());
                         } catch(Exception e) {
                             Log.d("SEARCH ACTIVITY", "JSON Error.");
                         }
-                        changeView(m.getMovies());
                     }
                 }, new Response.ErrorListener() {
 
@@ -237,10 +236,11 @@ public class SearchActivity extends AppCompatActivity{
                                 Movie m = new Movie(current.get("Title").toString(), Integer.parseInt(current.get("Year").toString()));
                                 MovieManager.add(m);
                             }*/
+                            m = new MovieManager(resp.toString());
+                            changeView(m.getMovies());
                         } catch(Exception e) {
                             Log.d("SEARCH ACTIVITY", "JSON Error.");
-                        }
-                        changeView(m.getMovies());
+                        };
                     }
                 }, new Response.ErrorListener() {
 
