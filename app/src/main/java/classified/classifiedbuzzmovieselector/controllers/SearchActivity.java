@@ -31,7 +31,6 @@ import classified.classifiedbuzzmovieselector.model.MovieManager;
  */
 public class SearchActivity extends AppCompatActivity{
     final String KEY = "yedukp76ffytfuy24zsqk7f5";
-    private MovieManager m;
     SearchView search;
 
     RequestQueue queue;
@@ -106,7 +105,7 @@ public class SearchActivity extends AppCompatActivity{
                                 Movie m = new Movie(current.get("Title").toString(), Integer.parseInt(current.get("Year").toString()));
                                 MovieManager.add(m);*/
                                     //  }
-                                    m = new MovieManager(resp.toString());
+                                    MovieManager m = new MovieManager(resp.toString());
                                     changeView(m.getMovies());
                                 } catch(Exception e) {
                                     Log.d("SEARCH ACTIVITY", "JSON Error.");
@@ -195,7 +194,7 @@ public class SearchActivity extends AppCompatActivity{
                                 Movie m = new Movie(current.get("Title").toString(), Integer.parseInt(current.get("Year").toString()));
                                 MovieManager.add(m);
                             }*/
-                            m = new MovieManager(resp.toString());
+                            MovieManager m = new MovieManager(resp.toString());
                             changeView(m.getMovies());
                         } catch(Exception e) {
                             Log.d("SEARCH ACTIVITY", "JSON Error.");
@@ -236,7 +235,7 @@ public class SearchActivity extends AppCompatActivity{
                                 Movie m = new Movie(current.get("Title").toString(), Integer.parseInt(current.get("Year").toString()));
                                 MovieManager.add(m);
                             }*/
-                            m = new MovieManager(resp.toString());
+                            MovieManager m = new MovieManager(resp.toString());
                             changeView(m.getMovies());
                         } catch(Exception e) {
                             Log.d("SEARCH ACTIVITY", "JSON Error.");
