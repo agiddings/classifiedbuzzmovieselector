@@ -27,6 +27,7 @@ public class UserRatingManager {
             userRatings.get(index).setComment(ur.getComment());
             userRatings.get(index).setScore(ur.getScore());
         }
+        ur.getMovie().setAvgRating(getAvgMovieUserRating(ur.getMovie()));
     }
 
     public List<UserRating> getUserRatingsByUser(User user) {
@@ -37,6 +38,17 @@ public class UserRatingManager {
             }
         }
         return returnVal;
+    }
+
+    public double getAvgMovieUserRating (Movie movie) {
+        List<UserRating> ratings = getUserRatingsByMovie(movie);
+        int sum = 0;
+        int count = 0;
+        for (UserRating ur : ratings) {
+            count++;
+            sum += ur.getScore();
+        }
+        return ((double) sum)/count;
     }
 
     public List<UserRating> getUserRatingsByMovie(Movie movie) {

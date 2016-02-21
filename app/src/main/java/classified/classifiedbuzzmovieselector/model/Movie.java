@@ -8,6 +8,7 @@ public class Movie {
     private int year;
     private String mpaa_rating;
     private int runtime; // runtime in minutes
+    private double avgRating;
     //private String genre;
     //private int rating;
 
@@ -24,6 +25,7 @@ public class Movie {
         this.year = year;
         this.mpaa_rating = mpaa_rating;
         this.runtime = runtime;
+        this.avgRating = 0;
     }
 
     /**
@@ -36,6 +38,25 @@ public class Movie {
         return year;
     }
 
+    public void setAvgRating(double avgRating) {
+        this.avgRating = avgRating;
+    }
+
+    public double getAvgRating() {
+        return avgRating;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getMpaa_rating() {
+        return mpaa_rating;
+    }
+
+    public int getRuntime() {
+        return runtime;
+    }
     /**
      * compare two movies to see if they are equal
      *
