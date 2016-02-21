@@ -49,7 +49,7 @@ public class SearchActivity extends AppCompatActivity{
 
         //connect search view to this controller
         search = (SearchView) findViewById(R.id.searchMovieView);
-        search.setQueryHint("What movie do you have in mind?");
+        search.setQueryHint("movie?");
 
         //setOnQueryTextFocusChangeListener
         search.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
@@ -67,8 +67,6 @@ public class SearchActivity extends AppCompatActivity{
                         String.valueOf(click),
                         Toast.LENGTH_SHORT);
                 status.show();
-
-
             }
         });
 
@@ -76,11 +74,61 @@ public class SearchActivity extends AppCompatActivity{
         search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             @Override
-            public boolean onQueryTextSubmit(String query) {
+            public boolean onQueryTextSubmit(String userInput) {
                 // TODO Auto-generated method stub
+                Toast input = Toast.makeText(getBaseContext(), userInput,
+                        Toast.LENGTH_SHORT);
+                input.show();
 
-                Toast.makeText(getBaseContext(), query,
-                        Toast.LENGTH_SHORT).show();
+                //move from onSearchButtonPressed to here | Begin
+                int pagelimit = 10;
+
+                String url = String.format("http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=%s&page_limit=%d&page=1&apikey=%s",
+                        userInput,
+                        pagelimit, KEY);
+
+                JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                        (Request.Method.GET, url, "", new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject resp) {
+                                Log.d("SEARCH ACTIVITY", "Request Recieved.");
+
+                                //resp is the response JSON Obj
+                                //TODO Put info in movie objects
+                                //then add to view
+                                //Movie m = new Movie(resp.)
+
+                                try {
+                            /*JSONArray movies = resp.getJSONArray("movies");
+                            JSONObject current = null;
+                            for (int i = 0; i < movies.length(); i++) {
+                                current = movies.getJSONObject(i);
+                                Movie m = new Movie(current.get("Title").toString(), Integer.parseInt(current.get("Year").toString()));
+                                MovieManager.add(m);*/
+                                    //  }
+                                    m = new MovieManager(resp.toString());
+                                    changeView(m.getMovies());
+                                } catch(Exception e) {
+                                    Log.d("SEARCH ACTIVITY", "JSON Error.");
+                                }
+                                changeView(m.getMovies());
+                            }
+                        }, new Response.ErrorListener() {
+
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Log.d("SEARCH ACTIVITY", "Request Error.");
+                            }
+                        });
+
+                //comment these out temporarily on 0202 by justeen
+                //queue = Volley.newRequestQueue(this);
+                //queue.add(jsObjRequest);
+                //move from onSearchButtonPressed to here | End
+
+
+
+
 
                 return false;
             }
@@ -122,47 +170,8 @@ public class SearchActivity extends AppCompatActivity{
             //If so display info about movie
             //If not display message to the user saying the movie was not located.
 
-        EditText movieinput = (EditText) findViewById(R.id.movie);
-        String userinput = movieinput.toString();
-        int pagelimit = 10;
-
-        String url = String.format("http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=%s&page_limit=%d&page=1&apikey=%s",userinput, pagelimit, KEY);
-
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                (Request.Method.GET, url, "", new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject resp) {
-                        Log.d("SEARCH ACTIVITY", "Request Recieved.");
-
-                        //resp is the response JSON Obj
-                        //TODO Put info in movie objects
-                        //then add to view
-                        //Movie m = new Movie(resp.)
-
-                        try {
-                            /*JSONArray movies = resp.getJSONArray("movies");
-                            JSONObject current = null;
-                            for (int i = 0; i < movies.length(); i++) {
-                                current = movies.getJSONObject(i);
-                                Movie m = new Movie(current.get("Title").toString(), Integer.parseInt(current.get("Year").toString()));
-                                MovieManager.add(m);*/
-                        //  }
-                            m = new MovieManager(resp.toString());
-                            changeView(m.getMovies());
-                        } catch(Exception e) {
-                            Log.d("SEARCH ACTIVITY", "JSON Error.");
-                        }
-                        changeView(m.getMovies());
-                    }
-                }, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d("SEARCH ACTIVITY", "Request Error.");
-                    }
-                });
-        queue = Volley.newRequestQueue(this);
-        queue.add(jsObjRequest);
+        //EditText movieinput = (EditText) findViewById(R.id.movie);
+        //String userinput = movieinput.toString();
 
     }
 
