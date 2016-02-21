@@ -15,19 +15,20 @@ import java.util.List;
  * Created by steven on 2/19/16.
  */
 public class MovieManager {
-    private static List<Movie> movies;
+    private static List<Movie> movies = new ArrayList<Movie>();
     private static final Gson gson = new Gson();
 
     public MovieManager (String json) {
-        Type collectionType = new TypeToken<ArrayList<Movie>>(){}.getType();
+        Type collectionType = new TypeToken<ArrayList<Movie>>() {
+        }.getType();
         movies = gson.fromJson(json, collectionType);
     }
 
-    public List<Movie> getMovies() {
+    public static List<Movie> getMovies() {
         return movies;
     }
 
-    public void add(Movie m) {
+    public static void add(Movie m) {
         movies.add(m);
     }
 

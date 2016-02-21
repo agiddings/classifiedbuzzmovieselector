@@ -12,6 +12,9 @@ public class Movie {
     //private String genre;
     //private int rating;
 
+    public Movie(String title, int year) {
+        this (title, year, "", 0, 0, 0);
+    }
 
     /**
      * Constructor a movie with relevant information
