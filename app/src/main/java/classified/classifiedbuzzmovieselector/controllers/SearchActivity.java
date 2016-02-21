@@ -5,15 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.ListView;
-import android.app.ListActivity;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.SearchView;
-import android.widget.Toast;
-import android.widget.SearchView.OnQueryTextListener;
-import android.view.Menu; //testing
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -37,6 +29,7 @@ import classified.classifiedbuzzmovieselector.model.MovieManager;
  */
 public class SearchActivity extends AppCompatActivity{
     final String KEY = "yedukp76ffytfuy24zsqk7f5";
+    private MovieManager m;
     SearchView search;
 
     RequestQueue queue;
@@ -102,8 +95,6 @@ public class SearchActivity extends AppCompatActivity{
     }
 
 
-
-
     /**
      *
      * Event when the cancel search button is pressed
@@ -129,9 +120,8 @@ public class SearchActivity extends AppCompatActivity{
             //If so display info about movie
             //If not display message to the user saying the movie was not located.
 
-        //EditText movieinput = (EditText) findViewById(R.id.movie);
-        //String userinput = movieinput.toString();
-        String userinput = "hi";
+        EditText movieinput = (EditText) findViewById(R.id.movie);
+        String userinput = movieinput.toString();
         int pagelimit = 10;
 
         String url = String.format("http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=%s&page_limit=%d&page=1&apikey=%s",userinput, pagelimit, KEY);
@@ -155,11 +145,12 @@ public class SearchActivity extends AppCompatActivity{
                                 Movie m = new Movie(current.get("Title").toString(), Integer.parseInt(current.get("Year").toString()));
                                 MovieManager.add(m);*/
                         //  }
-                            MovieManager m = new MovieManager(resp.toString());
+                            m = new MovieManager(resp.toString());
                             changeView(m.getMovies());
                         } catch(Exception e) {
                             Log.d("SEARCH ACTIVITY", "JSON Error.");
                         }
+                        changeView(m.getMovies());
                     }
                 }, new Response.ErrorListener() {
 
@@ -199,11 +190,11 @@ public class SearchActivity extends AppCompatActivity{
                                 Movie m = new Movie(current.get("Title").toString(), Integer.parseInt(current.get("Year").toString()));
                                 MovieManager.add(m);
                             }*/
-                            MovieManager m = new MovieManager(resp.toString());
-                            changeView(m.getMovies());
+                            m = new MovieManager(resp.toString());
                         } catch(Exception e) {
                             Log.d("SEARCH ACTIVITY", "JSON Error.");
                         }
+                        changeView(m.getMovies());
                     }
                 }, new Response.ErrorListener() {
 
@@ -240,11 +231,10 @@ public class SearchActivity extends AppCompatActivity{
                                 Movie m = new Movie(current.get("Title").toString(), Integer.parseInt(current.get("Year").toString()));
                                 MovieManager.add(m);
                             }*/
-                            MovieManager m = new MovieManager(resp.toString());
-                            changeView(m.getMovies());
                         } catch(Exception e) {
                             Log.d("SEARCH ACTIVITY", "JSON Error.");
                         }
+                        changeView(m.getMovies());
                     }
                 }, new Response.ErrorListener() {
 

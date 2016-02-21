@@ -29,7 +29,7 @@ public class MovieManager {
         movies.add(m);
     }
 
-    public List<Movie> getBestMoviesByMajor(String major) {
+   /* public List<Movie> getBestMoviesByMajor(String major) {
 
     }
 
@@ -42,7 +42,7 @@ public class MovieManager {
     }
     public List<Movie> getBestMoviesByFriendRating(User user) {
 
-    }
+    }*/
 
     public void sortByNewReleases() {
         Collections.sort(movies, new Comparator<Movie>() {
