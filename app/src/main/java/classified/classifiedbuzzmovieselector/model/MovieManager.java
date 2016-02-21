@@ -29,11 +29,18 @@ public class MovieManager {
         movies.add(m);
     }
 
-    public void sortByMajorRating(String major) {
+    public List<Movie> getBestMoviesByMajor(String major) {
 
     }
 
-    public void sortByFriendRating(User user) {
+    public List<Movie> getWorstMoviesByMajor(String major) {
+
+    }
+
+    public List<Movie> getBestMoviesByFriendRating(User user) {
+
+    }
+    public List<Movie> getBestMoviesByFriendRating(User user) {
 
     }
 
