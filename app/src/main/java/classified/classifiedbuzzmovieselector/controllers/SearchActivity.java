@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -71,7 +73,7 @@ public class SearchActivity extends AppCompatActivity{
         });
 
         //setOnQueryTextListener, so it detects users input
-        search.setOnQueryTextListener(new OnQueryTextListener() {
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             @Override
             public boolean onQueryTextSubmit(String query) {
