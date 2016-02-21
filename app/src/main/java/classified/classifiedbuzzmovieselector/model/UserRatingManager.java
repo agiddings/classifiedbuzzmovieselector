@@ -81,6 +81,12 @@ public class UserRatingManager {
         return returnVal;
     }
 
+    public List<Movie> getBestMoviesfromUserRatings(List<UserRating> ratings) {
+        List<Movie> movies = new ArrayList<>();
+
+        return movies;
+    }
+
     public static List<UserRating> sortRatingsLowToHigh(List<UserRating> ratings) {
         Collections.sort(ratings, new Comparator<UserRating>() {
             @Override

@@ -29,20 +29,41 @@ public class MovieManager {
         movies.add(m);
     }
 
-   /* public List<Movie> getBestMoviesByMajor(String major) {
+    public List<Movie> getBestMoviesByAvgRating() {
+        List<Movie> bestMovies = new ArrayList<>();
 
+        return bestMovies;
+    }
+
+    public List<Movie> getWorstMoviesByAvgRating() {
+        List<Movie> worstMovies = new ArrayList<>();
+
+        return worstMovies;
+    }
+
+    public List<Movie> getBestMoviesByMajor(String major) {
+        List<Movie> bestMovies = new ArrayList<>();
+
+        return bestMovies;
     }
 
     public List<Movie> getWorstMoviesByMajor(String major) {
+        List<Movie> worstMovies = new ArrayList<>();
 
+        return worstMovies;
     }
 
     public List<Movie> getBestMoviesByFriendRating(User user) {
+        List<Movie> bestMovies = new ArrayList<>();
 
+        return bestMovies;
     }
-    public List<Movie> getBestMoviesByFriendRating(User user) {
 
-    }*/
+    public List<Movie> getWorstMoviesByFriendRating(User user) {
+        List<Movie> worstMovies = new ArrayList<>();
+
+        return worstMovies;
+    }
 
     public void sortByNewReleases() {
         Collections.sort(movies, new Comparator<Movie>() {
