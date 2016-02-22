@@ -25,11 +25,17 @@ public class listItemActivity extends AppCompatActivity {
     private String listTitle;
     private int year;
 
-    private ArrayList<Movie> movies;
+    private List<Movie> movies;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.list_item);
+        setContentView(R.layout.activity_item_list);
+
+        View recyclerView = findViewById(R.id.list_item);
+        assert recyclerView != null;
+        setupRecyclerView((RecyclerView) recyclerView);
+
+        movies = (List<Movie>) getIntent().getSerializableExtra("movies");
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
@@ -85,8 +91,8 @@ public class listItemActivity extends AppCompatActivity {
             public ViewHolder(View view) {
                 super(view);
                 mView = view;
-                mIdView = (TextView) view.findViewById(R.id.list_item);
-                mContentView = (TextView) view.findViewById(R.id.list_item);
+                mIdView = (TextView) view.findViewById(R.id.id);
+                mContentView = (TextView) view.findViewById(R.id.content);
             }
 
             @Override

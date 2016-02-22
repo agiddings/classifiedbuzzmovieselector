@@ -1,51 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/movieThumbnail"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:minHeight="200px"
-        android:minWidth="200px"
-        android:nestedScrollingEnabled="false"
-        android:contextClickable="false"
-        android:layout_marginLeft="50px"
-        android:layout_marginTop="15px"
-        android:layout_marginBottom="15px"
-        android:background="#5a5a5a" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/MovieTitle"
-        android:layout_alignTop="@+id/movieThumbnail"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/movieYear"
-        android:layout_below="@+id/MovieTitle"
-        android:layout_alignLeft="@+id/MovieTitle"
-        android:layout_alignStart="@+id/MovieTitle"
-        android:layout_marginTop="20px" />
-
-    <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ratingBar"
-        android:layout_alignLeft="@+id/movieYear"
-        android:layout_alignStart="@+id/movieYear"
-        android:layout_alignBottom="@+id/movieThumbnail"
-        android:layout_below="@+id/movieYear"
-        android:stepSize="10"
-        android:rating="3.5" />
-</RelativeLayout>
+<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_list"
+    android:name="classified.classifiedbuzzmovieselector.activity_item_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    app:layoutManager="LinearLayoutManager"
+    tools:context="classified.classifiedbuzzmovieselector.controllers.listItemActivity"
+    tools:listitem="@layout/content_item_detail" />
