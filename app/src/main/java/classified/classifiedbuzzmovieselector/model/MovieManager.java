@@ -15,6 +15,12 @@ import java.util.List;
  * Created by steven on 2/19/16.
  */
 public class MovieManager {
+
+    //Made the list of movies static so SearchActivity can add items to it, access it
+    //We can try redoing how this is done later, but for now please, please do not change
+    //Possibly all of the methods/everything will be made static. We'll have to decide later
+    //Or just change the constructor so if does exactly what search activity is currently
+    //doing to add movies.
     private static List<Movie> movies = new ArrayList<Movie>();
     private static final Gson gson = new Gson();
 
@@ -24,10 +30,12 @@ public class MovieManager {
         movies = gson.fromJson(json, collectionType);
     }
 
+    //Needs to be static for search activity to work
     public static List<Movie> getMovies() {
         return movies;
     }
 
+    //Needs to be static for search activity to work
     public static void add(Movie m) {
         movies.add(m);
     }

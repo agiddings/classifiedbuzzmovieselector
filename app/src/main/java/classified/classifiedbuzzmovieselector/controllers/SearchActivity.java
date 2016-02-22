@@ -32,6 +32,7 @@ import classified.classifiedbuzzmovieselector.model.MovieManager;
  */
 public class SearchActivity extends AppCompatActivity{
     final String KEY = "yedukp76ffytfuy24zsqk7f5";
+    final int pagelimit = 10;
     SearchView search;
 
     RequestQueue queue;
@@ -81,50 +82,49 @@ public class SearchActivity extends AppCompatActivity{
                 input.show();
 
                 //move from onSearchButtonPressed to here | Begin
-                int pagelimit = 10;
 
                 String url = String.format("http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=%s&page_limit=%d&page=1&apikey=%s",
                         userInput,
                         pagelimit, KEY);
 
                 JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                        (Request.Method.GET, url, "", new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject resp) {
-                                Log.d("SEARCH ACTIVITY", "Request Recieved.");
+                    (Request.Method.GET, url, "", new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject resp) {
+                        Log.d("SEARCH ACTIVITY", "Request Recieved.");
 
-                                //resp is the response JSON Obj
-                                //TODO Put info in movie objects
-                                //then add to view
-                                //Movie m = new Movie(resp.)
+                        //resp is the response JSON Obj
+                        //TODO Put info in movie objects
+                        //then add to view
+                        //Movie m = new Movie(resp.)
 
-                                try {
-                                    JSONArray movies = resp.getJSONArray("movies");
-                                    JSONObject current = null;
-                                    for (int i = 0; i < movies.length(); i++) {
-                                        current = movies.getJSONObject(i);
-                                        Movie m = new Movie(current.get("title").toString(),
-                                                Integer.parseInt(current.get("year").toString()),
-                                                current.getString("mpaa_rating"),
-                                                current.getInt("runtime"),
-                                                current.getJSONObject("ratings").getInt("audience_score"),
-                                                current.getJSONObject("ratings").getInt("critics_score")
+                        try {
+                            JSONArray movies = resp.getJSONArray("movies");
+                            JSONObject current = null;
+                            for (int i = 0; i < movies.length(); i++) {
+                                current = movies.getJSONObject(i);
+                                Movie m = new Movie(current.get("title").toString(),
+                                        Integer.parseInt(current.get("year").toString()),
+                                        current.getString("mpaa_rating"),
+                                        current.getInt("runtime"),
+                                        current.getJSONObject("ratings").getInt("audience_score"),
+                                        current.getJSONObject("ratings").getInt("critics_score")
 
-                                        );
-                                        MovieManager.add(m);
-                                    }
-                                    changeView(MovieManager.getMovies());
-                                } catch(Exception e) {
-                                    Log.d("SEARCH ACTIVITY", "JSON Error.");
-                                }
+                                );
+                                MovieManager.add(m);
                             }
-                        }, new Response.ErrorListener() {
+                            changeView(MovieManager.getMovies());
+                        } catch (Exception e) {
+                            Log.d("SEARCH ACTIVITY", "JSON Error.");
+                        }
+                    }
+                }, new Response.ErrorListener() {
 
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Log.d("SEARCH ACTIVITY", "Request Error.");
-                            }
-                        });
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("SEARCH ACTIVITY", "Request Error.");
+                    }
+                });
 
                 //comment these out temporarily on 0202 by justeen
                 //queue = Volley.newRequestQueue(this);
@@ -158,70 +158,47 @@ public class SearchActivity extends AppCompatActivity{
     }
 
     /**
-     *
-     *  Event when the search button is pressed
-     *
-     * @param v The view, for search activity
-     */
-    public void onSearchButtonPressed(View v) {
-        Log.d("SEARCH ACTIVITY", "Search button was pressed.");
-        //Get text from text box that user is inputting
-        //Check to see if Movie is in database
-            //If so display info about movie
-            //If not display message to the user saying the movie was not located.
-
-        //EditText movieinput = (EditText) findViewById(R.id.movie);
-        //String userinput = movieinput.toString();
-
-    }
-
-    /**
      * Searches for new releases
      * @param v current view
      */
     public void onSearchNewReleases(View v) {
-        int pagelimit = 10;
         String url = String.format("http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=%d&page=1&country=us&apikey=%s", pagelimit, KEY);
-        //String url = "http://www.omdbapi.com/?t=Good+Will+Hunting&y=&plot=short&r=json";
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                (Request.Method.GET, url, "", new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject resp) {
-                        Log.d("SEARCH ACTIVITY", "Request Recieved.");
+            (Request.Method.GET, url, "", new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject resp) {
+                    Log.d("SEARCH ACTIVITY", "Request Recieved.");
+                    //resp is the response JSON Obj
+                    try {
+                        JSONArray movies = resp.getJSONArray("movies");
+                        JSONObject current = null;
+                        for (int i = 0; i < movies.length(); i++) {
+                            current = movies.getJSONObject(i);
+                            //Initializes each movie from search to add to a list of movies
+                            Movie m = new Movie(current.get("title").toString(),
+                                    Integer.parseInt(current.get("year").toString()),
+                                    current.getString("mpaa_rating"),
+                                    current.getInt("runtime"),
+                                    current.getJSONObject("ratings").getInt("audience_score"),
+                                    current.getJSONObject("ratings").getInt("critics_score")
 
-                        //resp is the response JSON Obj
-                        //TODO Put info in movie objects
-                        //then add to view
-                        try {
-                            JSONArray movies = resp.getJSONArray("movies");
-                            JSONObject current = null;
-                            for (int i = 0; i < movies.length(); i++) {
-                                current = movies.getJSONObject(i);
-                                Movie m = new Movie(current.get("title").toString(),
-                                        Integer.parseInt(current.get("year").toString()),
-                                        current.getString("mpaa_rating"),
-                                        current.getInt("runtime"),
-                                        current.getJSONObject("ratings").getInt("audience_score"),
-                                        current.getJSONObject("ratings").getInt("critics_score")
-
-                                );
-                                MovieManager.add(m);
-                            }
-                            /*MovieManager m = new MovieManager(resp.getJSONArray("movies").toString());
-                            Log.d("SEARCH ACTIVITY", "success.");*/
-                            changeView(MovieManager.getMovies());
-                        } catch(JSONException e) {
-                            Log.d("SEARCH ACTIVITY", "JSON Error.");
+                            );
+                            MovieManager.add(m);
                         }
+                        //Goes to display the movies
+                        changeView(MovieManager.getMovies());
+                    } catch(JSONException e) {
+                        Log.d("SEARCH ACTIVITY", "JSON Error.");
                     }
-                }, new Response.ErrorListener() {
+                }
+            }, new Response.ErrorListener() {
 
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d("SEARCH ACTIVITY", "Request Error.");
-                    }
-                });
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d("SEARCH ACTIVITY", "Request Error.");
+                }
+            });
         queue =  Volley.newRequestQueue(this);
         queue.add(jsObjRequest);
     }
@@ -231,52 +208,50 @@ public class SearchActivity extends AppCompatActivity{
      * @param v current view
      */
     public void onSearchNewDVDs(View v) {
-        int pagelimit = 10;
         String url = String.format("http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?page_limit=%d&page=1&country=us&apikey=%s", pagelimit, KEY);
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                (Request.Method.GET, url, "", new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject resp) {
-                        Log.d("SEARCH ACTIVITY", "Request Recieved.");
-                        //resp is the response JSON Obj
-                        //TODO Put info in movie objects
-                        //then add to view
-
-                        try {
-                           JSONArray movies = resp.getJSONArray("movies");
-
-                            JSONObject current = null;
-
-                            for (int i = 0; i < movies.length(); i++) {
-                                current = movies.getJSONObject(i);
-
-                                Movie m = new Movie(current.get("title").toString(),
-                                        Integer.parseInt(current.get("year").toString()),
-                                        current.getString("mpaa_rating"),
-                                        current.getInt("runtime"),
-                                        current.getJSONObject("ratings").getInt("audience_score"),
-                                        current.getJSONObject("ratings").getInt("critics_score")
-
+            (Request.Method.GET, url, "", new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject resp) {
+                    Log.d("SEARCH ACTIVITY", "Request Recieved.");
+                    //resp is the response JSON Obj
+                    //TODO Put info in movie objects
+                    //then add to view
+                    try {
+                        JSONArray movies = resp.getJSONArray("movies");
+                        JSONObject current = null;
+                        for (int i = 0; i < movies.length(); i++) {
+                            current = movies.getJSONObject(i);
+                            //Initializes a movie to add to the list of results
+                            Movie m = new Movie(current.get("title").toString(),
+                                    Integer.parseInt(current.get("year").toString()),
+                                    current.getString("mpaa_rating"),
+                                    current.getInt("runtime"),
+                                    current.getJSONObject("ratings").getInt("audience_score"),
+                                    current.getJSONObject("ratings").getInt("critics_score")
                                         );
-                                MovieManager.add(m);
-                            }
-                            //MovieManager m = new MovieManager(resp.getJSONArray("movies").toString());
-                            changeView(MovieManager.getMovies());
-                        } catch(Exception e) {
-                            Log.d("SEARCH ACTIVITY", "JSON Error.");
-                        };
-                    }
-                }, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d("SEARCH ACTIVITY", "Request Error.");
-                    }
-                });
+                            MovieManager.add(m);
+                        }
+                        //Goes to display the movies
+                        changeView(MovieManager.getMovies());
+                    } catch(JSONException e) {
+                        Log.d("SEARCH ACTIVITY", "JSON Error.");
+                    };
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d("SEARCH ACTIVITY", "Request Error.");
+                }
+            });
         queue =  Volley.newRequestQueue(this);
         queue.add(jsObjRequest);
     }
 
+    /**
+     * Goes to the view to display the movies
+     * @param movies The results of the search, movies to show user
+     */
     private void changeView(List<Movie> movies) {
         Intent intent = new Intent(this, listItemActivity.class);
         intent.putExtra("Movies", movies.toString());
