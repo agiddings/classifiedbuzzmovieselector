@@ -89,7 +89,7 @@ public class SearchActivity extends AppCompatActivity{
             @Override
             public boolean onQueryTextSubmit(String userInput) {
                 // TODO Auto-generated method stub
-                Toast input = Toast.makeText(getBaseContext(), userInput,
+                Toast input = Toast.makeText(getBaseContext(), "Searching " + userInput,
                         Toast.LENGTH_SHORT);
                 input.show();
                 SearchButtonPressed(userInput);
@@ -107,10 +107,8 @@ public class SearchActivity extends AppCompatActivity{
         });
     }
 
-
+    //this method cannot get object with movie title that has more than 1 word
     public void SearchButtonPressed(String userInput) {
-        //move from onSearchButtonPressed to here | Begin
-
         System.out.println(userInput);
         //so the search query(userInput in this case) should pass to the url string below
         String url = String.format("http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=%s&page_limit=%d&page=1&apikey=%s",
@@ -171,10 +169,6 @@ public class SearchActivity extends AppCompatActivity{
                 });
         queue = Volley.newRequestQueue(this);
         queue.add(jsObjRequest);
-
-
-
-        //move from onSearchButtonPressed to here | End
     }
 
 
