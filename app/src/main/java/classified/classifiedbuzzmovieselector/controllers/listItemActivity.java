@@ -81,7 +81,11 @@ public class listItemActivity extends AppCompatActivity {
 
         @Override
         public int getItemCount() {
-            return mValues.size();
+            if (mValues != null) {
+                return mValues.size();
+            } else {
+                return 0;
+            }
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder {
