@@ -21,6 +21,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -277,7 +278,7 @@ public class SearchActivity extends AppCompatActivity{
      */
     private void changeView(List<Movie> movies) {
         Intent intent = new Intent(this, listItemActivity.class);
-        intent.putExtra("Movies", movies.toString());
+        intent.putExtra("movies", (Serializable) movies);
         startActivity(intent);
     }
 }

@@ -1,9 +1,11 @@
 package classified.classifiedbuzzmovieselector.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Zhendong(Justeen) on 2/18/16.
  */
-public class Movie {
+public class Movie implements Serializable {
     private String title;
     private int year;
     private String mpaa_rating;
