@@ -35,16 +35,9 @@
         android:onClick="onSearchNewReleases" />
     </LinearLayout>
 
-    <ScrollView
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/scrollView2"
-        android:layout_gravity="center_horizontal" >
-
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/movieResultList" />
-    </ScrollView>
+        android:layout_height="wrap_content"
+        android:id="@+id/movieResultList" />
 
 </LinearLayout>

@@ -10,7 +10,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.util.List;
+
 import classified.classifiedbuzzmovieselector.R;
+import classified.classifiedbuzzmovieselector.model.Movie;
+import classified.classifiedbuzzmovieselector.model.MovieManager;
 
 public class ItemDetailActivity extends AppCompatActivity {
 
@@ -23,6 +27,8 @@ public class ItemDetailActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+        //List<Movie> m = MovieManager.getMovies();
+
     }
 
     @Override
