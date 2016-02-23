@@ -42,6 +42,8 @@ public class ItemDetailFragment extends Fragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Log.d("ITEMDETAILFRAGMENT", "Oncreate");
+
         if (getArguments().containsKey(ARG_ITEM_ID)) {
             try {
                 mItem = (Movie) SearchActivity.getJSONArray().getJSONObject(0).get(ARG_ITEM_ID);
@@ -56,6 +58,7 @@ public class ItemDetailFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.d("ITEMDETAILFRAGMENT", "onCreateView");
         View rootView = inflater.inflate(R.layout.content_item_detail, container, false);
 
         if (mItem != null) {

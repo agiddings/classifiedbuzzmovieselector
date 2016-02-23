@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,8 @@ public class listItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);
 
+        Log.d("LISTITEMACTIVITY", "called onCreateMethod");
+
         movies = (List<Movie>) getIntent().getSerializableExtra("movies");
 
         View recyclerView = findViewById(R.id.list_item);
@@ -40,6 +43,7 @@ public class listItemActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
+        Log.d("LISTITEMACTIVITY", "Setting up recyclerview.");
         recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(movies));
     }
 
@@ -52,7 +56,8 @@ public class listItemActivity extends AppCompatActivity {
         private final List<Movie> mValues;
 
         public SimpleItemRecyclerViewAdapter(List<Movie> items) {
-            mValues = items;
+            Log.d("LISTITEMACTIVITY", "Initializing mValues");
+            this.mValues = items;
         }
 
         @Override
@@ -82,8 +87,10 @@ public class listItemActivity extends AppCompatActivity {
         @Override
         public int getItemCount() {
             if (mValues != null) {
+                Log.d("LISTITEMACTIVITY", "getItemCount of mvalues isn't null");
                 return mValues.size();
             } else {
+                Log.d("LISTITEMACTIVIYT", "called getitemcount on null mvalues");
                 return 0;
             }
         }
@@ -99,6 +106,7 @@ public class listItemActivity extends AppCompatActivity {
                 mView = view;
                 mIdView = (TextView) view.findViewById(R.id.id);
                 mContentView = (TextView) view.findViewById(R.id.content);
+                Log.d("LISTITEMACTIVITY", "Initialized viewholder.");
             }
 
             @Override
