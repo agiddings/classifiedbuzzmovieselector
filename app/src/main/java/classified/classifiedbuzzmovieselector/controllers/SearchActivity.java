@@ -39,11 +39,8 @@ public class SearchActivity extends AppCompatActivity{
     //for testing 0223 - Justeen
     TextView MovieYear;
     TextView MovieName;
-    ArrayList<Movie> testMovieArray = new ArrayList<Movie>();
-
 
     RequestQueue queue;
-
 
     //for test purpose by Justeeeeen
     static final String[] FRUITS = new String[] { "Apple", "Avocado", "Banana",
@@ -57,7 +54,6 @@ public class SearchActivity extends AppCompatActivity{
 
         MovieYear = (TextView) findViewById(R.id.movieYear);
         MovieName = (TextView) findViewById(R.id.movieName);
-
 
 
         //connect search view to this controller
@@ -88,7 +84,6 @@ public class SearchActivity extends AppCompatActivity{
 
             @Override
             public boolean onQueryTextSubmit(String userInput) {
-                // TODO Auto-generated method stub
                 Toast input = Toast.makeText(getBaseContext(), "Searching " + userInput,
                         Toast.LENGTH_SHORT);
                 input.show();
@@ -98,8 +93,6 @@ public class SearchActivity extends AppCompatActivity{
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                // TODO Auto-generated method stub
-
                 //	Toast.makeText(getBaseContext(), newText,
                 //Toast.LENGTH_SHORT).show();
                 return false;
@@ -145,11 +138,6 @@ public class SearchActivity extends AppCompatActivity{
                                 //display to text movie year for testing - Justeen
                                 MovieName.setText("Movie name: " + m.getTitle());
                                 MovieYear.setText("Movie Year: " + String.valueOf(m.getYear()));
-
-
-
-                                testMovieArray.add(m);
-
                             }
                             //temporarily comment for testing 0223 -Justeen
                             //changeView(MovieManager.getMovies());
