@@ -40,8 +40,14 @@ public class SearchActivity extends AppCompatActivity{
     //for testing 0223 - Justeen
     TextView MovieYear;
     TextView MovieName;
+    static JSONArray movies;
 
     RequestQueue queue;
+
+    public static JSONArray getJSONArray() {
+        return movies;
+    }
+
 
     //for test purpose by Justeeeeen
     static final String[] FRUITS = new String[] { "Apple", "Avocado", "Banana",
@@ -123,7 +129,7 @@ public class SearchActivity extends AppCompatActivity{
                         //Movie m = new Movie(resp.)
 
                         try {
-                            JSONArray movies = resp.getJSONArray("movies");
+                            movies = resp.getJSONArray("movies");
                             JSONObject current = null;
                             for (int i = 0; i < movies.length(); i++) {
                                 current = movies.getJSONObject(i);
