@@ -34,6 +34,7 @@ import classified.classifiedbuzzmovieselector.model.MovieManager;
  */
 public class SearchActivity extends AppCompatActivity{
     final String KEY = "yedukp76ffytfuy24zsqk7f5";
+    final String rottenTomatoesURL = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=%s&page_limit=%d&page=1&apikey=%s";
     final int pagelimit = 10;
     SearchView search;
     //for testing 0223 - Justeen
@@ -104,7 +105,8 @@ public class SearchActivity extends AppCompatActivity{
     public void SearchButtonPressed(String userInput) {
         System.out.println(userInput);
         //so the search query(userInput in this case) should pass to the url string below
-        String url = String.format("http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=%s&page_limit=%d&page=1&apikey=%s",
+        String url = String.format(
+                rottenTomatoesURL,
                 userInput,
                 pagelimit, KEY);
         //test with "deadpool" above see if it come up
