@@ -52,11 +52,6 @@ public class SearchActivity extends AppCompatActivity{
     }
 
 
-    //for test purpose by Justeeeeen
-    static final String[] FRUITS = new String[] { "Apple", "Avocado", "Banana",
-            "Blueberry", "Coconut", "Durian", "Guava", "Kiwifruit",
-            "Jackfruit", "Mango", "Olive", "Pear", "Sugar-apple" };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,7 +104,11 @@ public class SearchActivity extends AppCompatActivity{
         });
     }
 
-    //this method cannot get object with movie title that has more than 1 word
+    /**
+     * define behavior after a user clicks on search button with input
+     *
+     * @param userInput
+     */
     public void SearchButtonPressed(String userInput) {
         System.out.println(userInput);
         //so the search query(userInput in this case) should pass to the url string below
