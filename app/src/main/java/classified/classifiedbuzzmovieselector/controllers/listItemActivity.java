@@ -29,6 +29,7 @@ public class listItemActivity extends AppCompatActivity {
 
     private List<Movie> movies;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);
@@ -48,13 +49,21 @@ public class listItemActivity extends AppCompatActivity {
     }
 
     /**
-     * All lists need adapters, this is ours.
+     * public inner class for all adapters needed
+     *
      */
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
         private final List<Movie> mValues;
 
+
+        /**
+         * Constructor a recyclable item view adapter
+         *
+         *
+         * @param items
+         */
         public SimpleItemRecyclerViewAdapter(List<Movie> items) {
             Log.d("LISTITEMACTIVITY", "Initializing mValues");
             this.mValues = items;
@@ -95,12 +104,21 @@ public class listItemActivity extends AppCompatActivity {
             }
         }
 
+        /**
+         * public inner class for viewholder
+         *
+         */
         public class ViewHolder extends RecyclerView.ViewHolder {
             public final View mView;
             public final TextView mIdView;
             public final TextView mContentView;
             public Movie mItem;
 
+            /**
+             * Constructor each list view that hold some movie information
+             *
+             * @param view
+             */
             public ViewHolder(View view) {
                 super(view);
                 mView = view;
