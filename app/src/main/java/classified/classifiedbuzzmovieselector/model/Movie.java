@@ -14,6 +14,12 @@ public class Movie implements Serializable {
     //private String genre;
     //private int rating;
 
+    /**
+     * Constructor a movie
+     *
+     * @param title
+     * @param year
+     */
     public Movie(String title, int year) {
         this (title, year, "", 0, 0, 0);
     }
