@@ -43,25 +43,52 @@ public class Movie implements Serializable {
         return year;
     }
 
+    /**
+     * set an average rating
+     *
+     * @param avgRating
+     */
     public void setAvgRating(double avgRating) {
         this.avgRating = avgRating;
     }
 
+
+    /**
+     * get an average rating
+     *
+     * @return an average rating
+     */
     public double getAvgRating() {
         return avgRating;
     }
 
+    /**
+     * get movie title
+     *
+     * @return movie title
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * get MPAA rating
+     *
+     * @return MPAA rating for that movie
+     */
     public String getMpaa_rating() {
         return mpaa_rating;
     }
 
+    /**
+     * get movie runtime
+     *
+     * @return movie runtime
+     */
     public int getRuntime() {
         return runtime;
     }
+
     /**
      * compare two movies to see if they are equal
      *
