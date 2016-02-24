@@ -294,11 +294,5 @@ public class SearchActivity extends AppCompatActivity{
         recList.setLayoutManager(llm);
         MovieAdapter ma = new MovieAdapter(movieList);
         recList.setAdapter(ma);
-
-
-        //****
-        //Intent intent = new Intent(this, listItemActivity.class);
-        //intent.putExtra("movies", (Serializable) movies);
-        //startActivity(intent);
     }
 }

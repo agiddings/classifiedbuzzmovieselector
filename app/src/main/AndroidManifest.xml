@@ -30,11 +30,6 @@
         <activity android:name=".controllers.PostLoginActivity" />
         <activity android:name=".controllers.ProfileActivity" />
         <activity android:name=".controllers.SearchActivity" />
-        <activity
-            android:name=".controllers.ItemDetailActivity"
-            android:label="@string/title_activity_item_detail"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".controllers.listItemActivity"/>
         <activity android:name=".controllers.UnableLoginActivity"/>
     </application>
 
