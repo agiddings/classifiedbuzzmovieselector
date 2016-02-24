@@ -3,6 +3,8 @@ package classified.classifiedbuzzmovieselector.controllers;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -62,7 +64,6 @@ public class SearchActivity extends AppCompatActivity{
 
         MovieYear = (TextView) findViewById(R.id.movieYear);
         MovieName = (TextView) findViewById(R.id.movieName);
-
 
         //connect search view to this controller
         search = (SearchView) findViewById(R.id.searchMovieView);
@@ -132,6 +133,7 @@ public class SearchActivity extends AppCompatActivity{
                         try {
                             movies = resp.getJSONArray("movies");
                             JSONObject current = null;
+                            MovieManager.clear();
                             for (int i = 0; i < movies.length(); i++) {
                                 current = movies.getJSONObject(i);
                                 Movie m = new Movie(current.get("title").toString(),
@@ -145,11 +147,10 @@ public class SearchActivity extends AppCompatActivity{
                                 MovieManager.add(m);
 
                                 //display to text movie year for testing - Justeen
-                                MovieName.setText("Movie name: " + m.getTitle());
-                                MovieYear.setText("Movie Year: " + String.valueOf(m.getYear()));
+                                //MovieName.setText("Movie name: " + m.getTitle());
+                                //MovieYear.setText("Movie Year: " + String.valueOf(m.getYear()));
                             }
-                            //temporarily comment for testing 0223 -Justeen
-                            //changeView(MovieManager.getMovies());
+                            changeView(MovieManager.getMovies());
 
 
 
@@ -197,6 +198,7 @@ public class SearchActivity extends AppCompatActivity{
                     try {
                         JSONArray movies = resp.getJSONArray("movies");
                         JSONObject current = null;
+                        MovieManager.clear();
                         for (int i = 0; i < movies.length(); i++) {
                             current = movies.getJSONObject(i);
                             //Initializes each movie from search to add to a list of movies
@@ -209,6 +211,9 @@ public class SearchActivity extends AppCompatActivity{
 
                             );
                             MovieManager.add(m);
+                            //display to text movie year for testing - Cole
+                            //MovieName.setText("Movie name: " + m.getTitle());
+                            //MovieYear.setText("Movie Year: " + String.valueOf(m.getYear()));
                         }
                         //Goes to display the movies
                         changeView(MovieManager.getMovies());
@@ -242,6 +247,7 @@ public class SearchActivity extends AppCompatActivity{
                     //TODO Put info in movie objects
                     //then add to view
                     try {
+                        MovieManager.clear();
                         JSONArray movies = resp.getJSONArray("movies");
                         JSONObject current = null;
                         for (int i = 0; i < movies.length(); i++) {
@@ -255,6 +261,10 @@ public class SearchActivity extends AppCompatActivity{
                                     current.getJSONObject("ratings").getInt("critics_score")
                                         );
                             MovieManager.add(m);
+
+                            //display to text movie year for testing - Cole
+                            //MovieName.setText("Movie name: " + m.getTitle());
+                            //MovieYear.setText("Movie Year: " + String.valueOf(m.getYear()));
                         }
                         //Goes to display the movies
                         changeView(MovieManager.getMovies());
@@ -274,11 +284,22 @@ public class SearchActivity extends AppCompatActivity{
 
     /**
      * Goes to the view to display the movies
-     * @param movies The results of the search, movies to show user
+     * @param movieList The results of the search, movies to show user
      */
-    private void changeView(List<Movie> movies) {
-        Intent intent = new Intent(this, listItemActivity.class);
-        intent.putExtra("movies", (Serializable) movies);
-        startActivity(intent);
+    private void changeView(List<Movie> movieList) {
+        //****
+        RecyclerView recList = (RecyclerView) findViewById(R.id.movieResultList);
+        recList.setHasFixedSize(true);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        recList.setLayoutManager(llm);
+        MovieAdapter ma = new MovieAdapter(movieList);
+        recList.setAdapter(ma);
+
+
+        //****
+        //Intent intent = new Intent(this, listItemActivity.class);
+        //intent.putExtra("movies", (Serializable) movies);
+        //startActivity(intent);
     }
 }

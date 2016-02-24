@@ -40,6 +40,10 @@ public class MovieManager {
         movies.add(m);
     }
 
+    public static void clear(){
+        movies.clear();
+    }
+
     public List<Movie> getBestMoviesByAvgRating() {
         List<Movie> bestMovies = new ArrayList<>();
 
