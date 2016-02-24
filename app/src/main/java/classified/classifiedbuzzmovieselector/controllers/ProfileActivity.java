@@ -40,12 +40,24 @@ public class ProfileActivity extends AppCompatActivity{
         major.setText(LoginActivity.getUser().getMajor());
         info.setText(LoginActivity.getUser().getInfo());
     }
+
+
+    /**
+     * define behavior after a user clicks on cancel profile button
+     *
+     * @param v
+     */
     public void onCancelProfileButtonPressed(View v) {
         Log.d("PROFILE ACTIVITY", "Cancel profile edits button was pressed.");
         Intent intent = new Intent(this, PostLoginActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * define behavior after a user clicks on profile button
+     *
+     * @param v
+     */
     public void onProfileButtonPressed(View v) {
         Log.d("PROFILE ACTIVITY", "Profile button was pressed.");
         EditText name = (EditText) findViewById(R.id.newName);
@@ -91,10 +103,7 @@ public class ProfileActivity extends AppCompatActivity{
                     output.show();
                 }
 
-
-
                 message = "Profile update succeeded.";
-
 
                 // Returns to the post login page.
                 Intent intent = new Intent(this, PostLoginActivity.class);
