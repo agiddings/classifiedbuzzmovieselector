@@ -43,6 +43,11 @@ public class PostLoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * define behavior after a user clicks on the go to search button
+     *
+     * @param v
+     */
     public void onGoToSearchButtonClicked(View v) {
         Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);

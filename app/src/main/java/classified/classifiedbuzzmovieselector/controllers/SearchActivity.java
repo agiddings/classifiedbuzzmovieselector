@@ -62,8 +62,8 @@ public class SearchActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        MovieYear = (TextView) findViewById(R.id.movieYear);
-        MovieName = (TextView) findViewById(R.id.movieName);
+        //MovieYear = (TextView) findViewById(R.id.movieYear);
+        //MovieName = (TextView) findViewById(R.id.movieName);
 
         //connect search view to this controller
         search = (SearchView) findViewById(R.id.searchMovieView);
