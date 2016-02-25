@@ -14,7 +14,12 @@ import classified.classifiedbuzzmovieselector.model.Movie;
 /**
  * Created by coleb_000 on 2/23/2016.
  */
+
+/**
+ * MovieAdapter is the controller for displaying the search results
+ */
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
+    //The list of movies to display
     private List<Movie> movieList;
 
     public MovieAdapter(List<Movie> movieList) {
