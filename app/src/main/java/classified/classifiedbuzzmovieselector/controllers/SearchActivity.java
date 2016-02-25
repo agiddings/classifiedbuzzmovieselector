@@ -124,11 +124,6 @@ public class SearchActivity extends AppCompatActivity{
                     public void onResponse(JSONObject resp) {
                         Log.d("SEARCH ACTIVITY", "Request Recieved.");
 
-                        //resp is the response JSON Obj
-                        //TODO Put info in movie objects
-                        //then add to view
-                        //Movie m = new Movie(resp.)
-
                         try {
                             movies = resp.getJSONArray("movies");
                             JSONObject current = null;
@@ -286,7 +281,6 @@ public class SearchActivity extends AppCompatActivity{
      * @param movieList The results of the search, movies to show user
      */
     private void changeView(List<Movie> movieList) {
-        //****
         RecyclerView recList = (RecyclerView) findViewById(R.id.movieResultList);
         recList.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(this);
