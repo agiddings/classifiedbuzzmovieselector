@@ -27,7 +27,7 @@ public class UserRatingManager {
             userRatings.get(index).setComment(ur.getComment());
             userRatings.get(index).setScore(ur.getScore());
         }
-        ur.getMovie().setAvgRating(getAvgMovieUserRating(ur.getMovie()));
+        MovieManager.getMovie(ur.getMovie()).setAvgRating(getAvgMovieUserRating(ur.getMovie()));
     }
 
     public List<UserRating> getUserRatingsByUser(User user) {
@@ -83,6 +83,7 @@ public class UserRatingManager {
 
     public List<Movie> getBestMoviesfromUserRatings(List<UserRating> ratings) {
         List<Movie> movies = new ArrayList<>();
+        //TODO Sort movies by rating
 
         return movies;
     }

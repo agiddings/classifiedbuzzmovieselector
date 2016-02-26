@@ -11,6 +11,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import classified.classifiedbuzzmovieselector.model.Exceptions.MovieDoesNotExistException;
+
 /**
  * Created by steven on 2/19/16.
  */
@@ -33,6 +35,24 @@ public class MovieManager {
         Type collectionType = new TypeToken<ArrayList<Movie>>() {
         }.getType();
         movies = gson.fromJson(json, collectionType);
+    }
+
+    public static Movie getMovieByTitleAndYear(String title, int year) throws MovieDoesNotExistException {
+        for (Movie m : movies) {
+            if (m.getYear() == year && m.getTitle().equals(title)) {
+                return m;
+            }
+        }
+        throw new MovieDoesNotExistException("This movie is not in the list");
+    }
+
+    public static Movie getMovie(Movie movie) throws MovieDoesNotExistException {
+        for (Movie m : movies) {
+            if (m.equals(movie)) {
+                return m;
+            }
+        }
+        throw new MovieDoesNotExistException("This movie is not in the list");
     }
 
     /**
