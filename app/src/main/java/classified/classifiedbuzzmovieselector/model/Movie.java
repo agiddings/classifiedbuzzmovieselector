@@ -20,8 +20,12 @@ public class Movie implements Serializable {
      * @param title
      * @param year
      */
-    public Movie(String title, int year) {
-        this (title, year, "", 0, 0, 0);
+    public Movie(String title, int year, String mpaa_rating, int runtime, double avgRating) {
+        this.title = title;
+        this.year = year;
+        this.mpaa_rating = mpaa_rating;
+        this.runtime = runtime;
+        this.avgRating = avgRating;
     }
 
     /**
@@ -31,12 +35,13 @@ public class Movie implements Serializable {
      * @param year year of release
      *
      */
-    public Movie(String title, int year, String mpaa_rating, int runtime, int audience_score, int critic_score) {
+    public Movie(String title, int year, String mpaa_rating, int runtime) {
         this.title = title;
         this.year = year;
         this.mpaa_rating = mpaa_rating;
         this.runtime = runtime;
-        this.avgRating = (audience_score + critic_score)/2.0;
+        this.avgRating = UserRatingManager.getAvgMovieUserRating(
+                new Movie(title, year, mpaa_rating, runtime, 0));
     }
 
     /**
