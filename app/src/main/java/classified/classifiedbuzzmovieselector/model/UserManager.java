@@ -14,7 +14,7 @@ import classified.classifiedbuzzmovieselector.model.Exceptions.UserDoesNotExistE
  */
 public class UserManager {
     private static final Map<String, User> users = new HashMap<>();
-
+    private static User loggedUser;
     //For profile class, add a remove user and/or edit user method
 
     /*
@@ -116,10 +116,15 @@ public class UserManager {
         //if the email is recorded before
         if (users.containsKey(email)) {
             User user = users.get(email);
-            return !user.isBanned() && !user.isLocked() && user.passwordMatched(pass);
-        } else {
-            // false if email is not recorded before
-            return false;
+            if (!user.isBanned() && !user.isLocked() && user.passwordMatched(pass)) {
+                loggedUser = user;
+                return true;
+            }
         }
+        return false;
+    }
+
+    public User getLoggedUser() {
+        return loggedUser;
     }
 }

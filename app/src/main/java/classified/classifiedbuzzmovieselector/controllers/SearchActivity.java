@@ -47,6 +47,10 @@ public class SearchActivity extends AppCompatActivity{
 
     RequestQueue queue;
 
+    /**
+     * Gets the list of movies from the JSON request
+     * @return The movies from the result of the search
+     */
     public static JSONArray getJSONArray() {
         return movies;
     }
@@ -124,11 +128,6 @@ public class SearchActivity extends AppCompatActivity{
                     public void onResponse(JSONObject resp) {
                         Log.d("SEARCH ACTIVITY", "Request Recieved.");
 
-                        //resp is the response JSON Obj
-                        //TODO Put info in movie objects
-                        //then add to view
-                        //Movie m = new Movie(resp.)
-
                         try {
                             movies = resp.getJSONArray("movies");
                             JSONObject current = null;
@@ -150,9 +149,6 @@ public class SearchActivity extends AppCompatActivity{
                                 //MovieYear.setText("Movie Year: " + String.valueOf(m.getYear()));
                             }
                             changeView(MovieManager.getMovies());
-
-
-
                         } catch (Exception e) {
                             Log.d("SEARCH ACTIVITY", "JSON Error.");
                         }
@@ -286,7 +282,6 @@ public class SearchActivity extends AppCompatActivity{
      * @param movieList The results of the search, movies to show user
      */
     private void changeView(List<Movie> movieList) {
-        //****
         RecyclerView recList = (RecyclerView) findViewById(R.id.movieResultList);
         recList.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(this);
@@ -294,5 +289,14 @@ public class SearchActivity extends AppCompatActivity{
         recList.setLayoutManager(llm);
         MovieAdapter ma = new MovieAdapter(movieList);
         recList.setAdapter(ma);
+    }
+
+    /**
+     * Navigates to the movie information page
+     * @param v The view the user sees
+     */
+    public void onMovieInformationButtonPressed(View v) {
+        Intent intent = new Intent(this, MovieInformationActivity.class);
+        startActivity(intent);
     }
 }
