@@ -290,7 +290,7 @@ public class SearchActivity extends AppCompatActivity{
         recList.setAdapter(ma);
     }
 
-    public void onRatingButtonPressed(View v) {
+    public void onMovieInformationButtonPressed(View v) {
         Intent intent = new Intent(this, MovieInformationActivity.class);
         startActivity(intent);
     }
