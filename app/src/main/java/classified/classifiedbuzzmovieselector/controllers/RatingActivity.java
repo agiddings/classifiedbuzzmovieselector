@@ -53,14 +53,8 @@ public class RatingActivity extends AppCompatActivity {
      * @param v The current view
      */
     public void onRatingCancelledButtonPressed(View v) {
-        Log.d("RATING ACTIVITY", "Rating was cancelled.");
-        RecyclerView recList = (RecyclerView) findViewById(R.id.movieResultList);
-        recList.setHasFixedSize(true);
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        recList.setLayoutManager(llm);
-        MovieAdapter ma = new MovieAdapter(MovieManager.getMovies());
-        recList.setAdapter(ma);
+        Intent intent = new Intent(this, MovieInformationActivity.class);
+        startActivity(intent);
     }
 
 }
