@@ -88,7 +88,7 @@ public class MovieManager {
      *
      * @return a list of movies by the best average rating
      */
-    public List<Movie> getBestMoviesByAvgRating() {
+    public static List<Movie> getBestMoviesByAvgRating() {
         List<Movie> bestMovies = new ArrayList<>();
 
         return bestMovies;
@@ -99,7 +99,7 @@ public class MovieManager {
      *
      * @return a list of movies by the worst average rating
      */
-    public List<Movie> getWorstMoviesByAvgRating() {
+    public static List<Movie> getWorstMoviesByAvgRating() {
         List<Movie> worstMovies = new ArrayList<>();
 
         return worstMovies;
@@ -112,7 +112,7 @@ public class MovieManager {
      * @param major major of the movie
      * @return a list of movies by major
      */
-    public List<Movie> getBestMoviesByMajor(String major) {
+    public static List<Movie> getBestMoviesByMajor(String major) {
         List<Movie> bestMovies = new ArrayList<>();
 
         return bestMovies;
@@ -124,7 +124,7 @@ public class MovieManager {
      * @param major major of the movie
      * @return get a list of worst movies by major
      */
-    public List<Movie> getWorstMoviesByMajor(String major) {
+    public static List<Movie> getWorstMoviesByMajor(String major) {
         List<Movie> worstMovies = new ArrayList<>();
 
         return worstMovies;
@@ -136,7 +136,7 @@ public class MovieManager {
      * @param user a friend
      * @return a list of best movies by a friend's rating
      */
-    public List<Movie> getBestMoviesByFriendRating(User user) {
+    public static List<Movie> getBestMoviesByFriendRating(User user) {
         List<Movie> bestMovies = new ArrayList<>();
 
         return bestMovies;
@@ -148,7 +148,7 @@ public class MovieManager {
      * @param user a friend
      * @return a list of worst movies by a friend's rating
      */
-    public List<Movie> getWorstMoviesByFriendRating(User user) {
+    public static List<Movie> getWorstMoviesByFriendRating(User user) {
         List<Movie> worstMovies = new ArrayList<>();
 
         return worstMovies;
@@ -158,7 +158,7 @@ public class MovieManager {
      * sort movies in the list by release dates chronically
      *
      */
-    public void sortByNewReleases() {
+    public static void sortByNewReleases() {
         Collections.sort(movies, new Comparator<Movie>() {
             @Override
             public int compare(Movie lhs, Movie rhs) {
