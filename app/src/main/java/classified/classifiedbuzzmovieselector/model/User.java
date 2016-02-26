@@ -15,7 +15,6 @@ public class User {
     protected boolean isLocked;
     protected boolean isBanned;
     protected int failedAttempts;
-    protected List<UserRating> userRatings;
     protected List<User> friends;
 
     //Add user info, major from profile section
