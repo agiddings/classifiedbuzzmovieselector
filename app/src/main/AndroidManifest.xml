@@ -35,7 +35,6 @@
         <activity android:name=".controllers.PostLoginActivity" />
         <activity android:name=".controllers.ProfileActivity" />
         <activity android:name=".controllers.SearchActivity" />
-        <activity android:name=".controllers.RatingActivity" />
         <activity android:name=".controllers.UnableLoginActivity" />
         <activity
             android:name=".controllers.MovieInformationActivity"
