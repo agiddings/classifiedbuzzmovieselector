@@ -289,4 +289,9 @@ public class SearchActivity extends AppCompatActivity{
         MovieAdapter ma = new MovieAdapter(movieList);
         recList.setAdapter(ma);
     }
+
+    public void onRatingButtonPressed(View v) {
+        Intent intent = new Intent(this, RatingActivity.class);
+        startActivity(intent);
+    }
 }

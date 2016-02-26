@@ -32,7 +32,7 @@ public class RatingActivity extends AppCompatActivity {
      * Creates a rating for the movie
      * @param v The current view
      */
-    public void onRatingButtonPressed(View v) {
+    public void onMovieRatingButtonPressed(View v) {
         Log.d("RATINGACTIVITY", "Rating button was pressed.");
         //TODO:
         //Get rating (int) from user

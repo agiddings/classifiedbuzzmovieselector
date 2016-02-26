@@ -35,10 +35,11 @@
         <activity android:name=".controllers.PostLoginActivity" />
         <activity android:name=".controllers.ProfileActivity" />
         <activity android:name=".controllers.SearchActivity" />
+        <activity android:name=".controllers.RatingActivity" />
         <activity android:name=".controllers.UnableLoginActivity" />
         <activity
-            android:name=".controllers.Rating"
-            android:label="@string/title_activity_rating"
+            android:name=".controllers.MovieInformationActivity"
+            android:label="@string/title_activity_movie_information"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
