@@ -1,9 +1,13 @@
 package classified.classifiedbuzzmovieselector.model;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import classified.classifiedbuzzmovieselector.model.Exceptions.MovieDoesNotExistException;
 
@@ -33,6 +37,7 @@ public class UserRatingManager {
             MovieManager.getMovie(ur.getMovie()).setAvgRating(getAvgMovieUserRating(ur.getMovie()));
         } catch (MovieDoesNotExistException e) {
             //this literally cannot happen
+            Log.e("USER_RATING_MANAGER", "YELL AT STEVE");
         }
     }
 
@@ -108,7 +113,12 @@ public class UserRatingManager {
     }
 
     public static List<Movie> getBestMoviesfromUserRatings(List<UserRating> ratingList) {
-        List<Movie> movies = new ArrayList<>();
+        Set<Movie> moviesSet = new HashSet<>();
+        List<Movie> movies;
+        for (UserRating rating : ratingList) {
+            moviesSet.add(rating.getMovie());
+        }
+        movies = new ArrayList<>(moviesSet);
         //TODO Sort movies by rating
 
         return movies;
@@ -125,7 +135,7 @@ public class UserRatingManager {
     }
 
     public static List<UserRating> sortRatingsLowToHigh() {
-        return sortRatingsHighToLow(userRatings);
+        return sortRatingsLowToHigh(userRatings);
     }
 
     public static List<UserRating> sortRatingsHighToLow(List<UserRating> ratings) {

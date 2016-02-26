@@ -24,6 +24,7 @@ public class MovieManager {
     //Or just change the constructor so if does exactly what search activity is currently
     //doing to add movies.
     private static List<Movie> movies = new ArrayList<Movie>();
+    private static Movie selectedMovie;
     private static final Gson gson = new Gson();
 
     /**
@@ -137,9 +138,8 @@ public class MovieManager {
      * @return a list of best movies by a friend's rating
      */
     public static List<Movie> getBestMoviesByFriendRating(User user) {
-        List<Movie> bestMovies = new ArrayList<>();
-
-        return bestMovies;
+        return UserRatingManager.getBestMoviesfromUserRatings(
+                UserRatingManager.getUserRatingsByFriends(user));
     }
 
     /**
@@ -165,6 +165,14 @@ public class MovieManager {
                 return rhs.getYear() - lhs.getYear();
             }
         });
+    }
+
+    public static void setSelectedMovie(Movie movie) {
+        selectedMovie = movie;
+    }
+
+    public static Movie getSelectedMovie() {
+        return selectedMovie;
     }
 
 }
