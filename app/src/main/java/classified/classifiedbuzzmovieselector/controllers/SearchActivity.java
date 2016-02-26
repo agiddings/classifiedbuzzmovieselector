@@ -41,8 +41,8 @@ public class SearchActivity extends AppCompatActivity{
     final int pagelimit = 10;
     SearchView search;
     //for testing 0223 - Justeen
-    TextView MovieYear;
-    TextView MovieName;
+    //TextView MovieYear;
+    //TextView MovieName;
     static JSONArray movies;
 
     RequestQueue queue;
@@ -130,18 +130,26 @@ public class SearchActivity extends AppCompatActivity{
 
                         try {
                             movies = resp.getJSONArray("movies");
+                            Log.d("SEARCH ACTIVITY", "get movies");
                             JSONObject current = null;
                             MovieManager.clear();
                             for (int i = 0; i < movies.length(); i++) {
                                 current = movies.getJSONObject(i);
+                                Log.d("SEARCH ACTIVITY", String.format("got Movie %d",i));
+                                String runtime = current.getString("runtime");
+                                int runtimeInt = 0;
+                                if(!runtime.equals("")){
+                                   runtimeInt = Integer.parseInt(runtime);
+                                }
                                 Movie m = new Movie(current.get("title").toString(),
                                         Integer.parseInt(current.get("year").toString()),
                                         current.getString("mpaa_rating"),
-                                        current.getInt("runtime"),
+                                        runtimeInt,
                                         current.getJSONObject("ratings").getInt("audience_score"),
                                         current.getJSONObject("ratings").getInt("critics_score")
 
                                 );
+                                Log.d("SEARCH ACTIVITY", String.format("made Movie %d",i));
                                 MovieManager.add(m);
 
                                 //display to text movie year for testing - Justeen
@@ -152,8 +160,12 @@ public class SearchActivity extends AppCompatActivity{
 
 
 
-                        } catch (Exception e) {
+                        } catch(NullPointerException e){
+                            Log.d("SEARCH ACTIVITY", "Null Error.");
+                        }catch(JSONException e) {
                             Log.d("SEARCH ACTIVITY", "JSON Error.");
+                        } catch (Exception e) {
+                            Log.d("SEARCH ACTIVITY", "Error.");
                         }
                     }
                 }, new Response.ErrorListener() {
