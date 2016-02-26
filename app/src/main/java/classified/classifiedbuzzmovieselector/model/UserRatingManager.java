@@ -83,7 +83,8 @@ public class UserRatingManager {
 
     public List<Movie> getBestMoviesfromUserRatings(List<UserRating> ratings) {
         List<Movie> movies = new ArrayList<>();
-        //TODO Sort movies by
+        //TODO Sort movies by rating
+
         return movies;
     }
 
