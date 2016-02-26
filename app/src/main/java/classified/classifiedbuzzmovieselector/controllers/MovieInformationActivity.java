@@ -11,10 +11,19 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import classified.classifiedbuzzmovieselector.R;
+import classified.classifiedbuzzmovieselector.model.Exceptions.MovieDoesNotExistException;
+import classified.classifiedbuzzmovieselector.model.Movie;
 import classified.classifiedbuzzmovieselector.model.MovieManager;
+import classified.classifiedbuzzmovieselector.model.User;
+import classified.classifiedbuzzmovieselector.model.UserManager;
+import classified.classifiedbuzzmovieselector.model.UserRating;
+import classified.classifiedbuzzmovieselector.model.UserRatingManager;
 
 /**
  * Created by Allie Giddings on 2/26/16
@@ -22,10 +31,21 @@ import classified.classifiedbuzzmovieselector.model.MovieManager;
  */
 public class MovieInformationActivity extends AppCompatActivity {
 
+    private Movie movie;
+    private double mUserRating;
+    private String mCriticsRating;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_information);
+        movie = MovieManager.getSelectedMovie();
+        mUserRating = UserRatingManager.getAvgMovieUserRating(movie);
+        mCriticsRating = movie.getMpaa_rating();
+        ((TextView)findViewById(R.id.movie_title)).setText(movie.getTitle());
+        ((TextView)findViewById(R.id.movie_year)).setText(movie.getYear());
+        ((TextView)findViewById(R.id.critics_rating)).setText(mCriticsRating);
+        ((TextView)findViewById(R.id.app_users_rating)).setText(mUserRating + "");
     }
 
     public void onCancelMovieInformationButtonPressed(View v) {
@@ -45,14 +65,12 @@ public class MovieInformationActivity extends AppCompatActivity {
      */
     public void onMovieRatingButtonPressed(View v) {
         Log.d("RATINGACTIVITY", "Rating button was pressed.");
-        //TODO:
-        //Get rating (int) from user
-        //Get user info
-        //Get movie the rating goes with
-        //Pass information to UserRating to create a rating
-        //Add rating to userRatingManager
         try {
-
+            User user = UserManager.getLoggedUser();
+            String comment = ((TextView) findViewById(R.id.comment)).toString();
+            //int score = Integer.parseInt((TextView) findViewById(R.id.ratingBar).toString());
+            UserRating r = new UserRating(comment, 0, movie, user);
+            UserRatingManager.addUserRating(r);
         } catch (Exception e) {
             CharSequence message;
             message = "Rating was unsuccessful. Please try again.";

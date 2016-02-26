@@ -29,6 +29,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import classified.classifiedbuzzmovieselector.R;
+import classified.classifiedbuzzmovieselector.model.Exceptions.MovieDoesNotExistException;
 import classified.classifiedbuzzmovieselector.model.Movie;
 import classified.classifiedbuzzmovieselector.model.MovieManager;
 
@@ -328,6 +329,14 @@ public class SearchActivity extends AppCompatActivity{
      * @param v The view the user sees
      */
     public void onMovieInformationButtonPressed(View v) {
+        try {
+            String title = ((TextView)(findViewById(R.id.movieLayoutName))).toString();
+            int year = Integer.parseInt(((TextView)findViewById(R.id.movieLayoutYear)).toString());
+            Movie x = MovieManager.getMovieByTitleAndYear(title, year);
+            MovieManager.setSelectedMovie(x);
+        } catch (MovieDoesNotExistException e) {
+            Log.d("SEARCH ACTIVITY", "Movie does not exist.");
+        }
         Intent intent = new Intent(this, MovieInformationActivity.class);
         startActivity(intent);
     }
