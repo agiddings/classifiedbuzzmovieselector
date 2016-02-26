@@ -108,6 +108,7 @@ public class SearchActivity extends AppCompatActivity{
         });
     }
 
+
     /**
      * define behavior after a user clicks on search button with input
      *
