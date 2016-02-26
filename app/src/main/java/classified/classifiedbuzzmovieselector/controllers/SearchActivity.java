@@ -156,6 +156,7 @@ public class SearchActivity extends AppCompatActivity{
 
                                 );
                                 Log.d("SEARCH ACTIVITY", String.format("made Movie %d",i));
+                                m.setPoster(current.getJSONObject("posters").getString("thumbnail"));
                                 MovieManager.add(m);
 
                                 //display to text movie year for testing - Justeen
@@ -226,6 +227,7 @@ public class SearchActivity extends AppCompatActivity{
                                     current.getJSONObject("ratings").getInt("critics_score")
 
                             );
+                            m.setPoster(current.getJSONObject("posters").getString("thumbnail"));
                             MovieManager.add(m);
                             //display to text movie year for testing - Cole
                             //MovieName.setText("Movie name: " + m.getTitle());
@@ -276,6 +278,7 @@ public class SearchActivity extends AppCompatActivity{
                                     current.getJSONObject("ratings").getInt("audience_score"),
                                     current.getJSONObject("ratings").getInt("critics_score")
                                         );
+                            m.setPoster(current.getJSONObject("posters").getString("thumbnail"));
                             MovieManager.add(m);
 
                             //display to text movie year for testing - Cole
