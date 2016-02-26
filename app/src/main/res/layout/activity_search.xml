@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#dddee5"
+    android:weightSum="1">
+
+    <SearchView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchMovieView"
+        android:layout_gravity="center_horizontal"
+        android:iconifiedByDefault="true" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:dividerPadding="5dp"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal">
+
+        <!--
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Movie Name: N/A"
+            android:id="@+id/movieName"
+            android:layout_gravity="center_vertical" />
+
+        <TextView
+            android:layout_width="126dp"
+            android:layout_height="wrap_content"
+            android:text="Movie Year: N/A"
+            android:id="@+id/movieYear" />
+        -->
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New DVDs"
+            android:id="@+id/newDVDsButton"
+            android:onClick="onSearchNewDVDs"
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/NewReleasesButton"
+        android:layout_gravity="center_horizontal"
+        android:text="New Releases"
+        android:onClick="onSearchNewReleases" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="364dp"
+        android:id="@+id/movieResultList" />
+
+</LinearLayout>

@@ -5,6 +5,38 @@
     android:weightSum="1"
     android:background="#dddee5">
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|right"
+        android:gravity="right"
+        android:dividerPadding="5dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search"
+            android:id="@+id/search"
+            android:layout_weight="0.09"
+            android:onClick="onGoToSearchButtonClicked" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit Profile"
+            android:id="@+id/EditProfile"
+            android:layout_weight="0.09"
+            android:onClick="onEditProfileButtonClicked" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Log Out"
+            android:id="@+id/button"
+            android:onClick="onLogoutButtonClicked" />
+        </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,22 +46,5 @@
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.09"
         android:textStyle="normal" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Log Out"
-        android:id="@+id/button"
-        android:onClick="onLogoutButtonClicked"
-        android:layout_gravity="right" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Edit Profile"
-        android:id="@+id/EditProfile"
-        android:layout_weight="0.09"
-        android:layout_gravity="center_horizontal"
-        android:onClick="onEditProfileButtonClicked" />
 
 </LinearLayout>

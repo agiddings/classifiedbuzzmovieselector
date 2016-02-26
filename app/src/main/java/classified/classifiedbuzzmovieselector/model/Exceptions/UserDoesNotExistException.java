@@ -1,21 +1,21 @@
 package classified.classifiedbuzzmovieselector.model.Exceptions;
 
 /**
- * Created by steven on 2/5/16.
+ * Created by anna on 2/14/16.
  */
-public class UserAlreadyExistsException extends Exception {
+public class UserDoesNotExistException extends Exception {
 
     /**
      * The default exception
      */
-    public UserAlreadyExistsException() {
+    public UserDoesNotExistException() {
         super();
     }
 
     /**
      * @param message The message to be passed in with the exception.
      */
-    public UserAlreadyExistsException(String message) {
+    public UserDoesNotExistException(String message) {
         super(message);
     }
 }

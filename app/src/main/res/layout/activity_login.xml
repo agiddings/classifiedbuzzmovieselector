@@ -8,13 +8,15 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".controllers.LoginActivity"
-    android:background="#dddee5">
+    android:background="#fafafa">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:weightSum="1"
+        android:onClick="onForgotPasswordLinkPressed">
 
         <TextView
             android:layout_width="wrap_content"
@@ -41,8 +43,7 @@
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/loginEmail"
-            android:text="Email" />
+            android:id="@+id/loginEmail" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -60,8 +61,7 @@
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/loginPassword"
-            android:layout_alignParentStart="false"
-            android:text="Password" />
+            android:layout_alignParentStart="false" />
 
         <Button
             android:layout_width="wrap_content"
@@ -75,6 +75,18 @@
             android:layout_height="wrap_content"
             android:text="New user? Click here to Register!"
             android:id="@+id/registrationText"
+            android:textSize="15dp"
+            android:textColor="#1dabee"
+            android:linksClickable="false"
+            android:longClickable="false"
+            android:onClick="onRegistrationLinkPressed"
+            android:layout_weight="0.07" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Can&apos;t access your account?"
+            android:id="@+id/textView10"
             android:textSize="15dp"
             android:textColor="#1dabee"
             android:linksClickable="false"

@@ -27,12 +27,24 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.registration_screen);
     }
 
+    /**
+     *
+     * Event when the cancel registration button is pressed
+     *
+     * @param v The view, for registration activity
+     */
     public void onCancelRegistrationButtonPressed(View v) {
         Log.d("REGISTRATION ACTIVITY", "Cancel registration button was pressed.");
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
+    /**
+     *
+     *  Event when the registration button is pressed
+     *
+     * @param v The view, for registration activity
+     */
     public void onRegisterButtonPressed(View v) {
         Log.d("REGISTRATION ACTIVITY", "Registration button was pressed.");
         EditText name = (EditText) findViewById(R.id.editName);
@@ -53,6 +65,10 @@ public class RegistrationActivity extends AppCompatActivity {
             message = "Registration succeeded.";
             try {
                 LoginActivity.getManager().addUser(name.getText().toString(), email.getText().toString(), password1.getText().toString());
+
+                //sets current user
+                LoginActivity.setUser(LoginActivity.getManager().findUserByEmail(email.getText().toString()));
+
                 Intent intent = new Intent(this, PostLoginActivity.class);
                 startActivity(intent);
             } catch (UserAlreadyExistsException a) {
@@ -64,10 +80,10 @@ public class RegistrationActivity extends AppCompatActivity {
             } catch (InvalidPasswordException d) {
                 message = "The password field is invalid.";
             } finally {
-                    Context context = getApplicationContext();
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast output = Toast.makeText(context, message, duration);
-                    output.show();
+                Context context = getApplicationContext();
+                int duration = Toast.LENGTH_SHORT;
+                Toast output = Toast.makeText(context, message, duration);
+                output.show();
             }
         }
     }
