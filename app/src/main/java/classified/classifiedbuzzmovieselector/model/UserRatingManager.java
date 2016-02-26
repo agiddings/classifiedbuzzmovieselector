@@ -39,13 +39,15 @@ public class UserRatingManager {
             //this literally cannot happen
             Log.e("USER_RATING_MANAGER", "YELL AT STEVE");
         }
+
     }
 
-    public static List<UserRating> getUserRatingsByUser(User user) {
+    public List<UserRating> getUserRatingsByUser(User user) {
         return getUserRatingsByUser(user, userRatings);
     }
 
     public static List<UserRating> getUserRatingsByUser(User user, List<UserRating> ratingList) {
+
         List<UserRating> returnVal = new ArrayList<>();
         for (UserRating ur : ratingList) {
             if (ur.getUser() == user) {

@@ -3,7 +3,9 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#dddee5"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:minHeight="36dp"
+    android:minWidth="72dp">
 
     <SearchView
         android:layout_width="wrap_content"
@@ -17,8 +19,8 @@
         android:layout_height="wrap_content"
         android:gravity="right"
         android:dividerPadding="5dp"
-        android:orientation="vertical"
-        android:layout_gravity="center_horizontal">
+        android:layout_gravity="center_horizontal"
+        android:baselineAligned="false">
 
         <!--
         <TextView
@@ -34,19 +36,28 @@
             android:text="Movie Year: N/A"
             android:id="@+id/movieYear" />
         -->
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/backToHome"
+            android:background="@mipmap/back_button"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center_vertical"
+            android:onClick="onBackButtonPressed" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New DVDs"
             android:id="@+id/newDVDsButton"
             android:onClick="onSearchNewDVDs"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_vertical" />
 
         <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/NewReleasesButton"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center_vertical"
         android:text="New Releases"
         android:onClick="onSearchNewReleases" />
     </LinearLayout>
