@@ -47,6 +47,10 @@ public class SearchActivity extends AppCompatActivity{
 
     RequestQueue queue;
 
+    /**
+     * Gets the list of movies from the JSON request
+     * @return The movies from the result of the search
+     */
     public static JSONArray getJSONArray() {
         return movies;
     }
@@ -290,6 +294,10 @@ public class SearchActivity extends AppCompatActivity{
         recList.setAdapter(ma);
     }
 
+    /**
+     * Navigates to the movie information page
+     * @param v The view the user sees
+     */
     public void onMovieInformationButtonPressed(View v) {
         Intent intent = new Intent(this, MovieInformationActivity.class);
         startActivity(intent);
