@@ -291,7 +291,7 @@ public class SearchActivity extends AppCompatActivity{
     }
 
     public void onRatingButtonPressed(View v) {
-        Intent intent = new Intent(this, RatingActivity.class);
+        Intent intent = new Intent(this, MovieInformationActivity.class);
         startActivity(intent);
     }
 }
