@@ -92,6 +92,7 @@ public class SearchActivity extends AppCompatActivity{
 
             @Override
             public boolean onQueryTextSubmit(String userInput) {
+                Log.d("SEARCH ACTIVITY", userInput);
                 Toast input = Toast.makeText(getBaseContext(), "Searching " + userInput,
                         Toast.LENGTH_SHORT);
                 input.show();
@@ -115,13 +116,16 @@ public class SearchActivity extends AppCompatActivity{
      * @param userInput
      */
     public void SearchButtonPressed(String userInput) {
-        System.out.println(userInput);
+
+        userInput = userInput.replaceAll(" ", "+");
         //so the search query(userInput in this case) should pass to the url string below
         String url = String.format(
                 rottenTomatoesURL,
                 userInput,
                 pagelimit, KEY);
+
         //test with "deadpool" above see if it come up
+
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.GET, url, "", new Response.Listener<JSONObject>() {
