@@ -124,7 +124,11 @@ public class UserManager {
         return false;
     }
 
-    public User getLoggedUser() {
+    public static User getLoggedUser() {
         return loggedUser;
+    }
+
+    public static void logOut() {
+        loggedUser = null;
     }
 }
