@@ -312,6 +312,18 @@ public class SearchActivity extends AppCompatActivity{
     }
 
     /**
+     * Navigate back to the home page
+     *
+     * @param v
+     */
+    public void onBackButtonPressed(View v) {
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
+    }
+
+
+
+    /**
      * Navigates to the movie information page
      * @param v The view the user sees
      */
