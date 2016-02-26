@@ -6,6 +6,7 @@ import java.io.Serializable;
  * Created by Zhendong(Justeen) on 2/18/16.
  */
 public class Movie implements Serializable {
+    private String poster;
     private String title;
     private int year;
     private String mpaa_rating;
@@ -100,6 +101,23 @@ public class Movie implements Serializable {
         return runtime;
     }
 
+    /**
+     * sets poster link
+     *
+     * @param poster
+     */
+    public void setPoster(String poster){
+        this.poster = poster;
+    }
+
+    /**
+     * gets poster link
+     *
+     * @return poster
+     */
+    public String getPoster(){
+        return poster;
+    }
     /**
      * compare two movies to see if they are equal
      *
