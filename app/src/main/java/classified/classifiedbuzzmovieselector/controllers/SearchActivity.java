@@ -149,9 +149,6 @@ public class SearchActivity extends AppCompatActivity{
                                 //MovieYear.setText("Movie Year: " + String.valueOf(m.getYear()));
                             }
                             changeView(MovieManager.getMovies());
-
-
-
                         } catch (Exception e) {
                             Log.d("SEARCH ACTIVITY", "JSON Error.");
                         }
