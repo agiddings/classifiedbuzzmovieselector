@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import classified.classifiedbuzzmovieselector.model.Exceptions.MovieDoesNotExistException;
+
 /**
  * Created by steven on 2/20/16.
  */
@@ -27,12 +29,20 @@ public class UserRatingManager {
             userRatings.get(index).setComment(ur.getComment());
             userRatings.get(index).setScore(ur.getScore());
         }
-        ur.getMovie().setAvgRating(getAvgMovieUserRating(ur.getMovie()));
+        try {
+            MovieManager.getMovie(ur.getMovie()).setAvgRating(getAvgMovieUserRating(ur.getMovie()));
+        } catch (MovieDoesNotExistException e) {
+            //this literally cannot happen
+        }
     }
 
     public List<UserRating> getUserRatingsByUser(User user) {
+        return getUserRatingsByUser(user, userRatings);
+    }
+
+    public List<UserRating> getUserRatingsByUser(User user, List<UserRating> ratingList) {
         List<UserRating> returnVal = new ArrayList<>();
-        for (UserRating ur : userRatings) {
+        for (UserRating ur : ratingList) {
             if (ur.getUser() == user) {
                 returnVal.add(ur);
             }

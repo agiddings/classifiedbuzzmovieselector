@@ -31,7 +31,7 @@ public class UserManager {
      * @return user the user that's matched with the email
      *
      */
-    public User findUserByEmail(String email) {
+    public static User findUserByEmail(String email) {
         return users.get(email);
     }
 
@@ -43,7 +43,7 @@ public class UserManager {
      * @param password user's password
      *
      */
-    public void addUser(String name, String email, String password)
+    public static void addUser(String name, String email, String password)
     throws InvalidPasswordException, InvalidEmailException, InvalidNameException, UserAlreadyExistsException {
         if(name == null) {
             throw new InvalidNameException();
@@ -70,7 +70,7 @@ public class UserManager {
      * @param info user's additional information
      *
      */
-    public void updateUser(String currentEmail, String name, String newEmail, String password, String major, String info)
+    public static void updateUser(String currentEmail, String name, String newEmail, String password, String major, String info)
     throws UserDoesNotExistException, InvalidEmailException {
         if (!users.containsKey(currentEmail)) {
             throw new UserDoesNotExistException("User does not exist");
@@ -112,7 +112,7 @@ public class UserManager {
      * @return whether log in successful
      *
      */
-    public boolean handleLoginRequest(String email, String pass) {
+    public static boolean handleLoginRequest(String email, String pass) {
         //if the email is recorded before
         if (users.containsKey(email)) {
             User user = users.get(email);
@@ -124,7 +124,11 @@ public class UserManager {
         return false;
     }
 
-    public User getLoggedUser() {
+    public static User getLoggedUser() {
         return loggedUser;
+    }
+
+    public static void logOut() {
+        loggedUser = null;
     }
 }
