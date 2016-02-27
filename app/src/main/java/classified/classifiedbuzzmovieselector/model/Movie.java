@@ -14,6 +14,7 @@ public class Movie implements Serializable {
     private Rating ratings;
     //private String genre;
     //private int rating;
+    private String poster;
 
 
     public Movie(String title, int year) {
@@ -108,6 +109,17 @@ public class Movie implements Serializable {
         return runtime;
     }
 
+    public void setPoster(String poster){
+        this.poster = poster;
+    }
+    /**
+     * Gets poster link
+     * @return poster
+     */
+    public String getPoster(){
+        return poster;
+    }
+
     public int getAudienceScore() {
         return ratings.audience_score;
     }
@@ -133,4 +145,5 @@ public class Movie implements Serializable {
 
 
     }
+
 }

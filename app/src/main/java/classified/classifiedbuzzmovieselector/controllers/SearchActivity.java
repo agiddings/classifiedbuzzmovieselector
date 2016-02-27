@@ -39,7 +39,7 @@ import classified.classifiedbuzzmovieselector.model.MovieManager;
 public class SearchActivity extends AppCompatActivity{
     final String KEY = "yedukp76ffytfuy24zsqk7f5";
     final String rottenTomatoesURL = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=%s&page_limit=%d&page=1&apikey=%s";
-    final int pagelimit = 10;
+    final int pagelimit = 15;
     SearchView search;
     //for testing 0223 - Justeen
     //TextView MovieYear;
@@ -156,7 +156,7 @@ public class SearchActivity extends AppCompatActivity{
 
                                 );
                                 Log.d("SEARCH ACTIVITY", String.format("made Movie %d",i));
-                                //m.setPoster(current.getJSONObject("posters").getString("thumbnail"));
+                                m.setPoster(current.getJSONObject("posters").getString("thumbnail"));
                                 MovieManager.add(m);
 
                                 //display to text movie year for testing - Justeen
@@ -227,7 +227,7 @@ public class SearchActivity extends AppCompatActivity{
                                     current.getJSONObject("ratings").getInt("critics_score")
 
                             );
-                            //m.setPoster(current.getJSONObject("posters").getString("thumbnail"));
+                            m.setPoster(current.getJSONObject("posters").getString("thumbnail"));
                             MovieManager.add(m);
                             //display to text movie year for testing - Cole
                             //MovieName.setText("Movie name: " + m.getTitle());
@@ -278,7 +278,7 @@ public class SearchActivity extends AppCompatActivity{
                                     current.getJSONObject("ratings").getInt("audience_score"),
                                     current.getJSONObject("ratings").getInt("critics_score")
                                         );
-                            //m.setPoster(current.getJSONObject("posters").getString("thumbnail"));
+                            m.setPoster(current.getJSONObject("posters").getString("thumbnail"));
                             MovieManager.add(m);
 
                             //display to text movie year for testing - Cole
