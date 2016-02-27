@@ -154,6 +154,10 @@ public class User {
         friends.add(friend);
     }
 
+    public boolean removeFriend(User friend) {
+        return friends.remove(friend);
+    }
+
     public boolean equals(User user) {
         return email.equals(user.email);
     }

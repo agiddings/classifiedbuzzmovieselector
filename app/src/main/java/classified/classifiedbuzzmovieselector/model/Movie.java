@@ -6,27 +6,33 @@ import java.io.Serializable;
  * Created by Zhendong(Justeen) on 2/18/16.
  */
 public class Movie implements Serializable {
-    private String poster;
     private String title;
     private int year;
     private String mpaa_rating;
     private int runtime; // runtime in minutes
     private double avgRating;
+    private Rating ratings;
     //private String genre;
     //private int rating;
 
+
+    public Movie(String title, int year) {
+        this.title = title;
+        this.year = year;
+    }
     /**
      * Constructor a movie
      *
      * @param title
      * @param year
      */
-    public Movie(String title, int year, String mpaa_rating, int runtime, double avgRating) {
+    private Movie(String title, int year, String mpaa_rating, int runtime, double avgRating, int audience_score) {
         this.title = title;
         this.year = year;
         this.mpaa_rating = mpaa_rating;
         this.runtime = runtime;
         this.avgRating = avgRating;
+        this.ratings = new Rating(audience_score);
     }
 
     /**
@@ -36,13 +42,14 @@ public class Movie implements Serializable {
      * @param year year of release
      *
      */
-    public Movie(String title, int year, String mpaa_rating, int runtime) {
+    public Movie(String title, int year, String mpaa_rating, int runtime, int audience_score) {
         this.title = title;
         this.year = year;
         this.mpaa_rating = mpaa_rating;
         this.runtime = runtime;
         this.avgRating = UserRatingManager.getAvgMovieUserRating(
                 new Movie(title, year, mpaa_rating, runtime, 0));
+        this.ratings = new Rating(audience_score);
     }
 
     /**
@@ -101,23 +108,10 @@ public class Movie implements Serializable {
         return runtime;
     }
 
-    /**
-     * sets poster link
-     *
-     * @param poster
-     */
-    public void setPoster(String poster){
-        this.poster = poster;
+    public int getAudienceScore() {
+        return ratings.audience_score;
     }
 
-    /**
-     * gets poster link
-     *
-     * @return poster
-     */
-    public String getPoster(){
-        return poster;
-    }
     /**
      * compare two movies to see if they are equal
      *
@@ -128,5 +122,15 @@ public class Movie implements Serializable {
     public boolean equals(Movie movie) {
         return title.equals(movie.title) && year == movie.year
                 && mpaa_rating.equals(movie.mpaa_rating) && runtime == movie.runtime;
+    }
+
+    private class Rating {
+        private int audience_score;
+
+        public Rating(int audience_score) {
+            audience_score = audience_score;
+        }
+
+
     }
 }
