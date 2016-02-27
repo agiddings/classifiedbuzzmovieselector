@@ -47,6 +47,7 @@ public class SearchActivity extends AppCompatActivity{
     static JSONArray movies;
 
     RequestQueue queue;
+    RecyclerView recList;
 
     /**
      * Gets the list of movies from the JSON request
@@ -61,6 +62,9 @@ public class SearchActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
+        recList = (RecyclerView) findViewById(R.id.movieResultList);
+        //recList.addOnItemTouchListener(new RecyclerView.SimpleOnItemTouchListener());
 
         //MovieYear = (TextView) findViewById(R.id.movieYear);
         //MovieName = (TextView) findViewById(R.id.movieName);
@@ -306,7 +310,7 @@ public class SearchActivity extends AppCompatActivity{
      * @param movieList The results of the search, movies to show user
      */
     private void changeView(List<Movie> movieList) {
-        RecyclerView recList = (RecyclerView) findViewById(R.id.movieResultList);
+        //RecyclerView recList = (RecyclerView) findViewById(R.id.movieResultList);
         recList.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
