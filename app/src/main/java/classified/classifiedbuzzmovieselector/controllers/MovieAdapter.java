@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -37,6 +38,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         Movie ci = movieList.get(i);
         movieHolder.vName.setText(ci.getTitle());
         movieHolder.vYear.setText(String.valueOf(ci.getYear()));
+        movieHolder.vPoster.loadUrl(ci.getPoster());
     }
 
     @Override
@@ -52,11 +54,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
             protected TextView vName;
             protected TextView vYear;
+            protected WebView vPoster;
 
             public MovieViewHolder(View v) {
                 super(v);
                 vName =  (TextView) v.findViewById(R.id.movieLayoutName);
                 vYear = (TextView)  v.findViewById(R.id.movieLayoutYear);
+                vPoster = (WebView) v.findViewById(R.id.movieLayoutPoster);
             }
     }
 }
