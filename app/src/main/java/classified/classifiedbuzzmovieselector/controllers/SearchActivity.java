@@ -29,6 +29,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import classified.classifiedbuzzmovieselector.R;
+import classified.classifiedbuzzmovieselector.model.Exceptions.MovieDoesNotExistException;
 import classified.classifiedbuzzmovieselector.model.Movie;
 import classified.classifiedbuzzmovieselector.model.MovieManager;
 
@@ -155,6 +156,7 @@ public class SearchActivity extends AppCompatActivity{
 
                                 );
                                 Log.d("SEARCH ACTIVITY", String.format("made Movie %d",i));
+                                m.setPoster(current.getJSONObject("posters").getString("thumbnail"));
                                 MovieManager.add(m);
 
                                 //display to text movie year for testing - Justeen
@@ -225,6 +227,7 @@ public class SearchActivity extends AppCompatActivity{
                                     current.getJSONObject("ratings").getInt("critics_score")
 
                             );
+                            m.setPoster(current.getJSONObject("posters").getString("thumbnail"));
                             MovieManager.add(m);
                             //display to text movie year for testing - Cole
                             //MovieName.setText("Movie name: " + m.getTitle());
@@ -275,6 +278,7 @@ public class SearchActivity extends AppCompatActivity{
                                     current.getJSONObject("ratings").getInt("audience_score"),
                                     current.getJSONObject("ratings").getInt("critics_score")
                                         );
+                            m.setPoster(current.getJSONObject("posters").getString("thumbnail"));
                             MovieManager.add(m);
 
                             //display to text movie year for testing - Cole
@@ -328,6 +332,14 @@ public class SearchActivity extends AppCompatActivity{
      * @param v The view the user sees
      */
     public void onMovieInformationButtonPressed(View v) {
+        try {
+            String title = ((TextView)(findViewById(R.id.movieLayoutName))).toString();
+            int year = Integer.parseInt(((TextView)findViewById(R.id.movieLayoutYear)).toString());
+            Movie x = MovieManager.getMovieByTitleAndYear(title, year);
+            MovieManager.setSelectedMovie(x);
+        } catch (MovieDoesNotExistException e) {
+            Log.d("SEARCH ACTIVITY", "Movie does not exist.");
+        }
         Intent intent = new Intent(this, MovieInformationActivity.class);
         startActivity(intent);
     }
