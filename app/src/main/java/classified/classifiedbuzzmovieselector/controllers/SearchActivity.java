@@ -156,7 +156,7 @@ public class SearchActivity extends AppCompatActivity{
 
                                 );
                                 Log.d("SEARCH ACTIVITY", String.format("made Movie %d",i));
-                                m.setPoster(current.getJSONObject("posters").getString("thumbnail"));
+                                //m.setPoster(current.getJSONObject("posters").getString("thumbnail"));
                                 MovieManager.add(m);
 
                                 //display to text movie year for testing - Justeen
@@ -227,7 +227,7 @@ public class SearchActivity extends AppCompatActivity{
                                     current.getJSONObject("ratings").getInt("critics_score")
 
                             );
-                            m.setPoster(current.getJSONObject("posters").getString("thumbnail"));
+                            //m.setPoster(current.getJSONObject("posters").getString("thumbnail"));
                             MovieManager.add(m);
                             //display to text movie year for testing - Cole
                             //MovieName.setText("Movie name: " + m.getTitle());
@@ -278,7 +278,7 @@ public class SearchActivity extends AppCompatActivity{
                                     current.getJSONObject("ratings").getInt("audience_score"),
                                     current.getJSONObject("ratings").getInt("critics_score")
                                         );
-                            m.setPoster(current.getJSONObject("posters").getString("thumbnail"));
+                            //m.setPoster(current.getJSONObject("posters").getString("thumbnail"));
                             MovieManager.add(m);
 
                             //display to text movie year for testing - Cole
@@ -333,8 +333,9 @@ public class SearchActivity extends AppCompatActivity{
      */
     public void onMovieInformationButtonPressed(View v) {
         try {
-            String title = ((TextView)(findViewById(R.id.movieLayoutName))).toString();
-            int year = Integer.parseInt(((TextView)findViewById(R.id.movieLayoutYear)).toString());
+            String title = ((TextView)(findViewById(R.id.movieLayoutName))).getText().toString();
+            String yearS = (((TextView)findViewById(R.id.movieLayoutYear)).getText().toString());
+            int year = Integer.parseInt(yearS);
             Movie x = MovieManager.getMovieByTitleAndYear(title, year);
             MovieManager.setSelectedMovie(x);
         } catch (MovieDoesNotExistException e) {

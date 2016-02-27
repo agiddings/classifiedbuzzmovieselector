@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,20 +44,15 @@ public class MovieInformationActivity extends AppCompatActivity {
         mUserRating = UserRatingManager.getAvgMovieUserRating(movie);
         mCriticsRating = movie.getMpaa_rating();
         ((TextView)findViewById(R.id.movie_title)).setText(movie.getTitle());
-        ((TextView)findViewById(R.id.movie_year)).setText(movie.getYear());
+        ((TextView)findViewById(R.id.movie_year)).setText(movie.getYear() + "");
         ((TextView)findViewById(R.id.critics_rating)).setText(mCriticsRating);
         ((TextView)findViewById(R.id.app_users_rating)).setText(mUserRating + "");
     }
 
     public void onCancelMovieInformationButtonPressed(View v) {
         Log.d("RATING ACTIVITY", "Movie Information was cancelled.");
-        RecyclerView recList = (RecyclerView) findViewById(R.id.movieResultList);
-        recList.setHasFixedSize(true);
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        recList.setLayoutManager(llm);
-        MovieAdapter ma = new MovieAdapter(MovieManager.getMovies());
-        recList.setAdapter(ma);
+        Intent intent = new Intent(this, SearchActivity.class);
+        startActivity(intent);
     }
 
     /**
@@ -68,8 +64,9 @@ public class MovieInformationActivity extends AppCompatActivity {
         try {
             User user = UserManager.getLoggedUser();
             String comment = ((TextView) findViewById(R.id.comment)).toString();
-            //int score = Integer.parseInt((TextView) findViewById(R.id.ratingBar).toString());
-            UserRating r = new UserRating(comment, 0, movie, user);
+            RatingBar scoreR = (RatingBar) findViewById(R.id.ratingBar);
+            int score = scoreR.getNumStars();
+            UserRating r = new UserRating(comment, score, movie, user);
             UserRatingManager.addUserRating(r);
         } catch (Exception e) {
             CharSequence message;

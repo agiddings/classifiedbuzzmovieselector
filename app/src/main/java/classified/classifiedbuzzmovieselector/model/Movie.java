@@ -26,7 +26,7 @@ public class Movie implements Serializable {
      * @param title
      * @param year
      */
-    private Movie(String title, int year, String mpaa_rating, int runtime, double avgRating, int audience_score) {
+    public Movie(String title, int year, String mpaa_rating, int runtime, double avgRating, int audience_score) {
         this.title = title;
         this.year = year;
         this.mpaa_rating = mpaa_rating;
