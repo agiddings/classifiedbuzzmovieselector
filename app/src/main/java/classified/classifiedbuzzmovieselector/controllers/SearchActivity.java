@@ -321,7 +321,7 @@ public class SearchActivity extends AppCompatActivity{
      * @param v
      */
     public void onBackButtonPressed(View v) {
-        Intent intent = new Intent(this, ProfileActivity.class);
+        Intent intent = new Intent(this, PostLoginActivity.class);
         startActivity(intent);
     }
 
