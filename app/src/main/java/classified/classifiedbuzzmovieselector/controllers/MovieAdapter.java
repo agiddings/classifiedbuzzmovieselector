@@ -32,11 +32,11 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
 
         TextView year = (TextView) view.findViewById(R.id.movieLayoutYear);
         TextView name = (TextView) view.findViewById(R.id.movieLayoutName);
-        WebView poster = (WebView) view.findViewById(R.id.movieLayoutPoster);
+        //WebView poster = (WebView) view.findViewById(R.id.movieLayoutPoster);
 
         year.setText(Integer.toString(movie.getYear()));
         name.setText(movie.getTitle());
-        poster.loadUrl(movie.getPoster());
+        //poster.loadUrl(movie.getPoster());
 
         return view;
     }

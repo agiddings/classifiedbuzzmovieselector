@@ -67,6 +67,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
 
         movieList = (ListView) findViewById(R.id.movieResultList);
         movieList.setOnItemClickListener(this);
+        //movieList.setAdapter(new MovieAdapter(this, R.layout.movie_layout, R.id.movieLayoutName, new ArrayList<Movie>()));
         //recList.addOnItemTouchListener(new RecyclerView.SimpleOnItemTouchListener());
 
         //MovieYear = (TextView) findViewById(R.id.movieYear);
