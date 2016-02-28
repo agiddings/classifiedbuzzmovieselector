@@ -40,7 +40,8 @@ public class MovieInformationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_information);
-        movie = MovieManager.getSelectedMovie();
+        int position = getIntent().getIntExtra("position", 1);
+        movie = MovieManager.getMovies().get(position);
         mUserRating = UserRatingManager.getAvgMovieUserRating(movie);
         mCriticsRating = movie.getMpaa_rating();
         ((TextView)findViewById(R.id.movie_title)).setText(movie.getTitle());

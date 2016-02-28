@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -37,7 +38,7 @@ import classified.classifiedbuzzmovieselector.model.MovieManager;
 /**
  * Created by Allie on 2/16/2016.
  */
-public class SearchActivity extends AppCompatActivity{
+public class SearchActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     final String KEY = "yedukp76ffytfuy24zsqk7f5";
     final String rottenTomatoesURL = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=%s&page_limit=%d&page=1&apikey=%s";
     final int pagelimit = 15;
@@ -65,6 +66,7 @@ public class SearchActivity extends AppCompatActivity{
         setContentView(R.layout.activity_search);
 
         movieList = (ListView) findViewById(R.id.movieResultList);
+        movieList.setOnItemClickListener(this);
         //recList.addOnItemTouchListener(new RecyclerView.SimpleOnItemTouchListener());
 
         //MovieYear = (TextView) findViewById(R.id.movieYear);
@@ -312,7 +314,7 @@ public class SearchActivity extends AppCompatActivity{
      */
     private void changeView(List<Movie> listOfMovies) {
         //RecyclerView recList = (RecyclerView) findViewById(R.id.movieResultList);
-        movieList.setAdapter(new MovieAdapter(this, R.layout.movie_layout,R.id.movieLayoutName,listOfMovies)); //?movieLayoutname
+        movieList.setAdapter(new MovieAdapter(this, R.layout.movie_layout, R.id.movieLayoutName, listOfMovies)); //?movieLayoutname
 
     }
 
@@ -327,22 +329,11 @@ public class SearchActivity extends AppCompatActivity{
     }
 
 
-
-    /**
-     * Navigates to the movie information page
-     * @param v The view the user sees
-     */
-    public void onMovieInformationButtonPressed(View v) {
-        try {
-            String title = ((TextView)(findViewById(R.id.movieLayoutName))).getText().toString();
-            String yearS = (((TextView)findViewById(R.id.movieLayoutYear)).getText().toString());
-            int year = Integer.parseInt(yearS);
-            Movie x = MovieManager.getMovieByTitleAndYear(title, year);
-            MovieManager.setSelectedMovie(x);
-        } catch (MovieDoesNotExistException e) {
-            Log.d("SEARCH ACTIVITY", "Movie does not exist.");
-        }
-        Intent intent = new Intent(this, MovieInformationActivity.class);
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Log.d("SEARCHACTIVITY", "Item was clicked.");
+        Intent intent = new Intent(SearchActivity.this, MovieInformationActivity.class);
+        intent.putExtra("position", position);
         startActivity(intent);
     }
 }
