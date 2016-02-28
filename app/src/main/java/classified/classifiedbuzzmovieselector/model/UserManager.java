@@ -17,14 +17,14 @@ public class UserManager {
     private static User loggedUser;
     //For profile class, add a remove user and/or edit user method
 
-    /*
+    /**
      * Constructor A user manager that deals with users
      * also creates temporary user for testing
      *
      */
     public UserManager() {}
 
-    /*
+    /**
      * find user by email address
      *
      * @param email user's email
@@ -35,7 +35,7 @@ public class UserManager {
         return users.get(email);
     }
 
-    /*
+    /**
      * register new user
      *
      * @param name user's name
@@ -59,7 +59,7 @@ public class UserManager {
     }
 
 
-    /*
+    /**
      * update user information
      *
      * @param currentEmail user current email
@@ -104,7 +104,7 @@ public class UserManager {
     }
 
 
-    /*
+    /**
      * log in user when the login button is pressed
      *
      * @param email email address user provides
@@ -124,10 +124,17 @@ public class UserManager {
         return false;
     }
 
+    /**
+     * get the current user
+     * @return the current user
+     */
     public static User getLoggedUser() {
         return loggedUser;
     }
 
+    /**
+     * log the current user out
+     */
     public static void logOut() {
         loggedUser = null;
     }
