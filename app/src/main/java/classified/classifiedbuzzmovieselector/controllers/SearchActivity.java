@@ -18,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -141,12 +142,16 @@ public class SearchActivity extends AppCompatActivity{
                         try {
                             movies = resp.getJSONArray("movies");
                             Log.d("SEARCH ACTIVITY", "get movies");
+                            Gson g = new Gson();
+                            Log.d("SEARCH ACTIVITY", "get movies");
                             JSONObject current = null;
                             MovieManager.clear();
                             for (int i = 0; i < movies.length(); i++) {
                                 current = movies.getJSONObject(i);
-                                Log.d("SEARCH ACTIVITY", String.format("got Movie %d",i));
-                                String runtime = current.getString("runtime");
+                                Log.d("SEARCH ACTIVITY", String.format("got Movie %d", i));
+                                MovieManager.add(g.fromJson(current.toString(), Movie.class));
+                                Log.d("SEARCH ACTIVITY", MovieManager.getString());
+                                /*String runtime = current.getString("runtime");
                                 int runtimeInt = 0;
                                 if(!runtime.equals("")){
                                    runtimeInt = Integer.parseInt(runtime);
@@ -161,7 +166,7 @@ public class SearchActivity extends AppCompatActivity{
                                 );
                                 Log.d("SEARCH ACTIVITY", String.format("made Movie %d",i));
                                 m.setPoster(current.getJSONObject("posters").getString("thumbnail"));
-                                MovieManager.add(m);
+                                MovieManager.add(m);*/
 
                                 //display to text movie year for testing - Justeen
                                 //MovieName.setText("Movie name: " + m.getTitle());
@@ -218,12 +223,14 @@ public class SearchActivity extends AppCompatActivity{
                     //resp is the response JSON Obj
                     try {
                         JSONArray movies = resp.getJSONArray("movies");
+                        Gson g = new Gson();
                         JSONObject current = null;
                         MovieManager.clear();
                         for (int i = 0; i < movies.length(); i++) {
                             current = movies.getJSONObject(i);
+                            MovieManager.add(g.fromJson(current.toString(), Movie.class));
                             //Initializes each movie from search to add to a list of movies
-                            Movie m = new Movie(current.get("title").toString(),
+                            /*Movie m = new Movie(current.get("title").toString(),
                                     Integer.parseInt(current.get("year").toString()),
                                     current.getString("mpaa_rating"),
                                     current.getInt("runtime"),
@@ -232,7 +239,7 @@ public class SearchActivity extends AppCompatActivity{
 
                             );
                             m.setPoster(current.getJSONObject("posters").getString("thumbnail"));
-                            MovieManager.add(m);
+                            MovieManager.add(m);*/
                             //display to text movie year for testing - Cole
                             //MovieName.setText("Movie name: " + m.getTitle());
                             //MovieYear.setText("Movie Year: " + String.valueOf(m.getYear()));
@@ -271,11 +278,13 @@ public class SearchActivity extends AppCompatActivity{
                     try {
                         MovieManager.clear();
                         JSONArray movies = resp.getJSONArray("movies");
+                        Gson g = new Gson();
                         JSONObject current = null;
                         for (int i = 0; i < movies.length(); i++) {
                             current = movies.getJSONObject(i);
+                            MovieManager.add(g.fromJson(current.toString(), Movie.class));
                             //Initializes a movie to add to the list of results
-                            Movie m = new Movie(current.get("title").toString(),
+                            /*Movie m = new Movie(current.get("title").toString(),
                                     Integer.parseInt(current.get("year").toString()),
                                     current.getString("mpaa_rating"),
                                     current.getInt("runtime"),
@@ -283,7 +292,7 @@ public class SearchActivity extends AppCompatActivity{
                                     current.getJSONObject("ratings").getInt("critics_score")
                                         );
                             m.setPoster(current.getJSONObject("posters").getString("thumbnail"));
-                            MovieManager.add(m);
+                            MovieManager.add(m);*/
 
                             //display to text movie year for testing - Cole
                             //MovieName.setText("Movie name: " + m.getTitle());

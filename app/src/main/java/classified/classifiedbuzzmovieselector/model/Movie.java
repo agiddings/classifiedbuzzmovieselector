@@ -1,4 +1,9 @@
 package classified.classifiedbuzzmovieselector.model;
+import com.google.gson.annotations.SerializedName;
+
+import android.provider.ContactsContract;
+
+import com.google.gson.GsonBuilder;
 
 import java.io.Serializable;
 
@@ -6,51 +11,35 @@ import java.io.Serializable;
  * Created by Zhendong(Justeen) on 2/18/16.
  */
 public class Movie implements Serializable {
+    @SerializedName("title")
     private String title;
+    @SerializedName("year")
     private int year;
+    @SerializedName("mpaa_rating")
     private String mpaa_rating;
-    private int runtime; // runtime in minutes
+    @SerializedName("runtime")
+    private String runtime; // runtime in minutes
     private double avgRating;
+    @SerializedName("ratings")
     private Rating ratings;
     //private String genre;
     //private int rating;
-    private String poster;
-
-
-    public Movie(String title, int year) {
-        this.title = title;
-        this.year = year;
-    }
-    /**
-     * Constructor a movie
-     *
-     * @param title
-     * @param year
-     */
-    public Movie(String title, int year, String mpaa_rating, int runtime, double avgRating, int audience_score) {
-        this.title = title;
-        this.year = year;
-        this.mpaa_rating = mpaa_rating;
-        this.runtime = runtime;
-        this.avgRating = avgRating;
-        this.ratings = new Rating(audience_score);
-    }
+    @SerializedName("posters")
+    private Posters posters;
 
     /**
-     * Constructor a movie with relevant information
+     * Constructor for a movie with relevant information
      *
      * @param title movie title
      * @param year year of release
      *
      */
-    public Movie(String title, int year, String mpaa_rating, int runtime, int audience_score) {
+    public Movie(String title, int year, String mpaa_rating, String runtime, int audience_score, int critics_score) {
         this.title = title;
         this.year = year;
         this.mpaa_rating = mpaa_rating;
         this.runtime = runtime;
-        this.avgRating = UserRatingManager.getAvgMovieUserRating(
-                new Movie(title, year, mpaa_rating, runtime, 0));
-        this.ratings = new Rating(audience_score);
+        this.ratings = new Rating(audience_score, critics_score);
     }
 
     /**
@@ -105,23 +94,36 @@ public class Movie implements Serializable {
      *
      * @return movie runtime
      */
-    public int getRuntime() {
+    public String getRuntime() {
         return runtime;
-    }
-
-    public void setPoster(String poster){
-        this.poster = poster;
-    }
-    /**
-     * Gets poster link
-     * @return poster
-     */
-    public String getPoster(){
-        return poster;
     }
 
     public int getAudienceScore() {
         return ratings.audience_score;
+    }
+
+    public int getCriticsScore() {
+        return ratings.critics_score;
+    }
+
+    public String getThumbnail() {
+        return posters.thumbnail;
+    }
+
+    public String getProfile() {
+        return posters.profile;
+    }
+
+    public String getDetailed() {
+        return posters.detailed;
+    }
+
+    public String getOriginal() {
+        return posters.original;
+    }
+
+    public String toString() {
+        return title + " " + year + " " + ratings.audience_score + " " + posters.original;
     }
 
     /**
@@ -136,11 +138,33 @@ public class Movie implements Serializable {
                 && mpaa_rating.equals(movie.mpaa_rating) && runtime == movie.runtime;
     }
 
-    private class Rating {
-        private int audience_score;
+    private class Posters {
+        @SerializedName("thumbnail")
+        private String thumbnail;
+        @SerializedName("profile")
+        private String profile;
+        @SerializedName("detailed")
+        private String detailed;
+        @SerializedName("original")
+        private String original;
 
-        public Rating(int audience_score) {
-            audience_score = audience_score;
+        public Posters(String thumbnail, String profile, String detailed, String original) {
+            this.thumbnail = thumbnail;
+            this.profile = profile;
+            this.detailed = detailed;
+            this.original = original;
+        }
+    }
+
+    private class Rating {
+        @SerializedName("audience_score")
+        private int audience_score;
+        @SerializedName("critics_score")
+        private int critics_score;
+
+        public Rating(int audience_score, int critics_score) {
+            this.audience_score = audience_score;
+            this.critics_score = critics_score;
         }
 
 

@@ -2,9 +2,7 @@ package classified.classifiedbuzzmovieselector.model;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import org.json.JSONArray;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,9 +21,9 @@ public class MovieManager {
     //Possibly all of the methods/everything will be made static. We'll have to decide later
     //Or just change the constructor so if does exactly what search activity is currently
     //doing to add movies.
-    private static List<Movie> movies = new ArrayList<Movie>();
+    private static List<Movie> movies = new ArrayList<>();
     private static Movie selectedMovie;
-    private static final Gson gson = new Gson();
+    //private static final Gson gson = new Gson();
 
     /**
      * Constructor a movie manager that contains a list of movies
@@ -33,9 +31,6 @@ public class MovieManager {
      * @param json a json url
      */
     public MovieManager (String json) {
-        Type collectionType = new TypeToken<ArrayList<Movie>>() {
-        }.getType();
-        movies = gson.fromJson(json, collectionType);
     }
 
     public static Movie getMovieByTitleAndYear(String title, int year) throws MovieDoesNotExistException {
@@ -173,6 +168,14 @@ public class MovieManager {
 
     public static Movie getSelectedMovie() {
         return selectedMovie;
+    }
+
+    public static String getString() {
+        String result= "";
+        for (Movie m : movies) {
+            result += m.toString() + "   ";
+        }
+        return result;
     }
 
 }
