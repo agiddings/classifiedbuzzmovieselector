@@ -146,18 +146,36 @@ public class User {
         return failedAttempts;
     }
 
+    /**
+     * gets this user's friends
+     * @return a list of this users friends
+     */
     public List<User> getFriends() {
         return friends;
     }
 
+    /**
+     * add a friend
+     * @param friend User's friend
+     */
     public void addFriend(User friend) {
         friends.add(friend);
     }
 
+    /**
+     * removes a friend
+     * @param friend the friend to be removed
+     * @return a boolean representing whether or not the friend was removed
+     */
     public boolean removeFriend(User friend) {
         return friends.remove(friend);
     }
 
+    /**
+     * checks whether two user's are equal
+     * @param user the user to be compared
+     * @return a boolean representing whether the specified user is equal to this user
+     */
     public boolean equals(User user) {
         return email.equals(user.email);
     }

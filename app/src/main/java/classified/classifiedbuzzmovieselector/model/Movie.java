@@ -19,7 +19,7 @@ public class Movie implements Serializable {
     private String mpaa_rating;
     @SerializedName("runtime")
     private String runtime; // runtime in minutes
-    private double avgRating;
+    private double avgRating = -1;
     @SerializedName("ratings")
     private Rating ratings;
     //private String genre;
@@ -68,6 +68,9 @@ public class Movie implements Serializable {
      * @return an average rating
      */
     public double getAvgRating() {
+        if (avgRating < 0) {
+            avgRating = UserRatingManager.getAvgMovieUserRating(this);
+        }
         return avgRating;
     }
 
@@ -98,30 +101,58 @@ public class Movie implements Serializable {
         return runtime;
     }
 
+    /**
+     * get audience score
+     * @return int representing audience score
+     */
     public int getAudienceScore() {
         return ratings.audience_score;
     }
 
+    /**
+     * get critics score
+     * @return int representing critics score
+     */
     public int getCriticsScore() {
         return ratings.critics_score;
     }
 
+    /**
+     * get thumbnail url
+     * @return string representing thumbnail url
+     */
     public String getThumbnail() {
         return posters.thumbnail;
     }
 
+    /**
+     * get Profile poster url
+     * @return string representing profile url
+     */
     public String getProfile() {
         return posters.profile;
     }
 
+    /**
+     * get Detailed poster url
+     * @return string representing Detailed url
+     */
     public String getDetailed() {
         return posters.detailed;
     }
 
+    /**
+     * get Original poster url
+     * @return string representing Original url
+     */
     public String getOriginal() {
         return posters.original;
     }
 
+    /**
+     * converts a movie to a string
+     * @return string representing this movie
+     */
     public String toString() {
         return title + " " + year + " " + ratings.audience_score + " " + posters.original;
     }

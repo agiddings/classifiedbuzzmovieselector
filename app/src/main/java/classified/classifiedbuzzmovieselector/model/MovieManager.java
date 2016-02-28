@@ -27,12 +27,17 @@ public class MovieManager {
 
     /**
      * Constructor a movie manager that contains a list of movies
-     *
-     * @param json a json url
      */
-    public MovieManager (String json) {
+    public MovieManager () {
     }
 
+    /**
+     * gets a specific movie by title and year
+     * @param title string this movie's title
+     * @param year  int this movie's year
+     * @return a movie with the specified title and yaer
+     * @throws MovieDoesNotExistException
+     */
     public static Movie getMovieByTitleAndYear(String title, int year) throws MovieDoesNotExistException {
         for (Movie m : movies) {
             if (m.getYear() == year && m.getTitle().equals(title)) {
@@ -42,6 +47,12 @@ public class MovieManager {
         throw new MovieDoesNotExistException("This movie is not in the list");
     }
 
+    /**
+     * gets a specific movie
+     * @param movie the desired movie
+     * @return the movie in the list
+     * @throws MovieDoesNotExistException
+     */
     public static Movie getMovie(Movie movie) throws MovieDoesNotExistException {
         for (Movie m : movies) {
             if (m.equals(movie)) {
@@ -162,14 +173,26 @@ public class MovieManager {
         });
     }
 
+    /**
+     * sets the selectedMovie to movie
+     * @param movie the movie that is currently selected
+     */
     public static void setSelectedMovie(Movie movie) {
         selectedMovie = movie;
     }
 
+    /**
+     * gets the movie that is currently selected
+     * @return Movie representing the movie that is currently selected
+     */
     public static Movie getSelectedMovie() {
         return selectedMovie;
     }
 
+    /**
+     * converts the MovieManager to a string
+     * @return a string representation of movieManager
+     */
     public static String getString() {
         String result= "";
         for (Movie m : movies) {

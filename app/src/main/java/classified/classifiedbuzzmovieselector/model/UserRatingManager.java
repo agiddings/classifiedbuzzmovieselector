@@ -69,7 +69,11 @@ public class UserRatingManager {
             count++;
             sum += ur.getScore();
         }
-        return ((double) sum)/count;
+        if(count > 0) {
+            return ((double) sum) / count;
+        } else {
+            return 0;
+        }
     }
 
     public static List<UserRating> getUserRatingsByMovie(Movie movie) {
