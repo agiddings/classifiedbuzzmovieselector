@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,7 +48,7 @@ public class SearchActivity extends AppCompatActivity{
     static JSONArray movies;
 
     RequestQueue queue;
-    RecyclerView recList;
+    ListView movieList;
 
     /**
      * Gets the list of movies from the JSON request
@@ -63,7 +64,7 @@ public class SearchActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        recList = (RecyclerView) findViewById(R.id.movieResultList);
+        movieList = (ListView) findViewById(R.id.movieResultList);
         //recList.addOnItemTouchListener(new RecyclerView.SimpleOnItemTouchListener());
 
         //MovieYear = (TextView) findViewById(R.id.movieYear);
@@ -307,16 +308,12 @@ public class SearchActivity extends AppCompatActivity{
 
     /**
      * Goes to the view to display the movies
-     * @param movieList The results of the search, movies to show user
+     * @param listOfMovies The results of the search, movies to show user
      */
-    private void changeView(List<Movie> movieList) {
+    private void changeView(List<Movie> listOfMovies) {
         //RecyclerView recList = (RecyclerView) findViewById(R.id.movieResultList);
-        recList.setHasFixedSize(true);
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        recList.setLayoutManager(llm);
-        MovieAdapter ma = new MovieAdapter(movieList);
-        recList.setAdapter(ma);
+        movieList.setAdapter(new MovieAdapter(this, R.layout.movie_layout,R.id.movieLayoutName,listOfMovies)); //?movieLayoutname
+
     }
 
     /**
