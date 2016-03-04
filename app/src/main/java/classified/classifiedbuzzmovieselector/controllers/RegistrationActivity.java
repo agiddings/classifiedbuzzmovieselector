@@ -69,7 +69,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 //sets current user
                 LoginActivity.setUser(LoginActivity.getManager().findUserByEmail(email.getText().toString()));
 
-                Intent intent = new Intent(this, PostLoginActivity.class);
+                Intent intent = new Intent(this, HomeActivity.class);
                 startActivity(intent);
             } catch (UserAlreadyExistsException a) {
                 message = "Registration failed: That user already exists.";
