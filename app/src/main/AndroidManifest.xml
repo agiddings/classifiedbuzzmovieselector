@@ -39,6 +39,10 @@
         <activity
             android:name=".controllers.MovieInformationActivity"
             android:label="@string/title_activity_movie_information"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".controllers.RecommentationActivity"
+            android:label="@string/title_activity_recommentation"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
