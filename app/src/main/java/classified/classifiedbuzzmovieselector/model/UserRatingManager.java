@@ -1,9 +1,15 @@
 package classified.classifiedbuzzmovieselector.model;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import classified.classifiedbuzzmovieselector.model.Exceptions.MovieDoesNotExistException;
 
 /**
  * Created by steven on 2/20/16.
@@ -19,7 +25,7 @@ public class UserRatingManager {
         return userRatings;
     }
 
-    public void addUserRating(UserRating ur) {
+    public static void addUserRating(UserRating ur) {
         int index = userRatings.indexOf(ur);
         if (index < 0) {
             userRatings.add(ur);
@@ -27,12 +33,23 @@ public class UserRatingManager {
             userRatings.get(index).setComment(ur.getComment());
             userRatings.get(index).setScore(ur.getScore());
         }
-        ur.getMovie().setAvgRating(getAvgMovieUserRating(ur.getMovie()));
+        try {
+            MovieManager.getMovie(ur.getMovie()).setAvgRating(getAvgMovieUserRating(ur.getMovie()));
+        } catch (MovieDoesNotExistException e) {
+            //this literally cannot happen
+            Log.e("USER_RATING_MANAGER", "YELL AT STEVE");
+        }
+
     }
 
     public List<UserRating> getUserRatingsByUser(User user) {
+        return getUserRatingsByUser(user, userRatings);
+    }
+
+    public static List<UserRating> getUserRatingsByUser(User user, List<UserRating> ratingList) {
+
         List<UserRating> returnVal = new ArrayList<>();
-        for (UserRating ur : userRatings) {
+        for (UserRating ur : ratingList) {
             if (ur.getUser() == user) {
                 returnVal.add(ur);
             }
@@ -40,8 +57,12 @@ public class UserRatingManager {
         return returnVal;
     }
 
-    public double getAvgMovieUserRating (Movie movie) {
-        List<UserRating> ratings = getUserRatingsByMovie(movie);
+    public static double getAvgMovieUserRating (Movie movie) {
+        return getAvgMovieUserRating(movie, userRatings);
+    }
+
+    public static double getAvgMovieUserRating (Movie movie, List<UserRating> ratingList) {
+        List<UserRating> ratings = getUserRatingsByMovie(movie, ratingList);
         int sum = 0;
         int count = 0;
         for (UserRating ur : ratings) {
@@ -51,9 +72,13 @@ public class UserRatingManager {
         return ((double) sum)/count;
     }
 
-    public List<UserRating> getUserRatingsByMovie(Movie movie) {
+    public static List<UserRating> getUserRatingsByMovie(Movie movie) {
+        return getUserRatingsByMovie(movie, userRatings);
+    }
+
+    public static List<UserRating> getUserRatingsByMovie(Movie movie, List<UserRating> ratingList) {
         List<UserRating> returnVal = new ArrayList<>();
-        for (UserRating ur : userRatings) {
+        for (UserRating ur : ratingList) {
             if (ur.getMovie() == movie) {
                 returnVal.add(ur);
             }
@@ -61,9 +86,13 @@ public class UserRatingManager {
         return returnVal;
     }
 
-    public List<UserRating> getUserRatingsByMajor(String major) {
+    public static List<UserRating> getUserRatingsByMajor(String major) {
+        return getUserRatingsByMajor(major, userRatings);
+    }
+
+    public static List<UserRating> getUserRatingsByMajor(String major, List<UserRating> ratingList) {
         List<UserRating> returnVal = new ArrayList<>();
-        for (UserRating ur : userRatings) {
+        for (UserRating ur : ratingList) {
             if (ur.getUser().getMajor().equals(major)) {
                 returnVal.add(ur);
             }
@@ -71,7 +100,11 @@ public class UserRatingManager {
         return returnVal;
     }
 
-    public List<UserRating> getUserRatingsByFriends(User user) {
+    public static List<UserRating> getUserRatingsByFriends(User user) {
+        return getUserRatingsByFriends(user, userRatings);
+    }
+
+    public static List<UserRating> getUserRatingsByFriends(User user, List<UserRating> ratingList) {
         List<UserRating> returnVal = new ArrayList<>();
         for (UserRating ur : userRatings) {
             if (user.getFriends().contains(ur.getUser())) {
@@ -81,8 +114,14 @@ public class UserRatingManager {
         return returnVal;
     }
 
-    public List<Movie> getBestMoviesfromUserRatings(List<UserRating> ratings) {
-        List<Movie> movies = new ArrayList<>();
+    public static List<Movie> getBestMoviesfromUserRatings(List<UserRating> ratingList) {
+        Set<Movie> moviesSet = new HashSet<>();
+        List<Movie> movies;
+        for (UserRating rating : ratingList) {
+            moviesSet.add(rating.getMovie());
+        }
+        movies = new ArrayList<>(moviesSet);
+        //TODO Sort movies by rating
 
         return movies;
     }
@@ -98,7 +137,7 @@ public class UserRatingManager {
     }
 
     public static List<UserRating> sortRatingsLowToHigh() {
-        return sortRatingsHighToLow(userRatings);
+        return sortRatingsLowToHigh(userRatings);
     }
 
     public static List<UserRating> sortRatingsHighToLow(List<UserRating> ratings) {

@@ -15,7 +15,6 @@ public class User {
     protected boolean isLocked;
     protected boolean isBanned;
     protected int failedAttempts;
-    protected List<UserRating> userRatings;
     protected List<User> friends;
 
     //Add user info, major from profile section
@@ -153,6 +152,10 @@ public class User {
 
     public void addFriend(User friend) {
         friends.add(friend);
+    }
+
+    public boolean removeFriend(User friend) {
+        return friends.remove(friend);
     }
 
     public boolean equals(User user) {

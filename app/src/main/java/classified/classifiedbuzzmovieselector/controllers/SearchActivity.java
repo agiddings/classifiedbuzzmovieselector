@@ -7,7 +7,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,24 +31,30 @@ import java.util.Arrays;
 import java.util.List;
 
 import classified.classifiedbuzzmovieselector.R;
+import classified.classifiedbuzzmovieselector.model.Exceptions.MovieDoesNotExistException;
 import classified.classifiedbuzzmovieselector.model.Movie;
 import classified.classifiedbuzzmovieselector.model.MovieManager;
 
 /**
  * Created by Allie on 2/16/2016.
  */
-public class SearchActivity extends AppCompatActivity{
+public class SearchActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     final String KEY = "yedukp76ffytfuy24zsqk7f5";
     final String rottenTomatoesURL = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=%s&page_limit=%d&page=1&apikey=%s";
-    final int pagelimit = 10;
+    final int pagelimit = 15;
     SearchView search;
     //for testing 0223 - Justeen
-    TextView MovieYear;
-    TextView MovieName;
+    //TextView MovieYear;
+    //TextView MovieName;
     static JSONArray movies;
 
     RequestQueue queue;
+    ListView movieList;
 
+    /**
+     * Gets the list of movies from the JSON request
+     * @return The movies from the result of the search
+     */
     public static JSONArray getJSONArray() {
         return movies;
     }
@@ -56,6 +64,11 @@ public class SearchActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
+        movieList = (ListView) findViewById(R.id.movieResultList);
+        movieList.setOnItemClickListener(this);
+        //movieList.setAdapter(new MovieAdapter(this, R.layout.movie_layout, R.id.movieLayoutName, new ArrayList<Movie>()));
+        //recList.addOnItemTouchListener(new RecyclerView.SimpleOnItemTouchListener());
 
         //MovieYear = (TextView) findViewById(R.id.movieYear);
         //MovieName = (TextView) findViewById(R.id.movieName);
@@ -88,6 +101,7 @@ public class SearchActivity extends AppCompatActivity{
 
             @Override
             public boolean onQueryTextSubmit(String userInput) {
+                Log.d("SEARCH ACTIVITY", userInput);
                 Toast input = Toast.makeText(getBaseContext(), "Searching " + userInput,
                         Toast.LENGTH_SHORT);
                 input.show();
@@ -104,19 +118,23 @@ public class SearchActivity extends AppCompatActivity{
         });
     }
 
+
     /**
      * define behavior after a user clicks on search button with input
      *
      * @param userInput
      */
     public void SearchButtonPressed(String userInput) {
-        System.out.println(userInput);
+
+        userInput = userInput.replaceAll(" ", "+");
         //so the search query(userInput in this case) should pass to the url string below
         String url = String.format(
                 rottenTomatoesURL,
                 userInput,
                 pagelimit, KEY);
+
         //test with "deadpool" above see if it come up
+
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.GET, url, "", new Response.Listener<JSONObject>() {
@@ -124,25 +142,29 @@ public class SearchActivity extends AppCompatActivity{
                     public void onResponse(JSONObject resp) {
                         Log.d("SEARCH ACTIVITY", "Request Recieved.");
 
-                        //resp is the response JSON Obj
-                        //TODO Put info in movie objects
-                        //then add to view
-                        //Movie m = new Movie(resp.)
-
                         try {
                             movies = resp.getJSONArray("movies");
+                            Log.d("SEARCH ACTIVITY", "get movies");
                             JSONObject current = null;
                             MovieManager.clear();
                             for (int i = 0; i < movies.length(); i++) {
                                 current = movies.getJSONObject(i);
+                                Log.d("SEARCH ACTIVITY", String.format("got Movie %d",i));
+                                String runtime = current.getString("runtime");
+                                int runtimeInt = 0;
+                                if(!runtime.equals("")){
+                                   runtimeInt = Integer.parseInt(runtime);
+                                }
                                 Movie m = new Movie(current.get("title").toString(),
                                         Integer.parseInt(current.get("year").toString()),
                                         current.getString("mpaa_rating"),
-                                        current.getInt("runtime"),
+                                        runtimeInt,
                                         current.getJSONObject("ratings").getInt("audience_score"),
                                         current.getJSONObject("ratings").getInt("critics_score")
 
                                 );
+                                Log.d("SEARCH ACTIVITY", String.format("made Movie %d",i));
+                                m.setPoster(current.getJSONObject("posters").getString("thumbnail"));
                                 MovieManager.add(m);
 
                                 //display to text movie year for testing - Justeen
@@ -153,8 +175,12 @@ public class SearchActivity extends AppCompatActivity{
 
 
 
-                        } catch (Exception e) {
+                        } catch(NullPointerException e){
+                            Log.d("SEARCH ACTIVITY", "Null Error.");
+                        }catch(JSONException e) {
                             Log.d("SEARCH ACTIVITY", "JSON Error.");
+                        } catch (Exception e) {
+                            Log.d("SEARCH ACTIVITY", "Error.");
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -209,6 +235,7 @@ public class SearchActivity extends AppCompatActivity{
                                     current.getJSONObject("ratings").getInt("critics_score")
 
                             );
+                            m.setPoster(current.getJSONObject("posters").getString("thumbnail"));
                             MovieManager.add(m);
                             //display to text movie year for testing - Cole
                             //MovieName.setText("Movie name: " + m.getTitle());
@@ -259,6 +286,7 @@ public class SearchActivity extends AppCompatActivity{
                                     current.getJSONObject("ratings").getInt("audience_score"),
                                     current.getJSONObject("ratings").getInt("critics_score")
                                         );
+                            m.setPoster(current.getJSONObject("posters").getString("thumbnail"));
                             MovieManager.add(m);
 
                             //display to text movie year for testing - Cole
@@ -283,16 +311,30 @@ public class SearchActivity extends AppCompatActivity{
 
     /**
      * Goes to the view to display the movies
-     * @param movieList The results of the search, movies to show user
+     * @param listOfMovies The results of the search, movies to show user
      */
-    private void changeView(List<Movie> movieList) {
-        //****
-        RecyclerView recList = (RecyclerView) findViewById(R.id.movieResultList);
-        recList.setHasFixedSize(true);
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        recList.setLayoutManager(llm);
-        MovieAdapter ma = new MovieAdapter(movieList);
-        recList.setAdapter(ma);
+    private void changeView(List<Movie> listOfMovies) {
+        //RecyclerView recList = (RecyclerView) findViewById(R.id.movieResultList);
+        movieList.setAdapter(new MovieAdapter(this, R.layout.movie_layout, R.id.movieLayoutName, listOfMovies)); //?movieLayoutname
+
+    }
+
+    /**
+     * Navigate back to the home page
+     *
+     * @param v
+     */
+    public void onBackButtonPressed(View v) {
+        Intent intent = new Intent(this, PostLoginActivity.class);
+        startActivity(intent);
+    }
+
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Log.d("SEARCHACTIVITY", "Item was clicked.");
+        Intent intent = new Intent(SearchActivity.this, MovieInformationActivity.class);
+        intent.putExtra("position", position);
+        startActivity(intent);
     }
 }

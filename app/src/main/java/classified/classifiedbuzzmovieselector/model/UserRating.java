@@ -10,10 +10,11 @@ public class UserRating {
     private Movie movie;
     private User user;
 
-    public UserRating (String comment, int score, Movie movie) {
+    public UserRating (String comment, int score, Movie movie, User user) {
         this.comment = comment;
         this.score = score;
         this.movie = movie;
+        this.user = user;
     }
 
     public String getComment() {
