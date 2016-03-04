@@ -43,6 +43,10 @@
         <activity
             android:name=".controllers.RecommentationActivity"
             android:label="@string/title_activity_recommentation"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".controllers.RecommendationActivity"
+            android:label="@string/title_activity_recommendation"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

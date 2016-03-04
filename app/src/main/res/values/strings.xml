@@ -20,4 +20,5 @@
     <string name="title_activity_rating">Rating</string>
     <string name="title_activity_movie_information">MovieInformationActivity</string>
     <string name="title_activity_recommentation">RecommentationActivity</string>
+    <string name="title_activity_recommendation">RecommendationActivity</string>
 </resources>
