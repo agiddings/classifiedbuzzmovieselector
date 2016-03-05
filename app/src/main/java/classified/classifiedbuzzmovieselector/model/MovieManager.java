@@ -38,6 +38,13 @@ public class MovieManager {
         movies = gson.fromJson(json, collectionType);
     }
 
+    /**
+     * Finds a movie given it's title and year
+     * @param title Title of movie to get
+     * @param year Year of movie to get
+     * @return The movie
+     * @throws MovieDoesNotExistException
+     */
     public static Movie getMovieByTitleAndYear(String title, int year) throws MovieDoesNotExistException {
         for (Movie m : movies) {
             if (m.getYear() == year && m.getTitle().equals(title)) {
@@ -47,6 +54,12 @@ public class MovieManager {
         throw new MovieDoesNotExistException("This movie is not in the list");
     }
 
+    /**
+     * Gets the movie
+     * @param movie The movie to get
+     * @return The movie being returned
+     * @throws MovieDoesNotExistException Movie passed in is not in list of movies
+     */
     public static Movie getMovie(Movie movie) throws MovieDoesNotExistException {
         for (Movie m : movies) {
             if (m.equals(movie)) {
@@ -167,10 +180,17 @@ public class MovieManager {
         });
     }
 
+    /**
+     * Sets the selected movie
+     * @param movie The movie passed in
+     */
     public static void setSelectedMovie(Movie movie) {
         selectedMovie = movie;
     }
 
+    /**
+     * @return The selected movie
+     */
     public static Movie getSelectedMovie() {
         return selectedMovie;
     }
