@@ -50,9 +50,22 @@ public class MovieInformationActivity extends AppCompatActivity {
         ((TextView)findViewById(R.id.app_users_rating)).setText(mUserRating + "");
     }
 
+    /**
+     * This goes to see individual user ratings
+     * @param v The current view
+     */
+    public void onSeeRatingButtonPressed(View v) {
+        //TODO:
+        //Go display the individual ratings
+    }
+
+    /**
+     * This goes back to the home page
+     * @param v the current view
+     */
     public void onCancelMovieInformationButtonPressed(View v) {
-        Log.d("RATING ACTIVITY", "Movie Information was cancelled.");
-        Intent intent = new Intent(this, SearchActivity.class);
+        Log.d("MOVIE INFORMATION", "Movie Information was cancelled.");
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 
