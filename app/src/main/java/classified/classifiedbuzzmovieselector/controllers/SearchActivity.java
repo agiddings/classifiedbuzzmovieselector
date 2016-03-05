@@ -186,19 +186,6 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
         queue.add(jsObjRequest);
     }
 
-
-    /**
-     *
-     * Event when the cancel search button is pressed
-     *
-     * @param v The view, for search activity
-     */
-    public void onCancelSearchButtonPressed(View v) {
-        Log.d("SEARCH ACTIVITY", "Cancel search button was pressed.");
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-    }
-
     /**
      * Searches for new releases
      * @param v current view

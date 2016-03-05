@@ -26,6 +26,15 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     /**
+     * Goes to recommendations page
+     * @param v The current view
+     */
+    public void onRecommendationButtonClicked(View v) {
+        Intent intent = new Intent(this, RecommendationActivity.class);
+        startActivity(intent);
+    }
+
+    /**
      * Goes to Edit Profile Activity
      * @param v the current view
      */

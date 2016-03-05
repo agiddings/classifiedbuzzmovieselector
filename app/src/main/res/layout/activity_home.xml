@@ -32,10 +32,19 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Ratings"
+            android:id="@+id/button5"
+            android:layout_weight="0.09"
+            android:onClick="onRecommendationButtonClicked" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Log Out"
             android:id="@+id/button"
             android:onClick="onLogoutButtonClicked" />
-        </LinearLayout>
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
