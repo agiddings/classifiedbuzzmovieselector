@@ -44,10 +44,10 @@ public class MovieInformationActivity extends AppCompatActivity {
         movie = MovieManager.getMovies().get(position);
         mUserRating = UserRatingManager.getAvgMovieUserRating(movie);
         mCriticsRating = movie.getMpaa_rating();
-        ((TextView)findViewById(R.id.movie_title)).setText(movie.getTitle());
-        ((TextView)findViewById(R.id.movie_year)).setText(movie.getYear() + "");
-        ((TextView)findViewById(R.id.critics_rating)).setText(mCriticsRating);
-        ((TextView)findViewById(R.id.app_users_rating)).setText(mUserRating + "");
+        ((TextView) findViewById(R.id.movie_title)).setText(movie.getTitle());
+        ((TextView) findViewById(R.id.movie_year)).setText(movie.getYear() + "");
+        ((TextView) findViewById(R.id.critics_rating)).setText(mCriticsRating);
+        ((TextView) findViewById(R.id.app_users_rating)).setText(mUserRating + "");
     }
 
     /**
