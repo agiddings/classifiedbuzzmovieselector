@@ -49,13 +49,15 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/movie_title"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.09" />
+            android:layout_weight="0.09"
+            android:hint="movie title" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/movie_year" />
+            android:id="@+id/movie_year"
+            android:hint="movie year" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -105,43 +107,57 @@
             android:id="@+id/app_users_rating" />
     </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Your Rating:"
-            android:id="@+id/textView16"
-            android:layout_gravity="center_horizontal"
-            android:paddingTop="15dp" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="224dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
 
-        <RatingBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/ratingBar"
-            android:layout_gravity="center_horizontal"
-            android:numStars="5" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Your Rating:"
+                android:id="@+id/textView16"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="15dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Comments:"
-            android:layout_gravity="center_horizontal" />
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ratingBar"
+                android:layout_gravity="center_horizontal"
+                android:numStars="5" />
 
-        <EditText
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Comments:"
+                android:layout_gravity="center_horizontal" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/comment"
+                android:layout_gravity="right" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rate"
+                android:id="@+id/button4"
+                android:layout_gravity="center_horizontal"
+                android:nestedScrollingEnabled="true"
+                android:onClick="onMovieRatingButtonPressed" />
+        </LinearLayout>
+
+        <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/comment"
-            android:layout_gravity="right" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Rate"
-            android:id="@+id/button4"
-            android:layout_gravity="center_horizontal"
-            android:nestedScrollingEnabled="true"
-            android:onClick="onMovieRatingButtonPressed" />
+            android:id="@+id/ratingListView"
+            android:layout_gravity="center_horizontal" />
 
     </LinearLayout>
 
