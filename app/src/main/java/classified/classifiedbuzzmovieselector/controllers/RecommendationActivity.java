@@ -126,5 +126,5 @@ public class RecommendationActivity extends AppCompatActivity implements Adapter
                 // TODO Auto-generated method stub
             }
         });*/
-    }
+}
 
