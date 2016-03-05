@@ -16,6 +16,8 @@ import java.util.List;
 
 import classified.classifiedbuzzmovieselector.R;
 import classified.classifiedbuzzmovieselector.model.Movie;
+import classified.classifiedbuzzmovieselector.model.UserRating;
+import classified.classifiedbuzzmovieselector.model.UserRatingManager;
 
 /**
  * This class is the controller for handling recommendations
@@ -36,8 +38,17 @@ public class RecommendationActivity extends AppCompatActivity implements Adapter
      * then call changeview to display them to the user.
      */
     public void onGetRecommendationsButtonPressed() {
-        List<Movie> recommendations = new ArrayList<Movie>();
-        changeView(recommendations);
+        List<Movie> movies = new ArrayList<Movie>();
+        List<UserRating> recommendations = new ArrayList<UserRating>();
+        //if (user) {
+            //recommendations = UserRatingManager.getUserRatingsByUser(User );
+        //} else if (major) {
+            //recommendations = UserRatingManager.getUserRatingsByMajor(Major);
+        //} else if (best/worst) {
+            //movies = MovieManager.getBestMoviesByAvgRating();
+        //}
+        movies = UserRatingManager.getBestMoviesfromUserRatings(recommendations);
+        changeView(movies);
     }
 
     /**
@@ -57,12 +68,13 @@ public class RecommendationActivity extends AppCompatActivity implements Adapter
      * @param listOfMovies The results of the search, movies to show user
      */
     private void changeView(List<Movie> listOfMovies) {
+        Log.d("RECOMMENDATION ACTIVITY", "Going to display results.");
         movieList.setAdapter(new MovieAdapter(this, R.layout.movie_layout, R.id.movieLayoutName, listOfMovies));
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Log.d("SEARCHACTIVITY", "Item was clicked.");
+        Log.d("RECOMMENDATION ACTIVITY", "Item was clicked.");
         Intent intent = new Intent(RecommendationActivity.this, MovieInformationActivity.class);
         intent.putExtra("position", position);
         startActivity(intent);
