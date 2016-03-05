@@ -11,9 +11,6 @@ import android.widget.Toast;
 
 import classified.classifiedbuzzmovieselector.R;
 import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidEmailException;
-import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidNameException;
-import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidPasswordException;
-import classified.classifiedbuzzmovieselector.model.Exceptions.UserAlreadyExistsException;
 import classified.classifiedbuzzmovieselector.model.Exceptions.UserDoesNotExistException;
 import classified.classifiedbuzzmovieselector.model.UserManager;
 
@@ -49,7 +46,7 @@ public class ProfileActivity extends AppCompatActivity{
      */
     public void onCancelProfileButtonPressed(View v) {
         Log.d("PROFILE ACTIVITY", "Cancel profile edits button was pressed.");
-        Intent intent = new Intent(this, PostLoginActivity.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 
@@ -106,7 +103,7 @@ public class ProfileActivity extends AppCompatActivity{
                 message = "Profile update succeeded.";
 
                 // Returns to the post login page.
-                Intent intent = new Intent(this, PostLoginActivity.class);
+                Intent intent = new Intent(this, HomeActivity.class);
                 startActivity(intent);
                 // Shows a message to the user
                 Context context = getApplicationContext();

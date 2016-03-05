@@ -3,15 +3,11 @@ package classified.classifiedbuzzmovieselector.controllers;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -25,13 +21,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import classified.classifiedbuzzmovieselector.R;
-import classified.classifiedbuzzmovieselector.model.Exceptions.MovieDoesNotExistException;
 import classified.classifiedbuzzmovieselector.model.Movie;
 import classified.classifiedbuzzmovieselector.model.MovieManager;
 
@@ -194,19 +186,6 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
         queue.add(jsObjRequest);
     }
 
-
-    /**
-     *
-     * Event when the cancel search button is pressed
-     *
-     * @param v The view, for search activity
-     */
-    public void onCancelSearchButtonPressed(View v) {
-        Log.d("SEARCH ACTIVITY", "Cancel search button was pressed.");
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-    }
-
     /**
      * Searches for new releases
      * @param v current view
@@ -325,7 +304,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
      * @param v
      */
     public void onBackButtonPressed(View v) {
-        Intent intent = new Intent(this, PostLoginActivity.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 

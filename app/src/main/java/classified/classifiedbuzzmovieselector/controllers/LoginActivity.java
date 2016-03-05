@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import classified.classifiedbuzzmovieselector.R;
-import classified.classifiedbuzzmovieselector.model.Exceptions.UserAlreadyExistsException;
 import classified.classifiedbuzzmovieselector.model.User;
 import classified.classifiedbuzzmovieselector.model.UserManager;
 
@@ -83,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
             user = manager.findUserByEmail(emailBox.getText().toString());
 
             //Goes to postlogin Screen
-            Intent intent = new Intent(this, PostLoginActivity.class);
+            Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
 
         } else {
