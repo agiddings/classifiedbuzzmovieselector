@@ -61,7 +61,7 @@ public class UserRatingManager {
      * @param user The user it gets ratings from
      * @return The list of ratings the user has
      */
-    public List<UserRating> getUserRatingsByUser(User user) {
+    public static List<UserRating> getUserRatingsByUser(User user) {
         return getUserRatingsByUser(user, userRatings);
     }
 
