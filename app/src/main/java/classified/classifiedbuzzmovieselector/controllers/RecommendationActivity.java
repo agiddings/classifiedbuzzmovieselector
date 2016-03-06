@@ -60,7 +60,7 @@ public class RecommendationActivity extends AppCompatActivity implements Adapter
                 Log.v("item", (String) parent.getItemAtPosition(position));
                 String major = (String) parent.getItemAtPosition(position);
                 List<UserRating> ratings = UserRatingManager.getUserRatingsByMajor(major);
-                List<Movie> movies = UserRatingManager.getBestMoviesfromUserRatings(ratings);
+                List<Movie> movies = UserRatingManager.getBestMoviesFromUserRatings(ratings);
                 changeView(movies);
             }
 
@@ -86,7 +86,7 @@ public class RecommendationActivity extends AppCompatActivity implements Adapter
         //} else if (best/worst) {
             //movies = MovieManager.getBestMoviesByAvgRating();
         //}
-        movies = UserRatingManager.getBestMoviesfromUserRatings(recommendations);
+        movies = UserRatingManager.getBestMoviesFromUserRatings(recommendations);
         changeView(movies);
     }
 
