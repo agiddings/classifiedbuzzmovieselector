@@ -40,6 +40,8 @@ public class RecommendationActivity extends AppCompatActivity implements Adapter
         setContentView(R.layout.activity_recommendation);
 
         movieList = (ListView) findViewById(R.id.movieResultList);
+        movieList.setOnItemClickListener(this);
+
         Spinner staticSpinner = (Spinner) findViewById(R.id.spinner1);
 
         ArrayAdapter<CharSequence> staticAdapter = ArrayAdapter
