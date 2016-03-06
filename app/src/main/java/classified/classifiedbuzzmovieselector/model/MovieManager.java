@@ -97,8 +97,13 @@ public class MovieManager {
      * @return a list of movies by the best average rating
      */
     public static List<Movie> getBestMoviesByAvgRating() {
-        List<Movie> bestMovies = new ArrayList<>();
-
+        List<Movie> bestMovies = movies;
+        Collections.sort(bestMovies, new Comparator<Movie>() {
+            @Override
+            public int compare(Movie lhs, Movie rhs) {
+                return new Double(lhs.getAvgRating()).compareTo(rhs.getAvgRating());
+            }
+        });
         return bestMovies;
     }
 
@@ -108,8 +113,13 @@ public class MovieManager {
      * @return a list of movies by the worst average rating
      */
     public static List<Movie> getWorstMoviesByAvgRating() {
-        List<Movie> worstMovies = new ArrayList<>();
-
+        List<Movie> worstMovies = movies;
+        Collections.sort(worstMovies, new Comparator<Movie>() {
+            @Override
+            public int compare(Movie lhs, Movie rhs) {
+                return new Double(lhs.getAvgRating()).compareTo(rhs.getAvgRating());
+            }
+        });
         return worstMovies;
     }
 

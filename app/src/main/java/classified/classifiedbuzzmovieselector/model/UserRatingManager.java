@@ -49,11 +49,12 @@ public class UserRatingManager {
         }
         try {
             MovieManager.getMovie(ur.getMovie()).setAvgRating(getAvgMovieUserRating(ur.getMovie()));
+            Log.d("USER_RATING_MANAGER", ur.getScore() + "");
+            Log.d("USER_RATING_MANAGER", MovieManager.getMovie(ur.getMovie()).getAvgRating() + "");
         } catch (MovieDoesNotExistException e) {
             //this literally cannot happen
             Log.e("USER_RATING_MANAGER", "YELL AT STEVE");
         }
-
     }
 
     /**
