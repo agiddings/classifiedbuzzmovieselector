@@ -23,6 +23,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 
 import classified.classifiedbuzzmovieselector.R;
 import classified.classifiedbuzzmovieselector.model.Movie;
+import classified.classifiedbuzzmovieselector.model.UserManager;
 import classified.classifiedbuzzmovieselector.model.UserRating;
 import classified.classifiedbuzzmovieselector.model.UserRatingManager;
 
@@ -39,19 +40,15 @@ public class RecommendationActivity extends AppCompatActivity implements Adapter
         setContentView(R.layout.activity_recommendation);
 
         movieList = (ListView) findViewById(R.id.movieResultList);
-
         Spinner staticSpinner = (Spinner) findViewById(R.id.spinner1);
 
-        // Create an ArrayAdapter using the string array and a default spinner
         ArrayAdapter<CharSequence> staticAdapter = ArrayAdapter
                 .createFromResource(this, R.array.majors_array,
                         android.R.layout.simple_spinner_item);
 
-        // Specify the layout to use when the list of choices appears
         staticAdapter
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        // Apply the adapter to the spinner
         staticSpinner.setAdapter(staticAdapter);
 
         staticSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -59,7 +56,10 @@ public class RecommendationActivity extends AppCompatActivity implements Adapter
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
                 Log.v("item", (String) parent.getItemAtPosition(position));
-                onGetRecommendationsButtonPressed(parent.getItemAtPosition(position));
+                String major = (String) parent.getItemAtPosition(position);
+                List<UserRating> ratings = UserRatingManager.getUserRatingsByMajor(major);
+                List<Movie> movies = UserRatingManager.getBestMoviesfromUserRatings(ratings);
+                changeView(movies);
             }
 
             @Override
@@ -102,7 +102,7 @@ public class RecommendationActivity extends AppCompatActivity implements Adapter
 
     /**
      * Goes to the view to display the movies
-     * @param listOfMovies The results of the search, movies to show user
+     * @param listOfMovies The results of the recommendations, movies to show user
      */
     private void changeView(List<Movie> listOfMovies) {
         Log.d("RECOMMENDATION ACTIVITY", "Going to display results.");
