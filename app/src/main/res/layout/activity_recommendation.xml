@@ -7,9 +7,9 @@
     android:fitsSystemWindows="true"
     tools:context="classified.classifiedbuzzmovieselector.controllers.RecommendationActivity">
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:orientation="vertical"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
