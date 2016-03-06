@@ -184,23 +184,66 @@ public class UserRatingManager {
         return returnVal;
     }
 
+    public static List<Movie> getBestMoviesFromUserRatings() {
+        return getBestMoviesFromUserRatings(userRatings);
+    }
+
     /**
      * Gets a list of movies from a list of user ratings
      * @param ratingList The list of user ratings
      * @return The list of movies
      */
-    public static List<Movie> getBestMoviesfromUserRatings(List<UserRating> ratingList) {
+    public static List<Movie> getBestMoviesFromUserRatings(List<UserRating> ratingList) {
         Set<Movie> moviesSet = new HashSet<>();
         List<Movie> movies;
         for (UserRating rating : ratingList) {
             moviesSet.add(rating.getMovie());
         }
+        for (Movie m : moviesSet) {
+            m.setAvgRating(getAvgMovieUserRating(m));
+        }
+
         movies = new ArrayList<>(moviesSet);
-        //TODO Sort movies by rating
+        Collections.sort(movies, new Comparator<Movie>() {
+            @Override
+            public int compare(Movie lhs, Movie rhs) {
+                return new Double(lhs.getAvgRating()).compareTo(rhs.getAvgRating());
+            }
+        });
 
         return movies;
     }
 
+
+    public static List<Movie> getWorstMoviesFromUserRatings() {
+        return getWorstMoviesFromUserRatings(userRatings);
+    }
+
+    /**
+     * Gets a list of movies from a list of user ratings
+     * @param ratingList The list of user ratings
+     * @return The list of movies
+     */
+    public static List<Movie> getWorstMoviesFromUserRatings(List<UserRating> ratingList) {
+        Set<Movie> moviesSet = new HashSet<>();
+        List<Movie> movies;
+        for (UserRating rating : ratingList) {
+            moviesSet.add(rating.getMovie());
+        }
+        for (Movie m : moviesSet) {
+            m.setAvgRating(getAvgMovieUserRating(m));
+        }
+
+        movies = new ArrayList<>(moviesSet);
+        Collections.sort(movies, new Comparator<Movie>() {
+            @Override
+            public int compare(Movie lhs, Movie rhs) {
+                return new Double(rhs.getAvgRating()).compareTo(lhs.getAvgRating());
+            }
+        });
+
+        return movies;
+    }
     /**
      * Sorts the ratings from low to high to display
      * @param ratings The ratings to sort

@@ -131,9 +131,8 @@ public class MovieManager {
      * @return a list of movies by major
      */
     public static List<Movie> getBestMoviesByMajor(String major) {
-        List<Movie> bestMovies = new ArrayList<>();
-
-        return bestMovies;
+        return UserRatingManager.getBestMoviesFromUserRatings(
+                UserRatingManager.getUserRatingsByMajor(major));
     }
 
     /**
@@ -143,9 +142,8 @@ public class MovieManager {
      * @return get a list of worst movies by major
      */
     public static List<Movie> getWorstMoviesByMajor(String major) {
-        List<Movie> worstMovies = new ArrayList<>();
-
-        return worstMovies;
+        return UserRatingManager.getWorstMoviesFromUserRatings(
+                UserRatingManager.getUserRatingsByMajor(major));
     }
 
     /**
@@ -155,7 +153,7 @@ public class MovieManager {
      * @return a list of best movies by a friend's rating
      */
     public static List<Movie> getBestMoviesByFriendRating(User user) {
-        return UserRatingManager.getBestMoviesfromUserRatings(
+        return UserRatingManager.getBestMoviesFromUserRatings(
                 UserRatingManager.getUserRatingsByFriends(user));
     }
 
@@ -166,8 +164,8 @@ public class MovieManager {
      * @return a list of worst movies by a friend's rating
      */
     public static List<Movie> getWorstMoviesByFriendRating(User user) {
-        List<Movie> worstMovies = new ArrayList<>();
-        return worstMovies;
+        return UserRatingManager.getWorstMoviesFromUserRatings(
+                UserRatingManager.getUserRatingsByFriends(user));
     }
 
     /**
