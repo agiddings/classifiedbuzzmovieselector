@@ -18,7 +18,7 @@ public class LoginActivity extends AppCompatActivity {
     /**
      * Only one manager instance is created
      */
-    private static UserManager manager;
+    private static UserManager manager = new UserManager();
 
     /**
      * Make manager accessible to other classes

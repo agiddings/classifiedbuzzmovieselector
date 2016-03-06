@@ -157,7 +157,6 @@ public class MovieManager {
      */
     public static List<Movie> getWorstMoviesByFriendRating(User user) {
         List<Movie> worstMovies = new ArrayList<>();
-
         return worstMovies;
     }
 

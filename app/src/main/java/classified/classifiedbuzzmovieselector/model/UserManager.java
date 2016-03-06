@@ -22,7 +22,33 @@ public class UserManager {
      * also creates temporary user for testing
      *
      */
-    public UserManager() {}
+    public UserManager() {
+        User u1 = new User("u1", "u1@mail.com", "u1");
+        User u2 = new User("u2", "u2@mail.com", "u2");
+        User u3 = new User("u3", "u3@mail.com", "u3");
+        u1.setMajor("Architecture");
+        u2.setMajor("Architecture");
+        u3.setMajor("Architecture");
+        users.put(u1.getEmail(), u1);
+        users.put(u2.getEmail(), u2);
+        users.put(u3.getEmail(), u3);
+        u1.addFriend(u2);
+        u2.addFriend(u1);
+        u1.addFriend(u3);
+        u2.addFriend(u3);
+        u3.addFriend(u1);
+        u3.addFriend(u2);
+        Movie m1 = new Movie("movie", 1900, "R", 90, 0, 0);
+        Movie m2 = new Movie("movie2", 1920, "R", 90, 0, 0);
+        MovieManager.add(m1);
+        MovieManager.add(m2);
+        UserRatingManager.addUserRating(new UserRating("wow!", 3, m1, u1));
+        UserRatingManager.addUserRating(new UserRating("wow!", 3, m2, u1));
+        UserRatingManager.addUserRating(new UserRating("wow2!", 5, m1, u2));
+        UserRatingManager.addUserRating(new UserRating("wow2!", 5, m2, u2));
+        UserRatingManager.addUserRating(new UserRating("wow3!", 1, m1, u3));
+        UserRatingManager.addUserRating(new UserRating("wow3!", 1, m2, u3));
+    }
 
     /*
      * find user by email address
