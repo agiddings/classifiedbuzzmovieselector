@@ -82,6 +82,7 @@ public class UserManager {
         }
         User user = new User(name, email, password);
         users.put(email, user);
+        loggedUser = user;
     }
 
 
