@@ -25,17 +25,11 @@ public class MovieManager {
     //doing to add movies.
     private static List<Movie> movies = new ArrayList<Movie>();
     private static Movie selectedMovie;
-    private static final Gson gson = new Gson();
 
     /**
      * Constructor a movie manager that contains a list of movies
-     *
-     * @param json a json url
      */
-    public MovieManager (String json) {
-        Type collectionType = new TypeToken<ArrayList<Movie>>() {
-        }.getType();
-        movies = gson.fromJson(json, collectionType);
+    public MovieManager () {
     }
 
     public static Movie getMovieByTitleAndYear(String title, int year) throws MovieDoesNotExistException {

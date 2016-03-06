@@ -42,7 +42,7 @@ public class UserRatingManager {
 
     }
 
-    public List<UserRating> getUserRatingsByUser(User user) {
+    public static List<UserRating> getUserRatingsByUser(User user) {
         return getUserRatingsByUser(user, userRatings);
     }
 
