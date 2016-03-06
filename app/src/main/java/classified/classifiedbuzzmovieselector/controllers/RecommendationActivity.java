@@ -23,6 +23,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 
 import classified.classifiedbuzzmovieselector.R;
 import classified.classifiedbuzzmovieselector.model.Movie;
+import classified.classifiedbuzzmovieselector.model.UserManager;
 import classified.classifiedbuzzmovieselector.model.UserRating;
 import classified.classifiedbuzzmovieselector.model.UserRatingManager;
 
@@ -37,6 +38,37 @@ public class RecommendationActivity extends AppCompatActivity implements Adapter
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommendation);
+
+        movieList = (ListView) findViewById(R.id.movieResultList);
+        movieList.setOnItemClickListener(this);
+
+        Spinner staticSpinner = (Spinner) findViewById(R.id.spinner1);
+
+        ArrayAdapter<CharSequence> staticAdapter = ArrayAdapter
+                .createFromResource(this, R.array.majors_array,
+                        android.R.layout.simple_spinner_item);
+
+        staticAdapter
+                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        staticSpinner.setAdapter(staticAdapter);
+
+        staticSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                Log.v("item", (String) parent.getItemAtPosition(position));
+                String major = (String) parent.getItemAtPosition(position);
+                List<UserRating> ratings = UserRatingManager.getUserRatingsByMajor(major);
+                List<Movie> movies = UserRatingManager.getBestMoviesfromUserRatings(ratings);
+                changeView(movies);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+               //do nothing
+            }
+        });
     }
 
     /**
@@ -44,7 +76,7 @@ public class RecommendationActivity extends AppCompatActivity implements Adapter
      * recommendations, and then get the recommendations, and
      * then call changeview to display them to the user.
      */
-    public void onGetRecommendationsButtonPressed() {
+    public void onGetRecommendationsButtonPressed(Object o) {
         List<Movie> movies = new ArrayList<Movie>();
         List<UserRating> recommendations = new ArrayList<UserRating>();
         //if (user) {
@@ -72,7 +104,7 @@ public class RecommendationActivity extends AppCompatActivity implements Adapter
 
     /**
      * Goes to the view to display the movies
-     * @param listOfMovies The results of the search, movies to show user
+     * @param listOfMovies The results of the recommendations, movies to show user
      */
     private void changeView(List<Movie> listOfMovies) {
         Log.d("RECOMMENDATION ACTIVITY", "Going to display results.");
@@ -86,45 +118,5 @@ public class RecommendationActivity extends AppCompatActivity implements Adapter
         intent.putExtra("position", position);
         startActivity(intent);
     }
-   /* @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recommendation);
-
-        Spinner staticSpinner = (Spinner) findViewById(R.id.static_spinner);
-
-        // Create an ArrayAdapter using the string array and a default spinner
-        ArrayAdapter<CharSequence> staticAdapter = ArrayAdapter
-                .createFromResource(this, R.array.majors_array,
-                        android.R.layout.simple_spinner_item);
-
-        // Specify the layout to use when the list of choices appears
-        staticAdapter
-                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // Apply the adapter to the spinner
-        staticSpinner.setAdapter(staticAdapter);
-
-        Spinner dynamicSpinner = (Spinner) findViewById(R.id.dynamic_spinner);
-
-        String[] items = new String[] { "Chai Latte", "Green Tea", "Black Tea" };
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, items);
-
-        dynamicSpinner.setAdapter(adapter);
-
-        dynamicSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-                Log.v("item", (String) parent.getItemAtPosition(position));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // TODO Auto-generated method stub
-            }
-        });*/
 }
 
