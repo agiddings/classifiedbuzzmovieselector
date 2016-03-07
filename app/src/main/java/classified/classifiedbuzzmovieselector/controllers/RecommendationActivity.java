@@ -23,6 +23,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 
 import classified.classifiedbuzzmovieselector.R;
 import classified.classifiedbuzzmovieselector.model.Movie;
+import classified.classifiedbuzzmovieselector.model.MovieManager;
 import classified.classifiedbuzzmovieselector.model.UserManager;
 import classified.classifiedbuzzmovieselector.model.UserRating;
 import classified.classifiedbuzzmovieselector.model.UserRatingManager;
@@ -59,35 +60,15 @@ public class RecommendationActivity extends AppCompatActivity implements Adapter
                                        int position, long id) {
                 Log.v("item", (String) parent.getItemAtPosition(position));
                 String major = (String) parent.getItemAtPosition(position);
-                List<UserRating> ratings = UserRatingManager.getUserRatingsByMajor(major);
-                List<Movie> movies = UserRatingManager.getBestMoviesFromUserRatings(ratings);
+                List<Movie> movies = MovieManager.getBestMoviesByMajor(major);
                 changeView(movies);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-               //do nothing
+                //do nothing
             }
         });
-    }
-
-    /**
-     * This method will find the way the user wants to get their
-     * recommendations, and then get the recommendations, and
-     * then call changeview to display them to the user.
-     */
-    public void onGetRecommendationsButtonPressed(Object o) {
-        List<Movie> movies = new ArrayList<Movie>();
-        List<UserRating> recommendations = new ArrayList<UserRating>();
-        //if (user) {
-            //recommendations = UserRatingManager.getUserRatingsByUser(User );
-        //} else if (major) {
-            //recommendations = UserRatingManager.getUserRatingsByMajor(Major);
-        //} else if (best/worst) {
-            //movies = MovieManager.getBestMoviesByAvgRating();
-        //}
-        movies = UserRatingManager.getBestMoviesFromUserRatings(recommendations);
-        changeView(movies);
     }
 
     /**
