@@ -16,7 +16,7 @@
             android:id="@+id/backToPostLogin"
             android:background="@mipmap/back_button"
             android:layout_marginLeft="10dp"
-            android:onClick="onBackButtonPressed"
+            android:onClick="onBackToHome"
             android:layout_gravity="right" />
 
         <Spinner

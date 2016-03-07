@@ -118,5 +118,12 @@ public class RecommendationActivity extends AppCompatActivity implements Adapter
         intent.putExtra("position", position);
         startActivity(intent);
     }
+
+    public void onBackToHome(View v){
+        Log.d("RECOMENDATION ACTIVITY", "Go to Home.");
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+    }
+
 }
 
