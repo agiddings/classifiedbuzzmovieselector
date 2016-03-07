@@ -79,7 +79,7 @@ public class MovieInformationActivity extends AppCompatActivity {
             User user = UserManager.getLoggedUser();
             String comment = ((TextView) findViewById(R.id.comment)).toString();
             RatingBar scoreR = (RatingBar) findViewById(R.id.ratingBar);
-            int score = scoreR.getNumStars();
+            float score = scoreR.getRating();
             UserRating r = new UserRating(comment, score, movie, user);
             UserRatingManager.addUserRating(r);
         } catch (Exception e) {

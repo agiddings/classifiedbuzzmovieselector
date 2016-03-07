@@ -253,7 +253,7 @@ public class UserRatingManager {
         Collections.sort(ratings, new Comparator<UserRating>() {
             @Override
             public int compare(UserRating lhs, UserRating rhs) {
-                return lhs.getScore() - rhs.getScore();
+                return ((int)lhs.getScore() - (int)rhs.getScore());
             }
         });
         return ratings;
@@ -276,7 +276,7 @@ public class UserRatingManager {
         Collections.sort(ratings, new Comparator<UserRating>() {
             @Override
             public int compare(UserRating lhs, UserRating rhs) {
-                return rhs.getScore() - lhs.getScore();
+                return (int)rhs.getScore() - (int)lhs.getScore();
             }
         });
         return ratings;
