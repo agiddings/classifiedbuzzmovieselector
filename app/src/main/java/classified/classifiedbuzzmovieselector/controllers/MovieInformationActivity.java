@@ -11,11 +11,14 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 
 import classified.classifiedbuzzmovieselector.R;
 import classified.classifiedbuzzmovieselector.model.Exceptions.MovieDoesNotExistException;
@@ -48,6 +51,10 @@ public class MovieInformationActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.movie_year)).setText(movie.getYear() + "");
         ((TextView) findViewById(R.id.critics_rating)).setText(mCriticsRating);
         ((TextView) findViewById(R.id.app_users_rating)).setText(mUserRating + "");
+
+        ArrayList<UserRating> listOfRatings = (ArrayList<UserRating>) UserRatingManager.getUserRatingsByMovie(movie);
+        ListView ratingList = (ListView) findViewById(R.id.ratingListView);
+        ratingList.setAdapter(new RatingAdapter(this,R.layout.rating_layout,R.id.ratingUsername, listOfRatings));
     }
 
     /**
@@ -82,6 +89,11 @@ public class MovieInformationActivity extends AppCompatActivity {
             float score = scoreR.getRating();
             UserRating r = new UserRating(comment, score, movie, user);
             UserRatingManager.addUserRating(r);
+
+            ArrayList<UserRating> listOfRatings = (ArrayList<UserRating>) UserRatingManager.getUserRatingsByMovie(movie);
+            ListView ratingList = (ListView) findViewById(R.id.ratingListView);
+            ratingList.setAdapter(new RatingAdapter(this, R.layout.rating_layout, R.id.ratingUsername, listOfRatings));
+
         } catch (Exception e) {
             CharSequence message;
             message = "Rating was unsuccessful. Please try again.";
