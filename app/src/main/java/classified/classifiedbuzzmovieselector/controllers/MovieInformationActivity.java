@@ -87,12 +87,14 @@ public class MovieInformationActivity extends AppCompatActivity {
             String comment = ((TextView) findViewById(R.id.comment)).toString();
             RatingBar scoreR = (RatingBar) findViewById(R.id.ratingBar);
             float score = scoreR.getRating();
-            UserRating r = new UserRating(comment, score, movie, user);
-            UserRatingManager.addUserRating(r);
+            if (user != null) {
+                UserRating r = new UserRating(comment, score, movie, user);
+                UserRatingManager.addUserRating(r);
 
-            ArrayList<UserRating> listOfRatings = (ArrayList<UserRating>) UserRatingManager.getUserRatingsByMovie(movie);
-            ListView ratingList = (ListView) findViewById(R.id.ratingListView);
-            ratingList.setAdapter(new RatingAdapter(this, R.layout.rating_layout, R.id.ratingUsername, listOfRatings));
+                ArrayList<UserRating> listOfRatings = (ArrayList<UserRating>) UserRatingManager.getUserRatingsByMovie(movie);
+                ListView ratingList = (ListView) findViewById(R.id.ratingListView);
+                ratingList.setAdapter(new RatingAdapter(this, R.layout.rating_layout, R.id.ratingUsername, listOfRatings));
+            }
 
         } catch (Exception e) {
             CharSequence message;
