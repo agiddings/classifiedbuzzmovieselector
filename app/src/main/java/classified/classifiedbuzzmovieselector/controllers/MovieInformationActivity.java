@@ -58,15 +58,6 @@ public class MovieInformationActivity extends AppCompatActivity {
     }
 
     /**
-     * This goes to see individual user ratings
-     * @param v The current view
-     */
-    public void onSeeRatingButtonPressed(View v) {
-        //TODO:
-        //Go display the individual ratings
-    }
-
-    /**
      * This goes back to the home page
      * @param v the current view
      */
@@ -84,7 +75,7 @@ public class MovieInformationActivity extends AppCompatActivity {
         Log.d("RATINGACTIVITY", "Rating button was pressed.");
         try {
             User user = UserManager.getLoggedUser();
-            String comment = ((TextView) findViewById(R.id.comment)).toString();
+            String comment = ((TextView) findViewById(R.id.comment)).getText().toString();
             RatingBar scoreR = (RatingBar) findViewById(R.id.ratingBar);
             float score = scoreR.getRating();
             if (user != null) {

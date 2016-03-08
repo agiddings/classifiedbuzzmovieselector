@@ -172,6 +172,7 @@ public class UserRatingManager {
 
     /**
      * Gets the list of user ratings for a user
+     * ALLIE CHANGED THIS TO GET IT FOR A SINGLE USER!!!!!!!!!!!!!!
      * @param user The user getting ratings for
      * @param ratingList The list of ratings
      * @return A list of user ratings
@@ -179,7 +180,7 @@ public class UserRatingManager {
     public static List<UserRating> getUserRatingsByFriends(User user, List<UserRating> ratingList) {
         List<UserRating> returnVal = new ArrayList<>();
         for (UserRating ur : userRatings) {
-            if (user.getFriends().contains(ur.getUser())) {
+            if (user.getName().equals(ur.getUser().getName())) {
                 returnVal.add(ur);
             }
         }

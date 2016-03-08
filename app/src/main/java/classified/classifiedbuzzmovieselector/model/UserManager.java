@@ -61,6 +61,15 @@ public class UserManager {
         return users.get(email);
     }
 
+    public static User findUserByName(String name) {
+        for (User u : users.values()) {
+            if (u.getName().equals(name)) {
+                return u;
+            }
+        }
+        return null;
+    }
+
     /*
      * register new user
      *
