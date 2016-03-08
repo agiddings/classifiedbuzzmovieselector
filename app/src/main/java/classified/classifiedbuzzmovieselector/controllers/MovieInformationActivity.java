@@ -38,6 +38,8 @@ public class MovieInformationActivity extends AppCompatActivity {
     private Movie movie;
     private double mUserRating;
     private String mCriticsRating;
+    private RatingAdapter myAdapter;
+    private ArrayList<UserRating> listOfRatings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +54,10 @@ public class MovieInformationActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.critics_rating)).setText(mCriticsRating);
         ((TextView) findViewById(R.id.app_users_rating)).setText(mUserRating + "");
 
-        ArrayList<UserRating> listOfRatings = (ArrayList<UserRating>) UserRatingManager.getUserRatingsByMovie(movie);
+        listOfRatings = (ArrayList<UserRating>) UserRatingManager.getUserRatingsByMovie(movie);
         ListView ratingList = (ListView) findViewById(R.id.ratingListView);
-        ratingList.setAdapter(new RatingAdapter(this,R.layout.rating_layout,R.id.ratingUsername, listOfRatings));
+        myAdapter = new RatingAdapter(this,R.layout.rating_layout,R.id.ratingUsername, listOfRatings);
+        ratingList.setAdapter(myAdapter);
     }
 
     /**
@@ -81,10 +84,12 @@ public class MovieInformationActivity extends AppCompatActivity {
             if (user != null) {
                 UserRating r = new UserRating(comment, score, movie, user);
                 UserRatingManager.addUserRating(r);
+                listOfRatings.add(r);
 
-                ArrayList<UserRating> listOfRatings = (ArrayList<UserRating>) UserRatingManager.getUserRatingsByMovie(movie);
-                ListView ratingList = (ListView) findViewById(R.id.ratingListView);
-                ratingList.setAdapter(new RatingAdapter(this, R.layout.rating_layout, R.id.ratingUsername, listOfRatings));
+                //ArrayList<UserRating> listOfRatings = (ArrayList<UserRating>) UserRatingManager.getUserRatingsByMovie(movie);
+                //ListView ratingList = (ListView) findViewById(R.id.ratingListView);
+                //ratingList.setAdapter(new RatingAdapter(this, R.layout.rating_layout, R.id.ratingUsername, listOfRatings));
+                myAdapter.notifyDataSetChanged();
             }
 
         } catch (Exception e) {
