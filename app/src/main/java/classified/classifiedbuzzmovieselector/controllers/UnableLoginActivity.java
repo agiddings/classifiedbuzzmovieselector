@@ -17,4 +17,8 @@ public class UnableLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.unable_to_login);
     }
+    public void onBackButtonPressed(View v) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
 }
