@@ -22,14 +22,6 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="See Ratings"
-                android:id="@+id/seeRating"
-                android:layout_gravity="center_horizontal"
-                android:onClick="onSeeRatingButtonPressed" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="Back"
                 android:id="@+id/button3"
                 android:layout_gravity="right"
