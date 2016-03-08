@@ -92,6 +92,7 @@ public class RecommendationActivity extends AppCompatActivity implements Adapter
      */
     private void changeView(List<Movie> listOfMovies) {
         Log.d("RECOMMENDATION ACTIVITY", "Going to display results.");
+        MovieManager.setMovies(listOfMovies);
         movieList.setAdapter(new MovieAdapter(this, R.layout.movie_layout, R.id.movieLayoutName, listOfMovies));
     }
 
