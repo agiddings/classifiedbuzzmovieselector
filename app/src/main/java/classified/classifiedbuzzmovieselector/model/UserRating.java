@@ -8,13 +8,13 @@ public class UserRating {
     private String comment;
     private float score;
     private Movie movie;
-    private User user;
+    private String userEmail;
 
     public UserRating (String comment, float score, Movie movie, User user) {
         this.comment = comment;
         this.score = score;
         this.movie = movie;
-        this.user = user;
+        this.userEmail = user.getEmail();
     }
 
     public String getComment() {
@@ -38,10 +38,10 @@ public class UserRating {
     }
 
     public User getUser() {
-        return user;
+        return UserManager.findUserByEmail(userEmail);
     }
 
     public boolean equals(UserRating ur) {
-        return user.equals(ur.user) && movie.equals(ur.movie);
+        return userEmail.equals(ur.userEmail) && movie.equals(ur.movie);
     }
 }
