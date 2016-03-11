@@ -6,11 +6,11 @@ package classified.classifiedbuzzmovieselector.model;
 public class UserRating {
 
     private String comment;
-    private int score;
+    private float score;
     private Movie movie;
     private String userEmail;
 
-    public UserRating (String comment, int score, Movie movie, User user) {
+    public UserRating (String comment, float score, Movie movie, User user) {
         this.comment = comment;
         this.score = score;
         this.movie = movie;
@@ -25,11 +25,11 @@ public class UserRating {
         this.comment = comment;
     }
 
-    public int getScore() {
+    public float getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(float score) {
         this.score = score;
     }
 

@@ -31,11 +31,11 @@ public class ProfileActivity extends AppCompatActivity{
         EditText major = (EditText) findViewById(R.id.newMajor);
         EditText info = (EditText) findViewById(R.id.newInfo);
 
-        name.setText(LoginActivity.getUser().getName());
-        email.setText(LoginActivity.getUser().getEmail());
+        name.setText(UserManager.getLoggedUser().getName());
+        email.setText(UserManager.getLoggedUser().getEmail());
         //password1.setText(LoginActivity.getUser().getPassword());
-        major.setText(LoginActivity.getUser().getMajor());
-        info.setText(LoginActivity.getUser().getInfo());
+        major.setText(UserManager.getLoggedUser().getMajor());
+        info.setText(UserManager.getLoggedUser().getInfo());
     }
 
 

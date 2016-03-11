@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="USER: John Smith"
-        android:id="@+id/textView12"
+        android:id="@+id/ratingUsername"
         android:textColor="#525252"
         android:textSize="15dp"
         android:layout_marginBottom="5dp" />
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="MAJOR: Architecture"
-        android:id="@+id/textView13"
+        android:id="@+id/ratingMajor"
         android:textColor="#525252"
         android:textSize="15dp"
         android:layout_marginBottom="5dp" />
@@ -28,7 +28,7 @@
     <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ratingBar2"
+        android:id="@+id/ratingRatingBar"
         android:layout_gravity="left"
         android:layout_marginBottom="5dp" />
 
@@ -37,6 +37,6 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="COMMENT"
-        android:id="@+id/textView18"
+        android:id="@+id/ratingComment"
         android:textSize="15dp" />
 </LinearLayout>

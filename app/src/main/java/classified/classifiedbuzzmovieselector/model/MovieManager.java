@@ -73,6 +73,10 @@ public class MovieManager {
         return movies;
     }
 
+    public static void setMovies(List<Movie> moviesNew) {
+        movies = moviesNew;
+    }
+
     /**
      * add a new movie to the movie list
      *

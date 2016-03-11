@@ -22,14 +22,6 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="See Ratings"
-                android:id="@+id/seeRating"
-                android:layout_gravity="center_horizontal"
-                android:onClick="onSeeRatingButtonPressed" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="Back"
                 android:id="@+id/button3"
                 android:layout_gravity="right"
@@ -49,15 +41,16 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/movie_title"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.09"
-            android:hint="movie title" />
+            android:hint="movie title"
+            android:text="movie name" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/movie_year"
-            android:hint="movie year" />
+            android:hint="movie year"
+            android:layout_gravity="center_horizontal" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -78,9 +71,10 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/critics_rating" />
+            android:id="@+id/critics_rating"
+            android:paddingLeft="5dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -102,9 +96,10 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/app_users_rating" />
+            android:id="@+id/app_users_rating"
+            android:paddingLeft="5dp" />
     </LinearLayout>
 
         <LinearLayout
@@ -157,7 +152,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/ratingListView"
-            android:layout_gravity="center_horizontal" />
+            android:nestedScrollingEnabled="false" />
 
     </LinearLayout>
 

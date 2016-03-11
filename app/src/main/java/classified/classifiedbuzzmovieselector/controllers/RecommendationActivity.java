@@ -20,9 +20,12 @@ import android.app.Activity;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.TextView;
 
 import classified.classifiedbuzzmovieselector.R;
 import classified.classifiedbuzzmovieselector.model.Movie;
+import classified.classifiedbuzzmovieselector.model.MovieManager;
+import classified.classifiedbuzzmovieselector.model.User;
 import classified.classifiedbuzzmovieselector.model.UserManager;
 import classified.classifiedbuzzmovieselector.model.UserRating;
 import classified.classifiedbuzzmovieselector.model.UserRatingManager;
@@ -59,48 +62,29 @@ public class RecommendationActivity extends AppCompatActivity implements Adapter
                                        int position, long id) {
                 Log.v("item", (String) parent.getItemAtPosition(position));
                 String major = (String) parent.getItemAtPosition(position);
-                List<UserRating> ratings = UserRatingManager.getUserRatingsByMajor(major);
-                List<Movie> movies = UserRatingManager.getBestMoviesFromUserRatings(ratings);
+                List<Movie> movies = MovieManager.getBestMoviesByMajor(major);
                 changeView(movies);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-               //do nothing
+                //do nothing
             }
         });
     }
 
-    /**
-     * This method will find the way the user wants to get their
-     * recommendations, and then get the recommendations, and
-     * then call changeview to display them to the user.
-     */
-    public void onGetRecommendationsButtonPressed(Object o) {
-        List<Movie> movies = new ArrayList<Movie>();
-        List<UserRating> recommendations = new ArrayList<UserRating>();
-        //if (user) {
-            //recommendations = UserRatingManager.getUserRatingsByUser(User );
-        //} else if (major) {
-            //recommendations = UserRatingManager.getUserRatingsByMajor(Major);
-        //} else if (best/worst) {
-            //movies = MovieManager.getBestMoviesByAvgRating();
-        //}
-        movies = UserRatingManager.getBestMoviesFromUserRatings(recommendations);
-        changeView(movies);
+    public void onUserRecommendButtonPressed(View view) {
+        Log.d("RECOMMENDATIONACITIVITY", "Button was pressed!");
+        String user = ((TextView) findViewById(R.id.user_recommendation)).getText().toString();
+        Log.d("RECOMMENDATION ACTIVITY", user);
+        User u = UserManager.findUserByName(user);
+        if (u != null) {
+            Log.d("RECOMMENDATION ACTIVITY", "Found a user!");
+            List<Movie> movies = MovieManager.getBestMoviesByFriendRating(u);
+            changeView(movies);
+        }
     }
 
-    /**
-     *
-     * Event when the cancel search button is pressed
-     *
-     * @param v The view, for recommendation activity
-     */
-    public void onCancelRecommendationButtonPressed(View v) {
-        Log.d("RECOMMENDATION ACTIVITY", "Cancel recommendation button was pressed.");
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-    }
 
     /**
      * Goes to the view to display the movies
@@ -108,6 +92,7 @@ public class RecommendationActivity extends AppCompatActivity implements Adapter
      */
     private void changeView(List<Movie> listOfMovies) {
         Log.d("RECOMMENDATION ACTIVITY", "Going to display results.");
+        MovieManager.setMovies(listOfMovies);
         movieList.setAdapter(new MovieAdapter(this, R.layout.movie_layout, R.id.movieLayoutName, listOfMovies));
     }
 
@@ -118,5 +103,16 @@ public class RecommendationActivity extends AppCompatActivity implements Adapter
         intent.putExtra("position", position);
         startActivity(intent);
     }
+
+    /**
+     * Goes back to home screen
+     * @param v The current view
+     */
+    public void onBackToHome(View v){
+        Log.d("RECOMENDATION ACTIVITY", "Go to Home.");
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+    }
+
 }
 

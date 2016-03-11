@@ -152,8 +152,10 @@ public class UserRatingManager {
     public static List<UserRating> getUserRatingsByMajor(String major, List<UserRating> ratingList) {
         List<UserRating> returnVal = new ArrayList<>();
         for (UserRating ur : ratingList) {
-            if (ur.getUser().getMajor().equals(major)) {
-                returnVal.add(ur);
+            if (ur.getUser().getMajor() != null) {
+                if (ur.getUser().getMajor().equals(major)) {
+                    returnVal.add(ur);
+                }
             }
         }
         return returnVal;
@@ -170,6 +172,7 @@ public class UserRatingManager {
 
     /**
      * Gets the list of user ratings for a user
+     * ALLIE CHANGED THIS TO GET IT FOR A SINGLE USER!!!!!!!!!!!!!!
      * @param user The user getting ratings for
      * @param ratingList The list of ratings
      * @return A list of user ratings
@@ -177,7 +180,7 @@ public class UserRatingManager {
     public static List<UserRating> getUserRatingsByFriends(User user, List<UserRating> ratingList) {
         List<UserRating> returnVal = new ArrayList<>();
         for (UserRating ur : userRatings) {
-            if (user.getFriends().contains(ur.getUser())) {
+            if (user.getName().equals(ur.getUser().getName())) {
                 returnVal.add(ur);
             }
         }
@@ -253,7 +256,7 @@ public class UserRatingManager {
         Collections.sort(ratings, new Comparator<UserRating>() {
             @Override
             public int compare(UserRating lhs, UserRating rhs) {
-                return lhs.getScore() - rhs.getScore();
+                return ((int)lhs.getScore() - (int)rhs.getScore());
             }
         });
         return ratings;
@@ -276,7 +279,7 @@ public class UserRatingManager {
         Collections.sort(ratings, new Comparator<UserRating>() {
             @Override
             public int compare(UserRating lhs, UserRating rhs) {
-                return rhs.getScore() - lhs.getScore();
+                return (int)rhs.getScore() - (int)lhs.getScore();
             }
         });
         return ratings;

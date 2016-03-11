@@ -4,6 +4,14 @@
     android:layout_height="match_parent"
     android:background="#dddee5"
     android:weightSum="1">
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/backToHome"
+        android:background="@mipmap/back_button"
+        android:layout_marginLeft="10dp"
+        android:layout_gravity="center_vertical"
+        android:onClick="onBackButtonPressed" />
 
     <TextView
         android:layout_width="match_parent"
