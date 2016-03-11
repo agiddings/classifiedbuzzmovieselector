@@ -125,7 +125,7 @@ public class Movie implements Serializable {
     }
 
     /**
-     * compare two movies to see if they are equal
+     * compare two movies to see if they are equal!
      *
      * @param movie movie compared against
      * @return  whether two movies are equal
