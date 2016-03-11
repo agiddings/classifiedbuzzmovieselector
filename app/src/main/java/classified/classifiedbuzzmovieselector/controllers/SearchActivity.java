@@ -169,7 +169,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
 
                         } catch(NullPointerException e){
                             Log.d("SEARCH ACTIVITY", "Null Error.");
-                        }catch(JSONException e) {
+                        } catch(JSONException e) {
                             Log.d("SEARCH ACTIVITY", "JSON Error.");
                         } catch (Exception e) {
                             Log.d("SEARCH ACTIVITY", "Error.");

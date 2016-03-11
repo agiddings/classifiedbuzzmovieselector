@@ -1,5 +1,7 @@
 package classified.classifiedbuzzmovieselector.model;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +18,7 @@ public class User {
     protected boolean isBanned;
     protected int failedAttempts;
     protected List<User> friends;
+    protected boolean isAdmin;
 
     //Add user info, major from profile section
 
@@ -29,9 +32,6 @@ public class User {
         this.name = name;
         this.email = email;
         this.password = password;
-        isLocked = false;
-        isBanned = false;
-        failedAttempts = 0;
         friends = new ArrayList<>();
     }
 
@@ -45,7 +45,12 @@ public class User {
             failedAttempts = 0;
             return true;
         } else {
-            isLocked = ++failedAttempts >= 5;
+            ++failedAttempts;
+            Log.d("USER", failedAttempts + "");
+            if (failedAttempts >= 5) {
+                this.isLocked = true;
+                Log.d("USER", "User is locked.");
+            }
             return false;
         }
     }

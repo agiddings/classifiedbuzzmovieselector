@@ -24,6 +24,7 @@ public class UserManager {
      */
     public UserManager() {
         User u1 = new User("u1", "u1@mail.com", "u1");
+        u1.isAdmin = true;
         User u2 = new User("u2", "u2@mail.com", "u2");
         User u3 = new User("u3", "u3@mail.com", "u3");
         u1.setMajor("Architecture");
@@ -152,7 +153,7 @@ public class UserManager {
         //if the email is recorded before
         if (users.containsKey(email)) {
             User user = users.get(email);
-            if (!user.isBanned() && !user.isLocked() && user.passwordMatched(pass)) {
+            if (user.passwordMatched(pass) && !user.isBanned() && !user.isLocked()) {
                 loggedUser = user;
                 return true;
             }
@@ -166,5 +167,42 @@ public class UserManager {
 
     public static void logOut() {
         loggedUser = null;
+    }
+
+    /**
+     *
+     * Unlock a specific user
+     *
+     * @param user the user to be unlocked
+     */
+    public void  unlockUser(User user) {
+        user.isLocked = false;
+    }
+
+    /**
+     *
+     * ban a specific user
+     *
+     * @param user the user to be banned
+     */
+    public void banUser(User user) {
+        user.isBanned = true;
+    }
+
+    /**
+     *
+     * unban a specific user
+     *
+     * @param user the user to be unbanned
+     */
+    public void unbanUser(User user) {
+        user.isBanned = false;
+    }
+
+    /**
+     * Makes a user an admin
+     */
+    public void makeAdmin(User user) {
+        user.isAdmin = true;
     }
 }

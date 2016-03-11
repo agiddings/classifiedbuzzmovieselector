@@ -9,7 +9,9 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import classified.classifiedbuzzmovieselector.model.Exceptions.MovieDoesNotExistException;
 
@@ -101,7 +103,8 @@ public class MovieManager {
      * @return a list of movies by the best average rating
      */
     public static List<Movie> getBestMoviesByAvgRating() {
-        List<Movie> bestMovies = movies;
+        Set<Movie> movieSet = new HashSet<Movie>(movies);
+        List<Movie> bestMovies = new ArrayList<Movie>(movieSet);
         Collections.sort(bestMovies, new Comparator<Movie>() {
             @Override
             public int compare(Movie lhs, Movie rhs) {
@@ -117,7 +120,8 @@ public class MovieManager {
      * @return a list of movies by the worst average rating
      */
     public static List<Movie> getWorstMoviesByAvgRating() {
-        List<Movie> worstMovies = movies;
+        Set<Movie> movieSet = new HashSet<Movie>(movies);
+        List<Movie> worstMovies = new ArrayList<Movie>(movieSet);
         Collections.sort(worstMovies, new Comparator<Movie>() {
             @Override
             public int compare(Movie lhs, Movie rhs) {

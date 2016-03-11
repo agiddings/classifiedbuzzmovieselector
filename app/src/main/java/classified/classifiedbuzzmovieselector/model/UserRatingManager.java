@@ -76,7 +76,7 @@ public class UserRatingManager {
 
         List<UserRating> returnVal = new ArrayList<>();
         for (UserRating ur : ratingList) {
-            if (ur.getUser() == user) {
+            if (ur.getUser() == user && ur.getScore() >= 3) {
                 returnVal.add(ur);
             }
         }
@@ -127,7 +127,7 @@ public class UserRatingManager {
     public static List<UserRating> getUserRatingsByMovie(Movie movie, List<UserRating> ratingList) {
         List<UserRating> returnVal = new ArrayList<>();
         for (UserRating ur : ratingList) {
-            if (ur.getMovie() == movie) {
+            if (ur.getMovie() == movie && ur.getScore() >= 3) {
                 returnVal.add(ur);
             }
         }
@@ -153,7 +153,7 @@ public class UserRatingManager {
         List<UserRating> returnVal = new ArrayList<>();
         for (UserRating ur : ratingList) {
             if (ur.getUser().getMajor() != null) {
-                if (ur.getUser().getMajor().equals(major)) {
+                if (ur.getUser().getMajor().equals(major) && ur.getScore() >= 3) {
                     returnVal.add(ur);
                 }
             }
@@ -180,7 +180,7 @@ public class UserRatingManager {
     public static List<UserRating> getUserRatingsByFriends(User user, List<UserRating> ratingList) {
         List<UserRating> returnVal = new ArrayList<>();
         for (UserRating ur : userRatings) {
-            if (user.getName().equals(ur.getUser().getName())) {
+            if (user.getName().equals(ur.getUser().getName()) && ur.getScore() >= 3) {
                 returnVal.add(ur);
             }
         }
@@ -200,12 +200,13 @@ public class UserRatingManager {
         Set<Movie> moviesSet = new HashSet<>();
         List<Movie> movies;
         for (UserRating rating : ratingList) {
-            moviesSet.add(rating.getMovie());
+            if (rating.getScore() >= 3) {
+                moviesSet.add(rating.getMovie());
+            }
         }
         for (Movie m : moviesSet) {
             m.setAvgRating(getAvgMovieUserRating(m));
         }
-
         movies = new ArrayList<>(moviesSet);
         Collections.sort(movies, new Comparator<Movie>() {
             @Override
