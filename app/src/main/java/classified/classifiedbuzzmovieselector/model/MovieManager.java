@@ -96,7 +96,7 @@ public class MovieManager {
      *
      * @return a list of movies by the best average rating
      */
-    public static List<Movie> getBestMoviesByAvgRating() {
+    public static List<Movie> sortBestMoviesByAvgRating() {
         List<Movie> bestMovies = movies;
         Collections.sort(bestMovies, new Comparator<Movie>() {
             @Override
@@ -112,7 +112,7 @@ public class MovieManager {
      *
      * @return a list of movies by the worst average rating
      */
-    public static List<Movie> getWorstMoviesByAvgRating() {
+    public static List<Movie> sortWorstMoviesByAvgRating() {
         List<Movie> worstMovies = movies;
         Collections.sort(worstMovies, new Comparator<Movie>() {
             @Override
@@ -121,6 +121,14 @@ public class MovieManager {
             }
         });
         return worstMovies;
+    }
+
+    public static List<Movie> getBestMoviesFromUserRatings() {
+        return UserRatingManager.getBestMoviesFromUserRatings();
+    }
+
+    public static List<Movie> getWorstMoviesFromUserRatings() {
+        return UserRatingManager.getWorstMoviesFromUserRatings();
     }
 
     /**
