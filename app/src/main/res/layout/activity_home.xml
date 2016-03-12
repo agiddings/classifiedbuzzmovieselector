@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:weightSum="1"
     android:background="#dddee5"
-    android:gravity="right">
+    android:gravity="right"
+    android:nestedScrollingEnabled="true">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -50,11 +51,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Successfully logged in! Welcome to classifiedbuzzmovieselector."
+        android:text="@string/welcome_message"
         android:id="@+id/textView"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.09"
-        android:textStyle="normal" />
+        android:textStyle="normal"
+        android:textAlignment="center" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
