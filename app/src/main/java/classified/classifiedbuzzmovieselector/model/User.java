@@ -170,4 +170,8 @@ public class User {
     public boolean equals(User user) {
         return email.equals(user.email);
     }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
 }

@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import classified.classifiedbuzzmovieselector.R;
+import classified.classifiedbuzzmovieselector.model.UserManager;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -13,6 +15,11 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        if(UserManager.getLoggedUser().isAdmin()){
+            Button b = (Button) findViewById(R.id.goToAdmin);
+            b.setVisibility(View.VISIBLE);
+        }
     }
 
 
@@ -50,6 +57,15 @@ public class HomeActivity extends AppCompatActivity {
      */
     public void onGoToSearchButtonClicked(View v) {
         Intent intent = new Intent(this, SearchActivity.class);
+        startActivity(intent);
+    }
+
+    /**
+     * Goes to Admin Activity
+     * @param v the current view
+     */
+    public void onAdminButtonClicked(View v) {
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 }

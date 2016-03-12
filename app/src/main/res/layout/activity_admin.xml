@@ -27,7 +27,7 @@
                 android:background="@mipmap/back_button"
                 android:layout_marginLeft="10dp"
                 android:layout_gravity="center_vertical"
-                android:onClick="onBackButtonPressed" />
+                android:onClick="goToHome" />
 
             <TextView
                 android:layout_width="wrap_content"

@@ -103,7 +103,7 @@ public class MovieManager {
      * @return a list of movies by the best average rating
      */
     public static List<Movie> sortBestMoviesByAvgRating() {
-        List<Movie> bestMovies = new ArrayList<Movie>(movieSet);
+        List<Movie> bestMovies = new ArrayList<Movie>();
         Collections.sort(bestMovies, new Comparator<Movie>() {
             @Override
             public int compare(Movie lhs, Movie rhs) {
