@@ -22,5 +22,5 @@
     <string name="title_activity_recommentation">RecommentationActivity</string>
     <string name="title_activity_recommendation">RecommendationActivity</string>
 
-    <string name="welcome_message">Successfully Logged in!\nWelcome To Classified's BuzzMovieSelector!</string>
+    <!--<string name="welcome_message">Successfully Logged in!\nWelcome To Classified's BuzzMovieSelector!</string>-->
 </resources>
