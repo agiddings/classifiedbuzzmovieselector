@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import android.app.Activity;
 
@@ -92,7 +93,9 @@ public class RecommendationActivity extends AppCompatActivity implements Adapter
      */
     private void changeView(List<Movie> listOfMovies) {
         Log.d("RECOMMENDATION ACTIVITY", "Going to display results.");
-        MovieManager.setMovies(listOfMovies);
+        HashSet<Movie> noDuplicates = new HashSet<Movie>(listOfMovies);
+        List<Movie> finalMovies = new ArrayList<Movie>(noDuplicates);
+        MovieManager.setMovies(finalMovies);
         movieList.setAdapter(new MovieAdapter(this, R.layout.movie_layout, R.id.movieLayoutName, listOfMovies));
     }
 

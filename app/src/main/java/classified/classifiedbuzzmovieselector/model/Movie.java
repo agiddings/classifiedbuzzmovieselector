@@ -132,8 +132,7 @@ public class Movie implements Serializable {
      *
      */
     public boolean equals(Movie movie) {
-        return this.title.equals(movie.title) && this.year == movie.year
-                && this.mpaa_rating.equals(movie.mpaa_rating) && this.runtime == movie.runtime;
+        return this.title.equals(movie.title) && this.year == movie.year;
     }
 
     /**
