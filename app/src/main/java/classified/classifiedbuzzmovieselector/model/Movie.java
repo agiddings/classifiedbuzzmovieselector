@@ -132,7 +132,7 @@ public class Movie implements Serializable {
      *
      */
     public boolean equals(Movie movie) {
-        return this.title.equals(movie.title) && this.year == movie.year;
+        return (this.title.equals(movie.title)) && (this.year == movie.year);
     }
 
     /**
