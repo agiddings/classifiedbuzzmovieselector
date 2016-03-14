@@ -47,7 +47,7 @@ public class User {
         } else {
             ++failedAttempts;
             Log.d("USER", failedAttempts + "");
-            if (failedAttempts >= 5) {
+            if (failedAttempts >= 3) {
                 this.isLocked = true;
                 Log.d("USER", "User is locked.");
             }
