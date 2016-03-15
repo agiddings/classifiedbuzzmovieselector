@@ -65,7 +65,7 @@ public class HomeActivity extends AppCompatActivity {
      * @param v the current view
      */
     public void onAdminButtonClicked(View v) {
-        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, AdminActivity.class);
         startActivity(intent);
     }
 }

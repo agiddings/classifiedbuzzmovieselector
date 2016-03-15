@@ -54,7 +54,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +75,9 @@ public class LoginActivity extends AppCompatActivity {
         if (manager.handleLoginRequest(emailBox.getText().toString(), passBox.getText().toString())) {
             Log.d("LoginActivity", "Login Successful");
             text = "Login Successful";
-            manager = new UserManager();
+            if(manager == null){
+                manager = new UserManager();
+            }
             user = manager.findUserByEmail(emailBox.getText().toString());
 
             //Goes to postlogin Screen
