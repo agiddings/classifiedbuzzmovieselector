@@ -22,34 +22,34 @@
             android:layout_height="wrap_content"
             android:id="@+id/Banned"
             android:checked="false"
+            android:onClick="bannedClickhandler"
+            android:layout_marginRight="41dp"
+            android:layout_marginEnd="41dp"
             android:layout_alignTop="@+id/username"
             android:layout_toLeftOf="@+id/Locked"
-            android:layout_toStartOf="@+id/Locked"
-            android:layout_marginRight="47dp"
-            android:layout_marginEnd="47dp"
-            android:onClick="bannedClickhandler"/>
+            android:layout_toStartOf="@+id/Locked" />
 
         <Switch
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/Locked"
-            android:layout_marginRight="41dp"
-            android:layout_marginEnd="41dp"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/Admin"
-            android:layout_toStartOf="@+id/Admin"
+            android:layout_marginRight="36dp"
+            android:layout_marginEnd="36dp"
 
             android:onClick="onLockedPressed"
-            android:checked="false" />
+            android:checked="false"
+            android:layout_alignTop="@+id/Admin"
+            android:layout_toLeftOf="@+id/Admin"
+            android:layout_toStartOf="@+id/Admin" />
         <Switch
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/Admin"
-            android:layout_marginRight="41dp"
-            android:layout_marginEnd="41dp"
+            android:layout_marginRight="21dp"
+            android:layout_marginEnd="21dp"
+            android:onClick="adminClickhandler"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:onClick="adminClickhandler"/>
+            android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
