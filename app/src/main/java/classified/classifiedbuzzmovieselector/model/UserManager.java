@@ -1,5 +1,6 @@
 package classified.classifiedbuzzmovieselector.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -211,5 +212,13 @@ public class UserManager {
      */
     public void unmakeAdmin(User user) {
         user.isAdmin = false;
+    }
+
+    /**
+     *
+     * @return list of users
+     */
+    public static ArrayList<User> getUsers(){
+        return new ArrayList<User>(users.values());
     }
 }
