@@ -44,6 +44,7 @@
             android:label="@string/title_activity_recommendation"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".controllers.AdminActivity"></activity>
+        <!--<activity android:name=".controllers.UserActivity"></activity>-->
     </application>
 
 </manifest>

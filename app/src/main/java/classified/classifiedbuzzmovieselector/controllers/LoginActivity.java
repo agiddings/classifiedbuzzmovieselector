@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
     private static User user;
 
     /**
-     * to access user form other classses
+     * to access user form other classes
      */
     protected static User getUser() {
         return user;
@@ -52,7 +52,6 @@ public class LoginActivity extends AppCompatActivity {
     protected static void setUser(User newUser) {
         user = newUser;
     }
-
 
 
     @Override
@@ -76,7 +75,9 @@ public class LoginActivity extends AppCompatActivity {
         if (manager.handleLoginRequest(emailBox.getText().toString(), passBox.getText().toString())) {
             Log.d("LoginActivity", "Login Successful");
             text = "Login Successful";
-            manager = new UserManager();
+            if(manager == null){
+                manager = new UserManager();
+            }
             user = manager.findUserByEmail(emailBox.getText().toString());
 
             //Goes to postlogin Screen

@@ -1,5 +1,6 @@
 package classified.classifiedbuzzmovieselector.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -175,17 +176,25 @@ public class UserManager {
      *
      * @param user the user to be unlocked
      */
-    public void  unlockUser(User user) {
+    public static void  unlockUser(User user) {
         user.isLocked = false;
     }
-
+    /**
+     *
+     * locks a specific user
+     *
+     * @param user the user to be locked
+     */
+    public static void  lockUser(User user) {
+        user.isLocked = true;
+    }
     /**
      *
      * ban a specific user
      *
      * @param user the user to be banned
      */
-    public void banUser(User user) {
+    public static void banUser(User user) {
         user.isBanned = true;
     }
 
@@ -195,14 +204,29 @@ public class UserManager {
      *
      * @param user the user to be unbanned
      */
-    public void unbanUser(User user) {
+    public static void unbanUser(User user) {
         user.isBanned = false;
     }
 
     /**
      * Makes a user an admin
      */
-    public void makeAdmin(User user) {
+    public static void makeAdmin(User user) {
         user.isAdmin = true;
+    }
+
+    /**
+     * Unmakes an Admin
+     */
+    public static void unmakeAdmin(User user) {
+        user.isAdmin = false;
+    }
+
+    /**
+     *
+     * @return list of users
+     */
+    public static ArrayList<User> getUsers(){
+        return new ArrayList<User>(users.values());
     }
 }
