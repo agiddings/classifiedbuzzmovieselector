@@ -40,7 +40,7 @@ public class AdminActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void adminClickhandler(View v){
+    public void adminClickHandler(View v){
         RelativeLayout vwParentRow = (RelativeLayout)v.getParent();
 
         TextView name = (TextView)vwParentRow.getChildAt(0);
@@ -53,7 +53,7 @@ public class AdminActivity extends AppCompatActivity {
         }
     }
 
-    public void lockedClickhandler(View v){
+    public void lockedClickHandler(View v){
         RelativeLayout vwParentRow = (RelativeLayout)v.getParent();
 
         TextView name = (TextView)vwParentRow.getChildAt(0);
@@ -67,7 +67,7 @@ public class AdminActivity extends AppCompatActivity {
 
     }
 
-    public void bannedClickhandler(View v){
+    public void bannedClickHandler(View v){
         RelativeLayout vwParentRow = (RelativeLayout)v.getParent();
 
         TextView name = (TextView)vwParentRow.getChildAt(0);
