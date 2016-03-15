@@ -94,7 +94,7 @@
             android:textColor="#1dabee"
             android:linksClickable="false"
             android:longClickable="false"
-            android:onClick="onRegistrationLinkPressed" />
+            android:onClick="onForgotPasswordLinkPressed" />
     </LinearLayout>
 
 </RelativeLayout>
