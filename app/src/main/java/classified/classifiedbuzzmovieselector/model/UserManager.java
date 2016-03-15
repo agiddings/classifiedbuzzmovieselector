@@ -205,4 +205,11 @@ public class UserManager {
     public void makeAdmin(User user) {
         user.isAdmin = true;
     }
+
+    /**
+     * Unmakes an Admin
+     */
+    public void unmakeAdmin(User user) {
+        user.isAdmin = false;
+    }
 }
