@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/Banned"
             android:checked="false"
-            android:onClick="bannedClickhandler"
+            android:onClick="bannedClickHandler"
             android:layout_marginRight="41dp"
             android:layout_marginEnd="41dp"
             android:layout_alignTop="@+id/username"
@@ -36,7 +36,7 @@
             android:layout_marginRight="36dp"
             android:layout_marginEnd="36dp"
 
-            android:onClick="onLockedPressed"
+            android:onClick="lockedClickHandler"
             android:checked="false"
             android:layout_alignTop="@+id/Admin"
             android:layout_toLeftOf="@+id/Admin"
@@ -47,7 +47,7 @@
             android:id="@+id/Admin"
             android:layout_marginRight="21dp"
             android:layout_marginEnd="21dp"
-            android:onClick="adminClickhandler"
+            android:onClick="adminClickHandler"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
