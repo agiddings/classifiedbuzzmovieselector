@@ -174,4 +174,5 @@ public class User {
     public boolean isAdmin() {
         return isAdmin;
     }
+
 }
