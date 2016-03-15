@@ -6,11 +6,15 @@ package classified.classifiedbuzzmovieselector.controllers;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import classified.classifiedbuzzmovieselector.model.User;
 
 
 import classified.classifiedbuzzmovieselector.R;
 public class UserActivity extends AppCompatActivity{
 
+    protected boolean isLocked;
+    protected boolean isBanned;
+    protected boolean isAdmin;
 
 
     @Override
@@ -19,10 +23,35 @@ public class UserActivity extends AppCompatActivity{
         setContentView(R.layout.user_layout);
     }
 
+    /**
+     * checks if the user account is locked
+     * @return a boolean representing whether or not the user account is locked
+     */
+    public boolean isLocked() {
+        return isLocked;
+    }
+
+    /**
+     * checks if the user account is banned
+     * @return a boolean representing whether or not the user account is locked
+     */
+    public boolean isBanned() {
+        return isBanned;
+    }
+
+    /**
+     * checks if the user account is an admin
+     * @return a boolean representing whether or not the user account is an admin
+     */
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    /**
+     * Controls the ban button
+     */
     public void onBannedPressed(View v){
         boolean set = false;
-        // temp var until fixed
-        boolean isBanned = false;
         while (set = false) {
             if (isBanned ) {
                 isBanned = false;
@@ -34,10 +63,12 @@ public class UserActivity extends AppCompatActivity{
             }
         }
     }
+
+    /**
+     * Controls the lock button
+     */
     public void onLockedPressed(View v){
         boolean set = false;
-        // temp var until fixed
-        boolean isLocked = false;
         while (set = false) {
             if (isLocked ) {
                 isLocked = false;
@@ -49,10 +80,12 @@ public class UserActivity extends AppCompatActivity{
             }
         }
     }
+
+    /**
+     * Controls the admin button
+     */
     public void onAdminPressed(View v){
         boolean set = false;
-        // temp var until fixed
-        boolean isAdmin = false;
         while (set = false) {
             if (isAdmin) {
                 isAdmin = false;

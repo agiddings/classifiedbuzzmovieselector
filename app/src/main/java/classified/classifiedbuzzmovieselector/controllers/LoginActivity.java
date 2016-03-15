@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
     private static User user;
 
     /**
-     * to access user form other classses
+     * to access user form other classes
      */
     protected static User getUser() {
         return user;
