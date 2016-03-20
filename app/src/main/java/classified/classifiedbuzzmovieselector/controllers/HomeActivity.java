@@ -15,7 +15,6 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
         if(UserManager.getLoggedUser().isAdmin()){
             Button b = (Button) findViewById(R.id.goToAdmin);
             b.setVisibility(View.VISIBLE);
@@ -24,7 +23,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
     /**
-     * Logouts user by switching to login screen
+     * Logs out a user by switching to login screen
      * @param v The current view
      */
     public void onLogoutButtonClicked(View v) {

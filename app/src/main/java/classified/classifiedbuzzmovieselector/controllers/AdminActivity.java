@@ -18,16 +18,16 @@ import classified.classifiedbuzzmovieselector.R;
 import classified.classifiedbuzzmovieselector.model.User;
 import classified.classifiedbuzzmovieselector.model.UserManager;
 
+//TODO: Javadocs for admin activity
+
 public class AdminActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-
         ListView userList = (ListView) findViewById(R.id.userListView);
         ArrayList<User> listOfUsers = UserManager.getUsers();
-
         userList.setAdapter(new UserAdapter(this, R.layout.user_layout, R.id.username, listOfUsers));
     }
 
@@ -42,40 +42,36 @@ public class AdminActivity extends AppCompatActivity {
 
     public void adminClickHandler(View v){
         RelativeLayout vwParentRow = (RelativeLayout)v.getParent();
-
         TextView name = (TextView)vwParentRow.getChildAt(0);
         Switch admin = (Switch)vwParentRow.getChildAt(3);
         boolean isAdmin = admin.isChecked();
-        if(isAdmin){
+        if (isAdmin) {
             UserManager.makeAdmin(UserManager.findUserByName(name.getText().toString()));
-        }else {
+        } else {
             UserManager.unmakeAdmin(UserManager.findUserByName(name.getText().toString()));
         }
     }
 
     public void lockedClickHandler(View v){
         RelativeLayout vwParentRow = (RelativeLayout)v.getParent();
-
         TextView name = (TextView)vwParentRow.getChildAt(0);
         Switch locked = (Switch)vwParentRow.getChildAt(2);
         boolean isLocked = locked.isChecked();
-        if(isLocked){
+        if (isLocked) {
             UserManager.lockUser(UserManager.findUserByName(name.getText().toString()));
-        }else {
+        } else {
             UserManager.unlockUser(UserManager.findUserByName(name.getText().toString()));
         }
-
     }
 
     public void bannedClickHandler(View v){
         RelativeLayout vwParentRow = (RelativeLayout)v.getParent();
-
         TextView name = (TextView)vwParentRow.getChildAt(0);
         Switch banned = (Switch)vwParentRow.getChildAt(1);
         boolean isBanned = banned.isChecked();
-        if(isBanned){
+        if (isBanned) {
             UserManager.banUser(UserManager.findUserByName(name.getText().toString()));
-        }else {
+        } else {
             UserManager.unbanUser(UserManager.findUserByName(name.getText().toString()));
         }
     }

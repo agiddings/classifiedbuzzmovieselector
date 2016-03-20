@@ -51,16 +51,10 @@ public class UserActivity extends AppCompatActivity{
      * Controls the ban button
      */
     public void onBannedPressed(View v){
-        boolean set = false;
-        while (set = false) {
-            if (isBanned ) {
-                isBanned = false;
-                set = true;
-            }
-            if (!isBanned) {
-                isBanned = true;
-                set = true;
-            }
+        if (!isBanned) {
+            isBanned = true;
+        } else {
+            isBanned = false;
         }
     }
 
@@ -68,34 +62,21 @@ public class UserActivity extends AppCompatActivity{
      * Controls the lock button
      */
     public void onLockedPressed(View v){
-        boolean set = false;
-        while (set = false) {
-            if (isLocked ) {
-                isLocked = false;
-                set = true;
-            }
-            if (!isLocked) {
-                isLocked = true;
-                set = true;
-            }
-        }
+       if (!isLocked) {
+           isLocked = true;
+       } else {
+           isLocked = false;
+       }
     }
 
     /**
      * Controls the admin button
      */
     public void onAdminPressed(View v){
-        boolean set = false;
-        while (set = false) {
-            if (isAdmin) {
-                isAdmin = false;
-                set = true;
-            }
-            if (!isAdmin) {
-                isAdmin = true;
-                set = true;
-            }
+        if (!isAdmin) {
+            isAdmin = true;
+        } else {
+            isAdmin = false;
         }
     }
-
 }

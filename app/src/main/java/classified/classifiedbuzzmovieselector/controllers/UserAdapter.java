@@ -35,6 +35,7 @@ import classified.classifiedbuzzmovieselector.model.User;
 
 /**
  * Created by coleb_000 on 2/23/2016.
+ * TODO: Javadoc
  */
 
 /**
@@ -47,28 +48,23 @@ public class UserAdapter extends ArrayAdapter<User> {
     public View getView(int position, View convertView, ViewGroup parent){
         View view = super.getView(position, convertView, parent);
         User user = (User)getItem(position);
-
         Boolean isAdmin = user.isAdmin();
         Boolean isLocked = user.isLocked();
         Boolean isBanned = user.isBanned();
-
         TextView name = (TextView) view.findViewById(R.id.username);
         Switch banned = (Switch) view.findViewById(R.id.Banned);
         Switch admin = (Switch) view.findViewById(R.id.Admin);
         Switch locked = (Switch) view.findViewById(R.id.Locked);
-
         name.setText(user.getName());
         admin.setChecked(isAdmin);
         banned.setChecked(isBanned);
         locked.setChecked(isLocked);
-
         return view;
     }
 
     public UserAdapter(Context context, int resource, int textViewResourceId, List<User> objects) {
         super(context, resource, textViewResourceId, objects);
     }
-
 
     @Override
     public boolean isEnabled(int position){

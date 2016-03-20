@@ -53,7 +53,6 @@ public class MovieInformationActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.movie_year)).setText(movie.getYear() + "");
         ((TextView) findViewById(R.id.critics_rating)).setText(mCriticsRating);
         ((TextView) findViewById(R.id.app_users_rating)).setText(mUserRating + "");
-
         listOfRatings = (ArrayList<UserRating>) UserRatingManager.getUserRatingsByMovie(movie);
         ListView ratingList = (ListView) findViewById(R.id.ratingListView);
         myAdapter = new RatingAdapter(this,R.layout.rating_layout,R.id.ratingUsername, listOfRatings);
@@ -65,7 +64,7 @@ public class MovieInformationActivity extends AppCompatActivity {
      * @param v the current view
      */
     public void onCancelMovieInformationButtonPressed(View v) {
-        Log.d("MOVIE INFORMATION", "Movie Information was cancelled.");
+        Log.d("MovieInfoActivity", "Movie Information was cancelled.");
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
@@ -75,7 +74,7 @@ public class MovieInformationActivity extends AppCompatActivity {
      * @param v The current view
      */
     public void onMovieRatingButtonPressed(View v) {
-        Log.d("RATINGACTIVITY", "Rating button was pressed.");
+        Log.d("MovieInfoActivity", "Rating button was pressed.");
         try {
             User user = UserManager.getLoggedUser();
             String comment = ((TextView) findViewById(R.id.comment)).getText().toString();
@@ -85,10 +84,6 @@ public class MovieInformationActivity extends AppCompatActivity {
                 UserRating r = new UserRating(comment, score, movie, user);
                 UserRatingManager.addUserRating(r);
                 listOfRatings.add(r);
-
-                //ArrayList<UserRating> listOfRatings = (ArrayList<UserRating>) UserRatingManager.getUserRatingsByMovie(movie);
-                //ListView ratingList = (ListView) findViewById(R.id.ratingListView);
-                //ratingList.setAdapter(new RatingAdapter(this, R.layout.rating_layout, R.id.ratingUsername, listOfRatings));
                 myAdapter.notifyDataSetChanged();
             }
 

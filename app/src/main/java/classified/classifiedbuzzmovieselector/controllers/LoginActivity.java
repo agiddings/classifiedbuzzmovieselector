@@ -16,9 +16,14 @@ import classified.classifiedbuzzmovieselector.model.UserManager;
 public class LoginActivity extends AppCompatActivity {
 
     /**
-     * Only one manager instance is created
+     * We used monostate - All data for user manager is static
      */
     private static UserManager manager = new UserManager();
+
+    /**
+     * So we know who the current user is
+     */
+    private static User user;
 
     /**
      * Make manager accessible to other classes
@@ -33,11 +38,6 @@ public class LoginActivity extends AppCompatActivity {
     protected static void setManager(UserManager usermanager) {
         manager = usermanager;
     }
-
-    /**
-     * So we know who the current user is
-     */
-    private static User user;
 
     /**
      * to access user form other classes
@@ -58,7 +58,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
     }
 
     /**
@@ -66,11 +65,10 @@ public class LoginActivity extends AppCompatActivity {
      * @param v The current view
      */
     public void onLoginButtonPressed(View v) {
-        Log.d("LOGIN ACTIVITY", "Login Button Pressed");
-        Log.d("LOGIN ACTIVITY", manager.toString());
+        Log.d("LoginActivity", "Login Button Pressed");
+        Log.d("LoginActivity", manager.toString());
         EditText emailBox = (EditText) findViewById(R.id.loginEmail);
         EditText passBox = (EditText) findViewById(R.id.loginPassword);
-
         CharSequence text;
         if (manager.handleLoginRequest(emailBox.getText().toString(), passBox.getText().toString())) {
             Log.d("LoginActivity", "Login Successful");
@@ -79,11 +77,8 @@ public class LoginActivity extends AppCompatActivity {
                 manager = new UserManager();
             }
             user = manager.findUserByEmail(emailBox.getText().toString());
-
-            //Goes to postlogin Screen
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
-
         } else {
             text = "Login Failed";
             Log.d("LoginActivity", "Login Failed");
@@ -99,9 +94,7 @@ public class LoginActivity extends AppCompatActivity {
      * @param v The current view seen by the user
      */
     public void onRegistrationLinkPressed(View v){
-        Log.d("LOGIN ACTIVITY", "Registration Link Pressed");
-
-        //Goes to registration page
+        Log.d("LoginActivity", "Registration Link Pressed");
         Intent intent = new Intent(this, RegistrationActivity.class);
         startActivity(intent);
     }
@@ -111,13 +104,10 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
-
     //Makes this the first screen that appears
     @Override
     public void onStart() {
         super.onStart();
-
     }
 
     @Override
@@ -130,6 +120,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onPause();
         Log.d("**MYAPP**", "Pausing the opening screen");
     }
+
     @Override
     public void onResume() {
         super.onResume();
