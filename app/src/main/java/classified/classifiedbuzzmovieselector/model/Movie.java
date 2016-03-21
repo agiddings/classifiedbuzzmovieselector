@@ -120,6 +120,9 @@ public class Movie implements Serializable {
         return poster;
     }
 
+    /**
+     * @return An int representing the average rating of the movie
+     */
     public int getAudienceScore() {
         return ratings.audience_score;
     }
@@ -143,13 +146,12 @@ public class Movie implements Serializable {
     }
 
     private class Rating {
+
         private int audience_score;
 
         public Rating(int audience_score) {
             audience_score = audience_score;
         }
-
-
     }
 
 }
