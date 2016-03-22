@@ -21,13 +21,19 @@ import classified.classifiedbuzzmovieselector.model.Movie;
 
 /**
  * MovieAdapter is the controller for displaying the search results
- * TODO: Javadocs for methods.
  */
 public class MovieAdapter extends ArrayAdapter<Movie> {
 
     //The list of movies to display
     private List<Movie> movieList;
 
+    /**
+     * This method sets the view for the list of movies
+     * @param position The position of a movie in the list
+     * @param convertView The convertView
+     * @param parent The parent view that has the list of movies
+     * @return The view with the movie
+     */
     public View getView(int position, View convertView, ViewGroup parent){
         View view = super.getView(position, convertView, parent);
         Movie movie = (Movie)getItem(position);
@@ -40,6 +46,13 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
         return view;
     }
 
+    /**
+     * This method sets up the list of movies in the view
+     * @param context The context of the list of movies
+     * @param resource The number of movies
+     * @param textViewResourceId The textviewresourceid
+     * @param objects The list of movie objects to put in the view
+     */
     public MovieAdapter(Context context, int resource, int textViewResourceId, List<Movie> objects) {
         super(context, resource, textViewResourceId, objects);
     }

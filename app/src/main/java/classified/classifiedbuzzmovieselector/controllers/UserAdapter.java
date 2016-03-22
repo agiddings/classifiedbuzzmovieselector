@@ -35,16 +35,19 @@ import classified.classifiedbuzzmovieselector.model.User;
 
 /**
  * Created by coleb_000 on 2/23/2016.
- * TODO: Javadoc
- */
-
-/**
  * MovieAdapter is the controller for displaying the search results
  */
 public class UserAdapter extends ArrayAdapter<User> {
     //The list of movies to display
     private List<User> userList;
 
+    /**
+     * This method sets the view for the list of users
+     * @param position The position of a users in the list
+     * @param convertView The convertView
+     * @param parent The parent view that has the list of users
+     * @return The view with the users
+     */
     public View getView(int position, View convertView, ViewGroup parent){
         View view = super.getView(position, convertView, parent);
         User user = (User)getItem(position);
@@ -62,6 +65,13 @@ public class UserAdapter extends ArrayAdapter<User> {
         return view;
     }
 
+    /**
+     * This method sets up the list of users in the view
+     * @param context The context of the list of users
+     * @param resource The number of users
+     * @param textViewResourceId The textviewresourceid
+     * @param objects The list of user objects to put in the view
+     */
     public UserAdapter(Context context, int resource, int textViewResourceId, List<User> objects) {
         super(context, resource, textViewResourceId, objects);
     }

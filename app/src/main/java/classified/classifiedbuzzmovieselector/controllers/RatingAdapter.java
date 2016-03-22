@@ -15,10 +15,16 @@ import classified.classifiedbuzzmovieselector.model.UserRating;
 
 /**
  * Created by coleb_000 on 3/6/2016.
- * TODO: Javadocs
  */
 public class RatingAdapter extends ArrayAdapter<UserRating> {
 
+    /**
+     * This method sets the view for the list of ratings
+     * @param position The position of a rating in the list
+     * @param convertView The convertView
+     * @param parent The parent view that has the list of ratings
+     * @return The view with the rating
+     */
     public View getView(int position, View convertView, ViewGroup parent){
         View view = super.getView(position, convertView, parent);
         UserRating rating = getItem(position);
@@ -33,6 +39,13 @@ public class RatingAdapter extends ArrayAdapter<UserRating> {
         return view;
     }
 
+    /**
+     * This method sets up the list of ratings in the view
+     * @param context The context of the list of ratings
+     * @param resource The number of ratings
+     * @param textViewResourceId The textviewresourceid
+     * @param objects The list of rating objects to put in the view
+     */
     public RatingAdapter(Context context, int resource, int textViewResourceId, List<UserRating> objects) {
         super(context, resource, textViewResourceId, objects);
     }

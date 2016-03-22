@@ -18,8 +18,6 @@ import classified.classifiedbuzzmovieselector.R;
 import classified.classifiedbuzzmovieselector.model.User;
 import classified.classifiedbuzzmovieselector.model.UserManager;
 
-//TODO: Javadocs for admin activity
-
 public class AdminActivity extends AppCompatActivity {
 
     @Override
@@ -40,6 +38,11 @@ public class AdminActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * This method makes the user clicked an admin, or unmakes them
+     * if they were previously an admin
+     * @param v The current view: AdminActivity
+     */
     public void adminClickHandler(View v){
         RelativeLayout vwParentRow = (RelativeLayout)v.getParent();
         TextView name = (TextView)vwParentRow.getChildAt(0);
@@ -52,6 +55,11 @@ public class AdminActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * This method locks or unlocks a user depending on their previous
+     * status as unlocked or locked
+     * @param v The current view: AdminActivity
+     */
     public void lockedClickHandler(View v){
         RelativeLayout vwParentRow = (RelativeLayout)v.getParent();
         TextView name = (TextView)vwParentRow.getChildAt(0);
@@ -64,6 +72,11 @@ public class AdminActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * This method bans or unbans a user depending on if they were
+     * previously banned or unbanned.
+     * @param v The current view, AdminActivity
+     */
     public void bannedClickHandler(View v){
         RelativeLayout vwParentRow = (RelativeLayout)v.getParent();
         TextView name = (TextView)vwParentRow.getChildAt(0);
