@@ -9,16 +9,22 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
+
+import java.net.MalformedURLException;
+
 import classified.classifiedbuzzmovieselector.R;
 import classified.classifiedbuzzmovieselector.model.User;
 import classified.classifiedbuzzmovieselector.model.UserManager;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private MobileServiceClient mClient;
+
     /**
      * We used monostate - All data for user manager is static
      */
-    private static UserManager manager = new UserManager();
+    private static UserManager manager;
 
     /**
      * So we know who the current user is
@@ -58,6 +64,17 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        try {
+            Log.d("LOGIN ACTIVITY", "before");
+            mClient = new MobileServiceClient(
+                    "http://classifiedmservice20160327040110.azurewebsites.net", this
+            );
+            manager = new UserManager(mClient);
+            Log.d("LOGIN ACTIVITY", "after");
+        } catch (MalformedURLException e) {
+            Log.d("LOGIN_ACTIVITY", "Bad URL: Failed to connect to mobile service");
+            manager = new UserManager();
+        }
     }
 
     /**

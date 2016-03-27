@@ -1,7 +1,13 @@
 package classified.classifiedbuzzmovieselector.model;
 
+import android.util.Log;
+
+import com.google.gson.Gson;
+import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidEmailException;
@@ -16,6 +22,7 @@ import classified.classifiedbuzzmovieselector.model.Exceptions.UserDoesNotExistE
 public class UserManager {
     private static final Map<String, User> users = new HashMap<>();
     private static User loggedUser;
+    private static DbInterfacer dbInterfacer;
     //For profile class, add a remove user and/or edit user method
 
     /*
@@ -23,8 +30,20 @@ public class UserManager {
      * also creates temporary user for testing
      *
      */
-    public UserManager() {
-        User u1 = new User("u1", "u1@mail.com", "u1");
+    public UserManager(MobileServiceClient mobileServiceClient) {
+        Log.d("LOGIN ACTIVITY", "UserManager");
+        this.dbInterfacer = new DbInterfacer(mobileServiceClient, "Users");
+        Gson gson = new Gson();
+        Log.d("LOGIN ACTIVITY", "before pull users");
+        List<DbInterfacer.TodoItem> userJson = dbInterfacer.pull();
+        if (userJson != null) {
+            for (DbInterfacer.TodoItem todoItem : userJson) {
+                Log.d("LOGIN ACTIVITY", "User Manager loop");
+                User u = gson.fromJson(todoItem.getData(), User.class);
+                users.put(u.getEmail(), u);
+            }
+        }
+        /*User u1 = new User("u1", "u1@mail.com", "u1");
         u1.isAdmin = true;
         User u2 = new User("u2", "u2@mail.com", "u2");
         User u3 = new User("u3", "u3@mail.com", "u3");
@@ -49,8 +68,10 @@ public class UserManager {
         UserRatingManager.addUserRating(new UserRating("wow2!", 5, m1, u2));
         UserRatingManager.addUserRating(new UserRating("wow2!", 5, m2, u2));
         UserRatingManager.addUserRating(new UserRating("wow3!", 1, m1, u3));
-        UserRatingManager.addUserRating(new UserRating("wow3!", 1, m2, u3));
+        UserRatingManager.addUserRating(new UserRating("wow3!", 1, m2, u3));*/
     }
+
+    public UserManager(){}
 
     /*
      * find user by email address
@@ -94,6 +115,9 @@ public class UserManager {
         User user = new User(name, email, password);
         users.put(email, user);
         loggedUser = user;
+        if (dbInterfacer != null) {
+            dbInterfacer.addUser(user);
+        }
     }
 
 
@@ -138,6 +162,9 @@ public class UserManager {
             toUpdate.setEmail(newEmail);
             users.remove(currentEmail);
             users.put(newEmail, toUpdate);
+            if (dbInterfacer != null) {
+                dbInterfacer.updateUser(toUpdate);
+            }
         }
     }
 
@@ -178,6 +205,9 @@ public class UserManager {
      */
     public static void  unlockUser(User user) {
         user.isLocked = false;
+        if (dbInterfacer != null) {
+            dbInterfacer.updateUser(user);
+        }
     }
     /**
      *
@@ -187,6 +217,9 @@ public class UserManager {
      */
     public static void  lockUser(User user) {
         user.isLocked = true;
+        if (dbInterfacer != null) {
+            dbInterfacer.updateUser(user);
+        }
     }
     /**
      *
@@ -196,6 +229,9 @@ public class UserManager {
      */
     public static void banUser(User user) {
         user.isBanned = true;
+        if (dbInterfacer != null) {
+            dbInterfacer.updateUser(user);
+        }
     }
 
     /**
@@ -206,6 +242,9 @@ public class UserManager {
      */
     public static void unbanUser(User user) {
         user.isBanned = false;
+        if (dbInterfacer != null) {
+            dbInterfacer.updateUser(user);
+        }
     }
 
     /**
@@ -213,6 +252,9 @@ public class UserManager {
      */
     public static void makeAdmin(User user) {
         user.isAdmin = true;
+        if (dbInterfacer != null) {
+            dbInterfacer.updateUser(user);
+        }
     }
 
     /**
@@ -220,6 +262,9 @@ public class UserManager {
      */
     public static void unmakeAdmin(User user) {
         user.isAdmin = false;
+        if (dbInterfacer != null) {
+            dbInterfacer.updateUser(user);
+        }
     }
 
     /**

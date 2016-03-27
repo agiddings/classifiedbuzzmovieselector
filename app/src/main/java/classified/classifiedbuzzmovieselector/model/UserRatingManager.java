@@ -2,6 +2,9 @@ package classified.classifiedbuzzmovieselector.model;
 
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -20,12 +23,24 @@ public class UserRatingManager {
      * This is the list of userRatings
      */
     private static final List<UserRating> userRatings = new ArrayList<>();
+    private static DbInterfacer dbInterfacer;
 
     /**
      * Everything is static so it's not instantiated
      */
-    public UserRatingManager() {
+    public UserRatingManager(MobileServiceClient mobileServiceClient) {
+        this.dbInterfacer = new DbInterfacer(mobileServiceClient, "Ratings");
+        Gson gson = new Gson();
+        List<DbInterfacer.TodoItem> userRatingJson = dbInterfacer.pull();
+        if (userRatingJson != null) {
+            for (DbInterfacer.TodoItem todoItem : userRatingJson) {
+                UserRating ur = gson.fromJson(todoItem.getData(), UserRating.class);
+                userRatings.add(ur);
+            }
+        }
     }
+
+    public UserRatingManager() {}
 
     /**
      * This is a getter
@@ -43,9 +58,14 @@ public class UserRatingManager {
         int index = userRatings.indexOf(ur);
         if (index < 0) {
             userRatings.add(ur);
-        } else {
+            if (dbInterfacer != null) {
+                dbInterfacer.updateRating(ur);
+            }        } else {
             userRatings.get(index).setComment(ur.getComment());
             userRatings.get(index).setScore(ur.getScore());
+            if (dbInterfacer != null) {
+                dbInterfacer.addRating(ur);
+            }
         }
         try {
             MovieManager.getMovie(ur.getMovie()).setAvgRating(getAvgMovieUserRating(ur.getMovie()));
@@ -56,6 +76,21 @@ public class UserRatingManager {
             Log.e("USER_RATING_MANAGER", "YELL AT STEVE");
         }
     }
+
+    /* May Be Unnecessary
+    public static void updateUserRatingComment (UserRating userRating, String comment) {
+        userRating.setComment(comment);
+        if (dbInterfacer != null) {
+            dbInterfacer.updateRating(userRating);
+        }
+    }
+
+    public static void updateUserRatingComment (UserRating userRating, float score) {
+        userRating.setScore(score);
+        if (dbInterfacer != null) {
+            dbInterfacer.updateRating(userRating);
+        }
+    }*/
 
     /**
      * This method gets all the user ratings of a specific user

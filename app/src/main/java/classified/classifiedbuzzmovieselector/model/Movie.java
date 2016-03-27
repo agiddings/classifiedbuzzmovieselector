@@ -1,5 +1,7 @@
 package classified.classifiedbuzzmovieselector.model;
 
+import com.google.gson.Gson;
+
 import java.io.Serializable;
 
 /**
@@ -153,5 +155,4 @@ public class Movie implements Serializable {
             audience_score = audience_score;
         }
     }
-
 }
