@@ -9,6 +9,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import classified.classifiedbuzzmovieselector.R;
 import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidEmailException;
 import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidNameException;
@@ -81,6 +87,21 @@ public class RegistrationActivity extends AppCompatActivity {
                 Toast output = Toast.makeText(context, message, duration);
                 output.show();
             }
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Gson gson = new Gson();
+        UserManager userManager = new UserManager();
+        String json = gson.toJson(userManager.getAllUsers());
+        try {
+            FileOutputStream fos = openFileOutput("users.txt", Context.MODE_PRIVATE);
+            fos.write(json.getBytes());
+            fos.close();
+        } catch (IOException e) {
+            Log.d("REGISTRATION ACTIVITY", e.toString());
         }
     }
 }

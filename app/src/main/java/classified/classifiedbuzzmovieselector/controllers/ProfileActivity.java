@@ -9,6 +9,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import classified.classifiedbuzzmovieselector.R;
 import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidEmailException;
 import classified.classifiedbuzzmovieselector.model.Exceptions.UserDoesNotExistException;
@@ -90,6 +95,17 @@ public class ProfileActivity extends AppCompatActivity{
                     int duration = Toast.LENGTH_SHORT;
                     Toast output = Toast.makeText(context, e.getMessage(), duration);
                     output.show();
+                }
+                //update storage
+                Gson gson = new Gson();
+                UserManager userManager = new UserManager();
+                String json = gson.toJson(userManager.getAllUsers());
+                try {
+                    FileOutputStream fos = openFileOutput("users.txt", Context.MODE_PRIVATE);
+                    fos.write(json.getBytes());
+                    fos.close();
+                } catch (IOException e) {
+                    Log.d("REGISTRATION ACTIVITY", e.toString());
                 }
                 message = "Profile update succeeded.";
                 Intent intent = new Intent(this, HomeActivity.class);
