@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import classified.classifiedbuzzmovieselector.R;
 import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidEmailException;
+import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidMajorException;
 import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidNameException;
 import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidPasswordException;
 import classified.classifiedbuzzmovieselector.model.Exceptions.UserAlreadyExistsException;
@@ -16,6 +18,13 @@ import classified.classifiedbuzzmovieselector.model.Exceptions.UserDoesNotExistE
 public class UserManager {
     private static final Map<String, User> users = new HashMap<>();
     private static User loggedUser;
+    private static String[] majorsArray = {"Architecture", "Industrial Design", "Computational Media", "Computer Science",
+        "Aerospace Engineering", "Biomedical Engineering", "Chem and Biomolecular", "Civil Engineering", "Computer Engineering",
+        "Computer Science", "Electrical Engineering", "Environmental Engineering", "Industrial Engineering", "MSE",
+        "Mechanical Engineering", "Nuclear Engineering", "Applied Mathematics", "Applied Physics", "Biochemistry", "Biology",
+        "Chemistry", "Discrete Mathematics", "EAS", "Physics", "Psychology", "ALIS", "Economics", "Economics and International Affairs",
+        "Global Economics and Modern Languages", "HTS", "International Affairs and Modern Languages", "LMC", "Public Policy",
+        "Business Administration"};
     //For profile class, add a remove user and/or edit user method
 
     /*
@@ -109,7 +118,7 @@ public class UserManager {
      *
      */
     public static void updateUser(String currentEmail, String name, String newEmail, String password, String major, String info)
-    throws UserDoesNotExistException, InvalidEmailException {
+    throws UserDoesNotExistException, InvalidEmailException, InvalidMajorException {
         if (!users.containsKey(currentEmail)) {
             throw new UserDoesNotExistException("User does not exist");
         }
@@ -121,7 +130,16 @@ public class UserManager {
             toUpdate.setPassword(password);
         }
         if (major != null && major.length() != 0) {
-            toUpdate.setMajor(major);
+            Boolean foundMajor = false;
+            for (int i = 0; i < majorsArray.length; i++) {
+                if (majorsArray[i].equals(major)) {
+                    toUpdate.setMajor(major);
+                    foundMajor = true;
+                }
+            }
+            if (!foundMajor) {
+                throw new InvalidMajorException("That major doesn't exist.");
+            }
         }
         if (info != null && info.length() != 0) {
             toUpdate.setInfo(info);

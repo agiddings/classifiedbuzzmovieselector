@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import classified.classifiedbuzzmovieselector.R;
 import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidEmailException;
+import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidMajorException;
 import classified.classifiedbuzzmovieselector.model.Exceptions.UserDoesNotExistException;
 import classified.classifiedbuzzmovieselector.model.UserManager;
 
@@ -67,7 +68,7 @@ public class ProfileActivity extends AppCompatActivity{
             if (LoginActivity.getManager() == null) {
                 LoginActivity.setManager(new UserManager());
             } else {
-                if (!(password1.getText().toString().equals(password2.getText().toString()))) {
+                if (!(password1.getText().toString().equals(password2.getText().toString())) || password1.getText().equals("")) {
                     message = "Update failed: Passwords did not match.";
                     Context context = getApplicationContext();
                     int duration = Toast.LENGTH_SHORT;
@@ -79,13 +80,17 @@ public class ProfileActivity extends AppCompatActivity{
                     um.updateUser(LoginActivity.getUser().getEmail(), name.getText().toString(),
                             email.getText().toString(), password1.getText().toString(),
                             major.getText().toString(), info.getText().toString());
-
                 } catch(UserDoesNotExistException e) {
                     Context context = getApplicationContext();
                     int duration = Toast.LENGTH_SHORT;
                     Toast output = Toast.makeText(context, e.getMessage(), duration);
                     output.show();
                 } catch(InvalidEmailException e) {
+                    Context context = getApplicationContext();
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast output = Toast.makeText(context, e.getMessage(), duration);
+                    output.show();
+                } catch(InvalidMajorException e) {
                     Context context = getApplicationContext();
                     int duration = Toast.LENGTH_SHORT;
                     Toast output = Toast.makeText(context, e.getMessage(), duration);

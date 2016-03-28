@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:text="New user? Click here to Register!"
             android:id="@+id/registrationText"
-            android:textSize="15dp"
+            android:textSize="30dp"
             android:textColor="#1dabee"
             android:linksClickable="false"
             android:longClickable="false"
