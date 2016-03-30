@@ -2,12 +2,59 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#dddee5">
+    android:background="#fcfcfc">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></LinearLayout>
+    <ImageView android:id="@+id/splashscreen"
+        android:layout_width="700px"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/signup_buddy"
+        android:layout_gravity="center"
+        android:layout_marginTop="30px"
+        />
+
+    <EditText
+        android:layout_width="770px"
+        android:layout_height="wrap_content"
+        android:id="@+id/editName"
+        android:layout_gravity="center_horizontal"
+        android:hint="name"
+        android:layout_marginTop="20px" />
+
+    <EditText
+        android:layout_width="770px"
+        android:layout_height="wrap_content"
+        android:id="@+id/editEmail"
+        android:layout_gravity="center_horizontal"
+        android:hint="email address"
+        android:layout_marginTop="50px" />
+
+    <EditText
+        android:layout_width="770px"
+        android:layout_height="wrap_content"
+        android:id="@+id/editPassword1"
+        android:layout_gravity="center_horizontal"
+        android:hint="password"
+        android:layout_marginTop="50px" />
+
+    <EditText
+        android:layout_width="770px"
+        android:layout_height="wrap_content"
+        android:id="@+id/editPassword2"
+        android:layout_gravity="center_horizontal"
+        android:hint="confirm password"
+        android:layout_marginTop="50px" />
+
+    <Button
+        android:layout_width="770px"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:id="@+id/Register"
+        android:layout_gravity="center_horizontal"
+        android:onClick="onRegisterButtonPressed"
+        android:layout_marginTop="50px"
+        android:background="#FA9B16"
+        android:textColor="#fff"
+        android:textSize="50px" />
 
     <Button
         android:layout_width="wrap_content"
@@ -17,68 +64,4 @@
         android:layout_gravity="right"
         android:onClick="onCancelRegistrationButtonPressed"
         android:background="#dddee5" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Name:"
-        android:id="@+id/textView2" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editName" />
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"></LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="E-mail:"
-        android:id="@+id/textView5" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editEmail" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Enter Password:"
-        android:id="@+id/textView3" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editPassword1"
-        android:layout_gravity="center_horizontal" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Confirm Password:"
-        android:id="@+id/textView4" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editPassword2"
-        android:layout_gravity="center_horizontal" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Register"
-        android:id="@+id/Register"
-        android:layout_gravity="center_horizontal"
-        android:onClick="onRegisterButtonPressed" />
 </LinearLayout>

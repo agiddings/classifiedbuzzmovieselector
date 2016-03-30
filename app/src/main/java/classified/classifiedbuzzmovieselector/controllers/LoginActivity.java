@@ -89,6 +89,7 @@ public class LoginActivity extends AppCompatActivity {
         } catch (IOException e) {
             ratingManager = new UserRatingManager();
         }
+        getSupportActionBar().setTitle("Login");
     }
 
     /**

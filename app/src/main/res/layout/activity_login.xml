@@ -52,6 +52,7 @@
             android:onClick="onLoginButtonPressed"
             android:background="#FA9B16"
             android:textColor="#fff"
+            android:textSize="40px"
             android:layout_marginTop="50px" />
 
         <TextView
