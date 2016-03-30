@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">classifiedbuzzmovieselector</string>
+    <string name="app_name">Classifed</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -19,4 +19,8 @@
     <string name="title_activity_item_detail">ItemDetailActivity</string>
     <string name="title_activity_rating">Rating</string>
     <string name="title_activity_movie_information">MovieInformationActivity</string>
+    <string name="title_activity_recommentation">RecommentationActivity</string>
+    <string name="title_activity_recommendation">RecommendationActivity</string>
+
+    <!--<string name="welcome_message">Successfully Logged in!\nWelcome To Classified's BuzzMovieSelector!</string>-->
 </resources>

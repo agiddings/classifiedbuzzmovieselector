@@ -11,11 +11,14 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 
 import classified.classifiedbuzzmovieselector.R;
 import classified.classifiedbuzzmovieselector.model.Exceptions.MovieDoesNotExistException;
@@ -35,6 +38,8 @@ public class MovieInformationActivity extends AppCompatActivity {
     private Movie movie;
     private double mUserRating;
     private String mCriticsRating;
+    private RatingAdapter myAdapter;
+    private ArrayList<UserRating> listOfRatings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,15 +49,23 @@ public class MovieInformationActivity extends AppCompatActivity {
         movie = MovieManager.getMovies().get(position);
         mUserRating = UserRatingManager.getAvgMovieUserRating(movie);
         mCriticsRating = movie.getMpaa_rating();
-        ((TextView)findViewById(R.id.movie_title)).setText(movie.getTitle());
-        ((TextView)findViewById(R.id.movie_year)).setText(movie.getYear() + "");
-        ((TextView)findViewById(R.id.critics_rating)).setText(mCriticsRating);
-        ((TextView)findViewById(R.id.app_users_rating)).setText(mUserRating + "");
+        ((TextView) findViewById(R.id.movie_title)).setText(movie.getTitle());
+        ((TextView) findViewById(R.id.movie_year)).setText(movie.getYear() + "");
+        ((TextView) findViewById(R.id.critics_rating)).setText(mCriticsRating);
+        ((TextView) findViewById(R.id.app_users_rating)).setText(mUserRating + "");
+        listOfRatings = (ArrayList<UserRating>) UserRatingManager.getUserRatingsByMovie(movie);
+        ListView ratingList = (ListView) findViewById(R.id.ratingListView);
+        myAdapter = new RatingAdapter(this,R.layout.rating_layout,R.id.ratingUsername, listOfRatings);
+        ratingList.setAdapter(myAdapter);
     }
 
+    /**
+     * This goes back to the home page
+     * @param v the current view
+     */
     public void onCancelMovieInformationButtonPressed(View v) {
-        Log.d("RATING ACTIVITY", "Movie Information was cancelled.");
-        Intent intent = new Intent(this, SearchActivity.class);
+        Log.d("MovieInfoActivity", "Movie Information was cancelled.");
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 
@@ -61,14 +74,19 @@ public class MovieInformationActivity extends AppCompatActivity {
      * @param v The current view
      */
     public void onMovieRatingButtonPressed(View v) {
-        Log.d("RATINGACTIVITY", "Rating button was pressed.");
+        Log.d("MovieInfoActivity", "Rating button was pressed.");
         try {
             User user = UserManager.getLoggedUser();
-            String comment = ((TextView) findViewById(R.id.comment)).toString();
+            String comment = ((TextView) findViewById(R.id.comment)).getText().toString();
             RatingBar scoreR = (RatingBar) findViewById(R.id.ratingBar);
-            int score = scoreR.getNumStars();
-            UserRating r = new UserRating(comment, score, movie, user);
-            UserRatingManager.addUserRating(r);
+            float score = scoreR.getRating();
+            if (user != null) {
+                UserRating r = new UserRating(comment, score, movie, user);
+                UserRatingManager.addUserRating(r);
+                listOfRatings.add(r);
+                myAdapter.notifyDataSetChanged();
+            }
+
         } catch (Exception e) {
             CharSequence message;
             message = "Rating was unsuccessful. Please try again.";

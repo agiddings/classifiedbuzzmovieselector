@@ -34,7 +34,7 @@ public class RegistrationActivity extends AppCompatActivity {
      * @param v The view, for registration activity
      */
     public void onCancelRegistrationButtonPressed(View v) {
-        Log.d("REGISTRATION ACTIVITY", "Cancel registration button was pressed.");
+        Log.d("RegistrationActivity", "Cancel registration button was pressed.");
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
@@ -46,7 +46,7 @@ public class RegistrationActivity extends AppCompatActivity {
      * @param v The view, for registration activity
      */
     public void onRegisterButtonPressed(View v) {
-        Log.d("REGISTRATION ACTIVITY", "Registration button was pressed.");
+        Log.d("RegistrationActivity", "Registration button was pressed.");
         EditText name = (EditText) findViewById(R.id.editName);
         EditText email = (EditText) findViewById(R.id.editEmail);
         EditText password1 = (EditText) findViewById(R.id.editPassword1);
@@ -65,11 +65,7 @@ public class RegistrationActivity extends AppCompatActivity {
             message = "Registration succeeded.";
             try {
                 LoginActivity.getManager().addUser(name.getText().toString(), email.getText().toString(), password1.getText().toString());
-
-                //sets current user
-                LoginActivity.setUser(LoginActivity.getManager().findUserByEmail(email.getText().toString()));
-
-                Intent intent = new Intent(this, PostLoginActivity.class);
+                Intent intent = new Intent(this, HomeActivity.class);
                 startActivity(intent);
             } catch (UserAlreadyExistsException a) {
                 message = "Registration failed: That user already exists.";

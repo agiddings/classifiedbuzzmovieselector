@@ -9,7 +9,9 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import classified.classifiedbuzzmovieselector.model.Exceptions.MovieDoesNotExistException;
 
@@ -25,19 +27,20 @@ public class MovieManager {
     //doing to add movies.
     private static List<Movie> movies = new ArrayList<Movie>();
     private static Movie selectedMovie;
-    private static final Gson gson = new Gson();
 
     /**
      * Constructor a movie manager that contains a list of movies
-     *
-     * @param json a json url
      */
-    public MovieManager (String json) {
-        Type collectionType = new TypeToken<ArrayList<Movie>>() {
-        }.getType();
-        movies = gson.fromJson(json, collectionType);
+    public MovieManager () {
     }
 
+    /**
+     * Finds a movie given it's title and year
+     * @param title Title of movie to get
+     * @param year Year of movie to get
+     * @return The movie
+     * @throws MovieDoesNotExistException
+     */
     public static Movie getMovieByTitleAndYear(String title, int year) throws MovieDoesNotExistException {
         for (Movie m : movies) {
             if (m.getYear() == year && m.getTitle().equals(title)) {
@@ -47,6 +50,12 @@ public class MovieManager {
         throw new MovieDoesNotExistException("This movie is not in the list");
     }
 
+    /**
+     * Gets the movie
+     * @param movie The movie to get
+     * @return The movie being returned
+     * @throws MovieDoesNotExistException Movie passed in is not in list of movies
+     */
     public static Movie getMovie(Movie movie) throws MovieDoesNotExistException {
         for (Movie m : movies) {
             if (m.equals(movie)) {
@@ -64,6 +73,10 @@ public class MovieManager {
     //Needs to be static for search activity to work
     public static List<Movie> getMovies() {
         return movies;
+    }
+
+    public static void setMovies(List<Movie> moviesNew) {
+        movies = moviesNew;
     }
 
     /**
@@ -89,9 +102,14 @@ public class MovieManager {
      *
      * @return a list of movies by the best average rating
      */
-    public static List<Movie> getBestMoviesByAvgRating() {
-        List<Movie> bestMovies = new ArrayList<>();
-
+    public static List<Movie> sortBestMoviesByAvgRating() {
+        List<Movie> bestMovies = new ArrayList<Movie>();
+        Collections.sort(bestMovies, new Comparator<Movie>() {
+            @Override
+            public int compare(Movie lhs, Movie rhs) {
+                return new Double(lhs.getAvgRating()).compareTo(rhs.getAvgRating());
+            }
+        });
         return bestMovies;
     }
 
@@ -100,10 +118,23 @@ public class MovieManager {
      *
      * @return a list of movies by the worst average rating
      */
-    public static List<Movie> getWorstMoviesByAvgRating() {
-        List<Movie> worstMovies = new ArrayList<>();
-
+    public static List<Movie> sortWorstMoviesByAvgRating() {
+        List<Movie> worstMovies = movies;
+        Collections.sort(worstMovies, new Comparator<Movie>() {
+            @Override
+            public int compare(Movie lhs, Movie rhs) {
+                return new Double(lhs.getAvgRating()).compareTo(rhs.getAvgRating());
+            }
+        });
         return worstMovies;
+    }
+
+    public static List<Movie> getBestMoviesFromUserRatings() {
+        return UserRatingManager.getBestMoviesFromUserRatings();
+    }
+
+    public static List<Movie> getWorstMoviesFromUserRatings() {
+        return UserRatingManager.getWorstMoviesFromUserRatings();
     }
 
     /**
@@ -114,9 +145,8 @@ public class MovieManager {
      * @return a list of movies by major
      */
     public static List<Movie> getBestMoviesByMajor(String major) {
-        List<Movie> bestMovies = new ArrayList<>();
-
-        return bestMovies;
+        return UserRatingManager.getBestMoviesFromUserRatings(
+                UserRatingManager.getUserRatingsByMajor(major));
     }
 
     /**
@@ -126,9 +156,8 @@ public class MovieManager {
      * @return get a list of worst movies by major
      */
     public static List<Movie> getWorstMoviesByMajor(String major) {
-        List<Movie> worstMovies = new ArrayList<>();
-
-        return worstMovies;
+        return UserRatingManager.getWorstMoviesFromUserRatings(
+                UserRatingManager.getUserRatingsByMajor(major));
     }
 
     /**
@@ -138,7 +167,7 @@ public class MovieManager {
      * @return a list of best movies by a friend's rating
      */
     public static List<Movie> getBestMoviesByFriendRating(User user) {
-        return UserRatingManager.getBestMoviesfromUserRatings(
+        return UserRatingManager.getBestMoviesFromUserRatings(
                 UserRatingManager.getUserRatingsByFriends(user));
     }
 
@@ -149,9 +178,8 @@ public class MovieManager {
      * @return a list of worst movies by a friend's rating
      */
     public static List<Movie> getWorstMoviesByFriendRating(User user) {
-        List<Movie> worstMovies = new ArrayList<>();
-
-        return worstMovies;
+        return UserRatingManager.getWorstMoviesFromUserRatings(
+                UserRatingManager.getUserRatingsByFriends(user));
     }
 
     /**
@@ -167,10 +195,17 @@ public class MovieManager {
         });
     }
 
+    /**
+     * Sets the selected movie
+     * @param movie The movie passed in
+     */
     public static void setSelectedMovie(Movie movie) {
         selectedMovie = movie;
     }
 
+    /**
+     * @return The selected movie
+     */
     public static Movie getSelectedMovie() {
         return selectedMovie;
     }

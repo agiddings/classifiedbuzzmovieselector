@@ -1,5 +1,7 @@
 package classified.classifiedbuzzmovieselector.model;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +17,8 @@ public class User {
     protected boolean isLocked;
     protected boolean isBanned;
     protected int failedAttempts;
-    protected List<User> friends;
+    protected boolean isAdmin;
+    protected List<String> friends;
 
     //Add user info, major from profile section
 
@@ -29,9 +32,6 @@ public class User {
         this.name = name;
         this.email = email;
         this.password = password;
-        isLocked = false;
-        isBanned = false;
-        failedAttempts = 0;
         friends = new ArrayList<>();
     }
 
@@ -45,7 +45,12 @@ public class User {
             failedAttempts = 0;
             return true;
         } else {
-            isLocked = ++failedAttempts >= 5;
+            ++failedAttempts;
+            Log.d("USER", failedAttempts + "");
+            if (failedAttempts >= 3) {
+                this.isLocked = true;
+                Log.d("USER", "User is locked.");
+            }
             return false;
         }
     }
@@ -147,18 +152,27 @@ public class User {
     }
 
     public List<User> getFriends() {
-        return friends;
+        ArrayList<User> friendList = new ArrayList<>();
+        for (String friend : friends) {
+            friendList.add(UserManager.findUserByEmail(friend));
+        }
+        return friendList;
     }
 
     public void addFriend(User friend) {
-        friends.add(friend);
+        friends.add(friend.getEmail());
     }
 
     public boolean removeFriend(User friend) {
-        return friends.remove(friend);
+        return friends.remove(friend.getEmail());
     }
 
     public boolean equals(User user) {
         return email.equals(user.email);
     }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
 }

@@ -120,30 +120,38 @@ public class Movie implements Serializable {
         return poster;
     }
 
+    /**
+     * @return An int representing the average rating of the movie
+     */
     public int getAudienceScore() {
         return ratings.audience_score;
     }
 
     /**
-     * compare two movies to see if they are equal
+     * compare two movies to see if they are equal!
      *
      * @param movie movie compared against
      * @return  whether two movies are equal
      *
      */
     public boolean equals(Movie movie) {
-        return title.equals(movie.title) && year == movie.year
-                && mpaa_rating.equals(movie.mpaa_rating) && runtime == movie.runtime;
+        return (this.title.equals(movie.title)) && (this.year == movie.year);
+    }
+
+    /**
+     * Hashcode method
+     */
+    public int hashCode() {
+        return year;
     }
 
     private class Rating {
+
         private int audience_score;
 
         public Rating(int audience_score) {
             audience_score = audience_score;
         }
-
-
     }
 
 }

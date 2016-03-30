@@ -11,9 +11,7 @@ import android.widget.Toast;
 
 import classified.classifiedbuzzmovieselector.R;
 import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidEmailException;
-import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidNameException;
-import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidPasswordException;
-import classified.classifiedbuzzmovieselector.model.Exceptions.UserAlreadyExistsException;
+import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidMajorException;
 import classified.classifiedbuzzmovieselector.model.Exceptions.UserDoesNotExistException;
 import classified.classifiedbuzzmovieselector.model.UserManager;
 
@@ -26,40 +24,33 @@ public class ProfileActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
         EditText name = (EditText) findViewById(R.id.newName);
-        EditText email = (EditText) findViewById(R.id.newEmail);
-        //EditText password1 = (EditText) findViewById(R.id.newPassword1);
-        //EditText password2 = (EditText) findViewById(R.id.newPassword2);
         EditText major = (EditText) findViewById(R.id.newMajor);
         EditText info = (EditText) findViewById(R.id.newInfo);
-
-        name.setText(LoginActivity.getUser().getName());
-        email.setText(LoginActivity.getUser().getEmail());
-        //password1.setText(LoginActivity.getUser().getPassword());
-        major.setText(LoginActivity.getUser().getMajor());
-        info.setText(LoginActivity.getUser().getInfo());
+        name.setText(UserManager.getLoggedUser().getName());
+        major.setText(UserManager.getLoggedUser().getMajor());
+        info.setText(UserManager.getLoggedUser().getInfo());
     }
 
 
     /**
      * define behavior after a user clicks on cancel profile button
      *
-     * @param v
+     * @param v The view, profile activity
      */
     public void onCancelProfileButtonPressed(View v) {
-        Log.d("PROFILE ACTIVITY", "Cancel profile edits button was pressed.");
-        Intent intent = new Intent(this, PostLoginActivity.class);
+        Log.d("ProfileActivity", "Cancel profile edits button was pressed.");
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 
     /**
      * define behavior after a user clicks on profile button
      *
-     * @param v
+     * @param v THe view, profile activity
      */
     public void onProfileButtonPressed(View v) {
-        Log.d("PROFILE ACTIVITY", "Profile button was pressed.");
+        Log.d("ProfileActivity", "Profile button was pressed.");
         EditText name = (EditText) findViewById(R.id.newName);
         EditText email = (EditText) findViewById(R.id.newEmail);
         EditText password1 = (EditText) findViewById(R.id.newPassword1);
@@ -77,20 +68,18 @@ public class ProfileActivity extends AppCompatActivity{
             if (LoginActivity.getManager() == null) {
                 LoginActivity.setManager(new UserManager());
             } else {
-                if (!(password1.getText().toString().equals(password2.getText().toString()))) {
+                if (!(password1.getText().toString().equals(password2.getText().toString())) || password1.getText().equals("")) {
                     message = "Update failed: Passwords did not match.";
                     Context context = getApplicationContext();
                     int duration = Toast.LENGTH_SHORT;
                     Toast output = Toast.makeText(context, message, duration);
                     output.show();
                 }
-
                 try {
                     UserManager um = LoginActivity.getManager();
                     um.updateUser(LoginActivity.getUser().getEmail(), name.getText().toString(),
                             email.getText().toString(), password1.getText().toString(),
                             major.getText().toString(), info.getText().toString());
-
                 } catch(UserDoesNotExistException e) {
                     Context context = getApplicationContext();
                     int duration = Toast.LENGTH_SHORT;
@@ -101,12 +90,14 @@ public class ProfileActivity extends AppCompatActivity{
                     int duration = Toast.LENGTH_SHORT;
                     Toast output = Toast.makeText(context, e.getMessage(), duration);
                     output.show();
+                } catch(InvalidMajorException e) {
+                    Context context = getApplicationContext();
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast output = Toast.makeText(context, e.getMessage(), duration);
+                    output.show();
                 }
-
                 message = "Profile update succeeded.";
-
-                // Returns to the post login page.
-                Intent intent = new Intent(this, PostLoginActivity.class);
+                Intent intent = new Intent(this, HomeActivity.class);
                 startActivity(intent);
                 // Shows a message to the user
                 Context context = getApplicationContext();

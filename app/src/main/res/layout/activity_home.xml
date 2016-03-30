@@ -3,7 +3,9 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1"
-    android:background="#dddee5">
+    android:background="#dddee5"
+    android:gravity="right"
+    android:nestedScrollingEnabled="true">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -35,16 +37,35 @@
             android:text="Log Out"
             android:id="@+id/button"
             android:onClick="onLogoutButtonClicked" />
-        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="281dp"
+        android:layout_height="wrap_content"
+        android:text="Recommendations"
+        android:id="@+id/button5"
+        android:onClick="onRecommendationButtonClicked" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Successfully logged in! Welcome to classifiedbuzzmovieselector."
+        android:text="Successfully logged in!\n Welcome to Classified&apos;s BuzzMovieSelector"
         android:id="@+id/textView"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.09"
-        android:textStyle="normal" />
+        android:textStyle="normal"
+        android:textAlignment="center" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Admin"
+        android:id="@+id/goToAdmin"
+        android:layout_gravity="right"
+        android:visibility="invisible"
+        android:onClick="onAdminButtonClicked" />
 
 </LinearLayout>
