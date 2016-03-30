@@ -18,72 +18,52 @@
         android:weightSum="1"
         android:onClick="onForgotPasswordLinkPressed">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <ImageView android:id="@+id/splashscreen" android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Welcome, Please Login"
-            android:id="@+id/textView8" />
-
-        <Space
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:clickable="true" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Login Email"
-            android:id="@+id/textView6"
-            android:layout_alignParentStart="false"
-            android:layout_alignParentLeft="false"
-            android:textSize="19dp"
-            android:layout_gravity="left" />
+            android:src="@mipmap/login_logo"
+            android:layout_gravity="center"
+            android:layout_marginTop="80px"
+            android:layout_marginBottom="80px" />
 
         <EditText
-            android:layout_width="fill_parent"
+            android:layout_width="770px"
             android:layout_height="wrap_content"
-            android:id="@+id/loginEmail" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Password"
-            android:id="@+id/textView7"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:textSize="19dp"
-            android:layout_gravity="left" />
+            android:id="@+id/loginEmail"
+            android:hint="email address" />
 
         <EditText
-            android:layout_width="fill_parent"
+            android:layout_width="770px"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/loginPassword"
             android:layout_alignParentStart="false"
             android:layout_alignParentLeft="false"
-            />
+            android:hint="password"
+            android:layout_marginTop="25px" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="770px"
             android:layout_height="wrap_content"
             android:text="Login"
             android:id="@+id/LoginBtn"
-            android:onClick="onLoginButtonPressed" />
+            android:onClick="onLoginButtonPressed"
+            android:background="#FA9B16"
+            android:textColor="#fff"
+            android:layout_marginTop="50px" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New user? Click here to Register!"
             android:id="@+id/registrationText"
-            android:textSize="30dp"
+            android:textSize="15dp"
             android:textColor="#1dabee"
             android:linksClickable="false"
             android:longClickable="false"
             android:onClick="onRegistrationLinkPressed"
-            android:layout_weight="0.07" />
+            android:layout_weight="0.07"
+            android:layout_marginTop="50px" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -94,7 +74,8 @@
             android:textColor="#1dabee"
             android:linksClickable="false"
             android:longClickable="false"
-            android:onClick="onForgotPasswordLinkPressed" />
+            android:onClick="onForgotPasswordLinkPressed"
+            android:layout_marginTop="25px" />
     </LinearLayout>
 
 </RelativeLayout>
