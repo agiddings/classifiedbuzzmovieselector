@@ -5,7 +5,7 @@
     android:background="#fcfcfc">
 
     <ImageView android:id="@+id/splashscreen"
-        android:layout_width="700px"
+        android:layout_width="600px"
         android:layout_height="wrap_content"
         android:src="@mipmap/signup_buddy"
         android:layout_gravity="center"
@@ -63,5 +63,6 @@
         android:id="@+id/CancelRegistration"
         android:layout_gravity="right"
         android:onClick="onCancelRegistrationButtonPressed"
-        android:background="#dddee5" />
+        android:background="#dddee5"
+        android:visibility="invisible" />
 </LinearLayout>

@@ -19,6 +19,7 @@ public class HomeActivity extends AppCompatActivity {
             Button b = (Button) findViewById(R.id.goToAdmin);
             b.setVisibility(View.VISIBLE);
         }
+        getSupportActionBar().setTitle("Home");
     }
 
 

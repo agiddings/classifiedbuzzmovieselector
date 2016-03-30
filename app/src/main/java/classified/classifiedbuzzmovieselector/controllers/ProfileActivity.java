@@ -35,6 +35,7 @@ public class ProfileActivity extends AppCompatActivity{
         name.setText(UserManager.getLoggedUser().getName());
         major.setText(UserManager.getLoggedUser().getMajor());
         info.setText(UserManager.getLoggedUser().getInfo());
+        getSupportActionBar().setTitle("Profile");
     }
 
 

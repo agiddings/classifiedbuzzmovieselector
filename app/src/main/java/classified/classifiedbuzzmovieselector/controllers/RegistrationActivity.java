@@ -1,5 +1,6 @@
 package classified.classifiedbuzzmovieselector.controllers;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,6 +33,15 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registration_screen);
         getSupportActionBar().setTitle("Sign up");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        //finish();
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        return true;
     }
 
     /**
@@ -40,11 +50,11 @@ public class RegistrationActivity extends AppCompatActivity {
      *
      * @param v The view, for registration activity
      */
-    public void onCancelRegistrationButtonPressed(View v) {
-        Log.d("RegistrationActivity", "Cancel registration button was pressed.");
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-    }
+//    public void onCancelRegistrationButtonPressed(View v) {
+//        Log.d("RegistrationActivity", "Cancel registration button was pressed.");
+//        Intent intent = new Intent(this, LoginActivity.class);
+//        startActivity(intent);
+//    }
 
     /**
      *
