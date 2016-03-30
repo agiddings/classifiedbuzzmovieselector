@@ -2,7 +2,12 @@ package classified.classifiedbuzzmovieselector.model;
 
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -25,6 +30,15 @@ public class UserRatingManager {
      * Everything is static so it's not instantiated
      */
     public UserRatingManager() {
+    }
+
+    public UserRatingManager(String json) {
+        Gson gson = new Gson();
+        Type collectionType = new TypeToken<Collection<UserRating>>(){}.getType();
+        Collection<UserRating> ratingCollection = gson.fromJson(json, collectionType);
+        for (UserRating userRating : ratingCollection) {
+            addUserRating(userRating);
+        }
     }
 
     /**

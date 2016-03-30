@@ -1,7 +1,15 @@
 package classified.classifiedbuzzmovieselector.model;
 
+import android.content.SharedPreferences;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import classified.classifiedbuzzmovieselector.R;
@@ -33,7 +41,7 @@ public class UserManager {
      *
      */
     public UserManager() {
-        User u1 = new User("u1", "u1@mail.com", "u1");
+        /*User u1 = new User("u1", "u1@mail.com", "u1");
         u1.isAdmin = true;
         User u2 = new User("u2", "u2@mail.com", "u2");
         User u3 = new User("u3", "u3@mail.com", "u3");
@@ -58,7 +66,21 @@ public class UserManager {
         UserRatingManager.addUserRating(new UserRating("wow2!", 5, m1, u2));
         UserRatingManager.addUserRating(new UserRating("wow2!", 5, m2, u2));
         UserRatingManager.addUserRating(new UserRating("wow3!", 1, m1, u3));
-        UserRatingManager.addUserRating(new UserRating("wow3!", 1, m2, u3));
+        UserRatingManager.addUserRating(new UserRating("wow3!", 1, m2, u3));*/
+    }
+
+    public UserManager (String json) {
+        Gson gson = new Gson();
+        Type collectionType = new TypeToken<Collection<User>>(){}.getType();
+        Collection<User> userCollection = gson.fromJson(json, collectionType);
+        for (User user : userCollection) {
+            users.put(user.getEmail(), user);
+        }
+    }
+
+    public static Collection<User> getAllUsers() {
+        return users.values();
+
     }
 
     /*

@@ -9,16 +9,23 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import classified.classifiedbuzzmovieselector.R;
 import classified.classifiedbuzzmovieselector.model.User;
 import classified.classifiedbuzzmovieselector.model.UserManager;
+import classified.classifiedbuzzmovieselector.model.UserRatingManager;
 
 public class LoginActivity extends AppCompatActivity {
 
     /**
      * We used monostate - All data for user manager is static
      */
-    private static UserManager manager = new UserManager();
+    private static UserManager manager;
+
+    private static UserRatingManager ratingManager;
 
     /**
      * So we know who the current user is
@@ -58,6 +65,30 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        try {
+            FileInputStream fis = openFileInput("users.txt");
+            String json = "";
+            byte[] input = new byte[fis.available()];
+            while (fis.read(input) != -1) {
+                json += new String(input);
+                Log.d("Login Activity", json);
+            }
+            manager = new UserManager(json);
+        } catch (IOException e) {
+            manager = new UserManager();
+        }
+        try {
+            FileInputStream fis = openFileInput("ratings.txt");
+            String json = "";
+            byte[] input = new byte[fis.available()];
+            while (fis.read(input) != -1) {
+                json += new String(input);
+                Log.d("Login Activity", json);
+            }
+            ratingManager = new UserRatingManager(json);
+        } catch (IOException e) {
+            ratingManager = new UserRatingManager();
+        }
     }
 
     /**
