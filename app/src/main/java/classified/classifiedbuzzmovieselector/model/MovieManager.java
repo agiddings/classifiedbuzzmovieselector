@@ -29,12 +29,6 @@ public class MovieManager {
     private static Movie selectedMovie;
 
     /**
-     * Constructor a movie manager that contains a list of movies
-     */
-    public MovieManager () {
-    }
-
-    /**
      * Finds a movie given it's title and year
      * @param title Title of movie to get
      * @param year Year of movie to get

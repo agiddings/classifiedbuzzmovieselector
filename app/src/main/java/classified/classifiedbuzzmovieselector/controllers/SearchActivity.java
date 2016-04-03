@@ -31,9 +31,9 @@ import classified.classifiedbuzzmovieselector.model.MovieManager;
  * Created by Allie on 2/16/2016.
  */
 public class SearchActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
-    final String KEY = "yedukp76ffytfuy24zsqk7f5";
-    final String rottenTomatoesURL = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=%s&page_limit=%d&page=1&apikey=%s";
-    final int pagelimit = 15;
+    final static String KEY = "yedukp76ffytfuy24zsqk7f5";
+    final static String rottenTomatoesURL = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=%s&page_limit=%d&page=1&apikey=%s";
+    final static int pagelimit = 15;
     private SearchView search;
     public static JSONArray movies;
 

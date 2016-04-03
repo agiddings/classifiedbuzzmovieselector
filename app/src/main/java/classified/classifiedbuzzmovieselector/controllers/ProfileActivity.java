@@ -33,11 +33,22 @@ public class ProfileActivity extends AppCompatActivity{
         EditText major = (EditText) findViewById(R.id.newMajor);
         EditText info = (EditText) findViewById(R.id.newInfo);
         name.setText(UserManager.getLoggedUser().getName());
+        EditText email = (EditText) findViewById(R.id.newEmail);
+        email.setText(UserManager.getLoggedUser().getEmail());
         major.setText(UserManager.getLoggedUser().getMajor());
         info.setText(UserManager.getLoggedUser().getInfo());
-        getSupportActionBar().setTitle("Profile");
+        getSupportActionBar().setTitle("Edit Profile");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
+    @Override
+    public boolean onSupportNavigateUp(){
+        //finish();
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+        return true;
+    }
 
     /**
      * define behavior after a user clicks on cancel profile button

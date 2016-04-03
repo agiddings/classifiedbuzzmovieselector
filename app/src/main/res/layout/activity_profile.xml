@@ -4,115 +4,73 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".controllers.ProfileActivity"
-    android:background="#dddee5">
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Edit Profile"
-            android:id="@+id/textView9"
-            android:layout_gravity="center_vertical"
-            android:textSize="30dp"
-            android:layout_alignParentLeft="true" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cancel Profile Edits"
-            android:id="@+id/CancelProfileEdit"
-            android:layout_gravity="right"
-            android:onClick="onCancelProfileButtonPressed"
-            android:layout_alignParentRight="true" />
-    </RelativeLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Edit Name:"
-        android:id="@+id/EditName" />
+    android:background="#fcfcfc"
+    android:scrollIndicators="right">
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="770px"
         android:layout_height="wrap_content"
-        android:id="@+id/newName" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Edit E-mail:"
-        android:id="@+id/EditEmail" />
+        android:id="@+id/newName"
+        android:hint="name"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50px" />
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="770px"
         android:layout_height="wrap_content"
-        android:id="@+id/newEmail" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Edit Password:"
-        android:id="@+id/EditPassword" />
+        android:id="@+id/newEmail"
+        android:hint="email address"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50px" />
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="770px"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/newPassword1" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Confirm Password:"
-        android:id="@+id/confirmPassword" />
+        android:id="@+id/newPassword1"
+        android:hint="password"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50px" />
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="770px"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/newPassword2" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Enter Major:"
-        android:id="@+id/editMajor" />
+        android:id="@+id/newPassword2"
+        android:hint="confirm password"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50px" />
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="770px"
         android:layout_height="wrap_content"
-        android:id="@+id/newMajor" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Additional Information About Yourself:"
-        android:id="@+id/extraInfo" />
+        android:id="@+id/newMajor"
+        android:hint="major"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50px" />
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="770px"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
         android:ems="10"
-        android:id="@+id/newInfo" />
+        android:id="@+id/newInfo"
+        android:hint="additional info"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50px" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="770px"
         android:layout_height="wrap_content"
         android:text="Update Profile"
         android:id="@+id/updateProfile"
-        android:onClick="onProfileButtonPressed" />
+        android:onClick="onProfileButtonPressed"
+        android:background="#FA9B16"
+        android:textColor="#fff"
+        android:layout_gravity="center_horizontal"
+        android:textSize="50px"
+        android:layout_marginTop="50px" />
 
 </LinearLayout>

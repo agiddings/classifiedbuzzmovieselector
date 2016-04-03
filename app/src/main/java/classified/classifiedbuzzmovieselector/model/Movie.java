@@ -150,7 +150,7 @@ public class Movie implements Serializable {
         private int audience_score;
 
         public Rating(int audience_score) {
-            audience_score = audience_score;
+            this.audience_score = audience_score;
         }
     }
 

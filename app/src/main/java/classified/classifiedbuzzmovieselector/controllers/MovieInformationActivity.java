@@ -100,7 +100,6 @@ public class MovieInformationActivity extends AppCompatActivity {
             } catch (IOException e) {
                 Log.d("MOVIE_INFORMATION_ACT", e.toString());
             }
-
         } catch (Exception e) {
             CharSequence message;
             message = "Rating was unsuccessful. Please try again.";
