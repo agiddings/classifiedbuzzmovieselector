@@ -26,6 +26,8 @@ public class UserRatingManager {
      */
     private static final List<UserRating> USER_RATINGS = new ArrayList<>();
 
+    private static int rating3 = 3;
+
     /**
      * Everything is static so it's not instantiated
      */
@@ -45,14 +47,14 @@ public class UserRatingManager {
      * clears the list of UserRatings
      */
     public static void clear() {
-        userRatings.clear();
+        USER_RATINGS.clear();
     }
 
     /**
      * This is a getter
      * @return Returns the list of all user ratings
      */
-    public List<UserRating> getUserRatings () {
+    public static List<UserRating> getUserRatings () {
         return USER_RATINGS;
     }
 
@@ -70,8 +72,6 @@ public class UserRatingManager {
         }
         try {
             MovieManager.getMovie(ur.getMovie()).setAvgRating(getAvgMovieUserRating(ur.getMovie()));
-            Log.d("USER_RATING_MANAGER", ur.getScore() + "");
-            Log.d("USER_RATING_MANAGER", MovieManager.getMovie(ur.getMovie()).getAvgRating() + "");
         } catch (MovieDoesNotExistException e) {
             //this literally cannot happen
             Log.e("USER_RATING_MANAGER", "YELL AT STEVE");
