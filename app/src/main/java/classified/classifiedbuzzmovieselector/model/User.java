@@ -10,6 +10,7 @@ import java.util.List;
  */
 public class User {
     private String name;
+    private int maxAttempts = 3;
     private String email;
     private String password;
     private String major;
@@ -47,7 +48,7 @@ public class User {
         } else {
             ++failedAttempts;
             Log.d("USER", failedAttempts + "");
-            if (failedAttempts >= 3) {
+            if (failedAttempts >= maxAttempts) {
                 this.isLocked = true;
                 Log.d("USER", "User is locked.");
             }
@@ -125,6 +126,30 @@ public class User {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    /**
+     * set isAdmin
+     * @param truth true or false
+     */
+    public void setIsAdmin(boolean truth) {
+        isAdmin = truth;
+    }
+
+    /**
+     * set isBanned
+     * @param truth true or false
+     */
+    public void setIsBanned(boolean truth) {
+        isBanned = truth;
+    }
+
+    /**
+     * set isBanned
+     * @param truth true or false
+     */
+    public void setIsLocked(boolean truth) {
+        isLocked = truth;
     }
 
     /**

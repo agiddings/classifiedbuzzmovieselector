@@ -25,6 +25,8 @@ public class UserRatingManager {
      * This is the list of userRatings
      */
     private static final List<UserRating> userRatings = new ArrayList<>();
+    //Number of stars needed for a rating
+    private static int rating3 = 3;
 
     /**
      * Everything is static so it's not instantiated
@@ -90,7 +92,7 @@ public class UserRatingManager {
 
         List<UserRating> returnVal = new ArrayList<>();
         for (UserRating ur : ratingList) {
-            if (ur.getUser() == user && ur.getScore() >= 3) {
+            if (ur.getUser() == user && ur.getScore() >= rating3) {
                 returnVal.add(ur);
             }
         }
@@ -141,7 +143,7 @@ public class UserRatingManager {
     public static List<UserRating> getUserRatingsByMovie(Movie movie, List<UserRating> ratingList) {
         List<UserRating> returnVal = new ArrayList<>();
         for (UserRating ur : ratingList) {
-            if (ur.getMovie() == movie && ur.getScore() >= 3) {
+            if (ur.getMovie() == movie && ur.getScore() >= rating3) {
                 returnVal.add(ur);
             }
         }
@@ -166,7 +168,7 @@ public class UserRatingManager {
     public static List<UserRating> getUserRatingsByMajor(String major, List<UserRating> ratingList) {
         List<UserRating> returnVal = new ArrayList<>();
         for (UserRating ur : ratingList) {
-            if (ur.getUser().getMajor() != null && ur.getUser().getMajor().equals(major) && ur.getScore() >= 3) {
+            if (ur.getUser().getMajor() != null && ur.getUser().getMajor().equals(major) && ur.getScore() >= rating3) {
                     returnVal.add(ur);
             }
         }
@@ -192,7 +194,7 @@ public class UserRatingManager {
     public static List<UserRating> getUserRatingsByFriends(User user, List<UserRating> ratingList) {
         List<UserRating> returnVal = new ArrayList<>();
         for (UserRating ur : userRatings) {
-            if (user.getName().equals(ur.getUser().getName()) && ur.getScore() >= 3) {
+            if (user.getName().equals(ur.getUser().getName()) && ur.getScore() >= rating3) {
                 returnVal.add(ur);
             }
         }
@@ -212,7 +214,7 @@ public class UserRatingManager {
         Set<Movie> moviesSet = new HashSet<>();
         List<Movie> movies;
         for (UserRating rating : ratingList) {
-            if (rating.getScore() >= 3) {
+            if (rating.getScore() >= rating3) {
                 moviesSet.add(rating.getMovie());
             }
         }
