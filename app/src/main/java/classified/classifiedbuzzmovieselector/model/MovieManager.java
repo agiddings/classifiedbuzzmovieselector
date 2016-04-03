@@ -28,6 +28,9 @@ public class MovieManager {
      * @throws MovieDoesNotExistException The movie isn't in the list
      */
     public static Movie getMovieByTitleAndYear(String title, int year) throws MovieDoesNotExistException {
+        if(title == null) {
+            throw new IllegalArgumentException("This movie is not in the list");
+        }
         for (Movie m : movies) {
             if (m.getYear() == year && m.getTitle().equals(title)) {
                 return m;

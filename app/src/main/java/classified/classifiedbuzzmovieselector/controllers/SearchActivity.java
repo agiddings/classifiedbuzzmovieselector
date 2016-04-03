@@ -31,9 +31,9 @@ import classified.classifiedbuzzmovieselector.model.MovieManager;
  * Created by Allie on 2/16/2016.
  */
 public class SearchActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
-    final static String KEY = "yedukp76ffytfuy24zsqk7f5";
-    final static String ROTTENTOMATOESURL = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=%s&page_limit=%d&page=1&apikey=%s";
-    final static int PAGELIMIT = 15;
+    static final String KEY = "yedukp76ffytfuy24zsqk7f5";
+    static final String ROTTENTOMATOESURL = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=%s&page_limit=%d&page=1&apikey=%s";
+    static final int PAGELIMIT = 15;
     private static JSONArray movies;
 
     //Variable made for log statements
@@ -89,7 +89,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
                 Toast input = Toast.makeText(getBaseContext(), "Searching " + userInput,
                         Toast.LENGTH_SHORT);
                 input.show();
-                SearchButtonPressed(userInput);
+                searchButtonPressed(userInput);
                 return false;
             }
             @Override
@@ -103,12 +103,12 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
      * define behavior after a user clicks on search button with input
      * @param userInput The input the user typed into the search box
      */
-    public void SearchButtonPressed(String userInput) {
-        userInput = userInput.replaceAll(" ", "+");
+    public void searchButtonPressed(String userInput) {
+        String newUserInput = userInput.replaceAll(" ", "+");
         //so the search query(userInput in this case) should pass to the url string below
         String url = String.format(
                 ROTTENTOMATOESURL,
-                userInput,
+                newUserInput,
                 PAGELIMIT, KEY);
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.GET, url, "", new Response.Listener<JSONObject>() {

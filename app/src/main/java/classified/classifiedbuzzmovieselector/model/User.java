@@ -167,8 +167,9 @@ public class User {
         return friends.remove(friend.getEmail());
     }
 
-    public boolean equals(User user) {
-        return email.equals(user.email);
+    @Override
+    public boolean equals(Object user) {
+        return email.equals(((User) user).email);
     }
 
     public int hashCode() {

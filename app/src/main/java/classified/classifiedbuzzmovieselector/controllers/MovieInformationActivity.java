@@ -45,7 +45,7 @@ public class MovieInformationActivity extends AppCompatActivity {
         int position = getIntent().getIntExtra("position", 1);
         movie = MovieManager.getMovies().get(position);
         mUserRating = UserRatingManager.getAvgMovieUserRating(movie);
-        mCriticsRating = movie.getMpaa_rating();
+        mCriticsRating = movie.getMpaaRating();
         ((TextView) findViewById(R.id.movie_title)).setText(movie.getTitle());
         ((TextView) findViewById(R.id.movie_year)).setText(movie.getYear() + "");
         ((TextView) findViewById(R.id.critics_rating)).setText(mCriticsRating);

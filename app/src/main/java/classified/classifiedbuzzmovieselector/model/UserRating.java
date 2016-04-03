@@ -41,8 +41,9 @@ public class UserRating {
         return UserManager.findUserByEmail(userEmail);
     }
 
-    public boolean equals(UserRating ur) {
-        return userEmail.equals(ur.userEmail) && movie.equals(ur.movie);
+    @Override
+    public boolean equals(Object ur) {
+        return userEmail.equals(((UserRating) ur).userEmail) && movie.equals(((UserRating) ur).movie);
     }
 
     public int hashCode() {
