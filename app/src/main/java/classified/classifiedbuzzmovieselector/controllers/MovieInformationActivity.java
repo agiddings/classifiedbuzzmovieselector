@@ -16,8 +16,12 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import org.w3c.dom.Text;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import classified.classifiedbuzzmovieselector.R;
@@ -86,7 +90,16 @@ public class MovieInformationActivity extends AppCompatActivity {
                 listOfRatings.add(r);
                 myAdapter.notifyDataSetChanged();
             }
-
+            Gson gson = new Gson();
+            UserRatingManager userRatingManager = new UserRatingManager();
+            String json = gson.toJson(userRatingManager.getUserRatings());
+            try {
+                FileOutputStream fos = openFileOutput("ratings.txt", Context.MODE_PRIVATE);
+                fos.write(json.getBytes());
+                fos.close();
+            } catch (IOException e) {
+                Log.d("MOVIE_INFORMATION_ACT", e.toString());
+            }
         } catch (Exception e) {
             CharSequence message;
             message = "Rating was unsuccessful. Please try again.";

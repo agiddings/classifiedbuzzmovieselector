@@ -131,6 +131,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
     public void onForgotPasswordLinkPressed(View v){
         Intent intent = new Intent(this, UnableLoginActivity.class);
         startActivity(intent);
