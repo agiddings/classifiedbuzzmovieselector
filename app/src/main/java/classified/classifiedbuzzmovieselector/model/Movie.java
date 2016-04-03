@@ -134,8 +134,11 @@ public class Movie implements Serializable {
      * @return  whether two movies are equal
      *
      */
-    public boolean equals(Movie movie) {
-        return (this.title.equals(movie.title)) && (this.year == movie.year);
+    public boolean equals(Object movie) {
+        if (movie instanceof Movie) {
+            return (this.title.equals(((Movie) movie).title)) && (this.year == ((Movie) movie).year);
+        }
+        return false;
     }
 
     /**

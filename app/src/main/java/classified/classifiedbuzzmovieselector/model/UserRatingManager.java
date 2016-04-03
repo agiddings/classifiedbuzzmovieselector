@@ -42,10 +42,17 @@ public class UserRatingManager {
     }
 
     /**
+     * clears the list of UserRatings
+     */
+    public static void clear() {
+        userRatings.clear();
+    }
+
+    /**
      * This is a getter
      * @return Returns the list of all user ratings
      */
-    public List<UserRating> getUserRatings () {
+    public static List<UserRating> getUserRatings () {
         return userRatings;
     }
 
@@ -63,8 +70,8 @@ public class UserRatingManager {
         }
         try {
             MovieManager.getMovie(ur.getMovie()).setAvgRating(getAvgMovieUserRating(ur.getMovie()));
-            Log.d("USER_RATING_MANAGER", ur.getScore() + "");
-            Log.d("USER_RATING_MANAGER", MovieManager.getMovie(ur.getMovie()).getAvgRating() + "");
+            //Log.d("USER_RATING_MANAGER", ur.getScore() + "");
+            //Log.d("USER_RATING_MANAGER", MovieManager.getMovie(ur.getMovie()).getAvgRating() + "");
         } catch (MovieDoesNotExistException e) {
             //this literally cannot happen
             Log.e("USER_RATING_MANAGER", "YELL AT STEVE");
@@ -120,7 +127,8 @@ public class UserRatingManager {
             count++;
             sum += ur.getScore();
         }
-        return ((double) sum)/count;
+        double rating = (count == 0) ? 0 : ((double) sum) / count;
+        return rating;
     }
 
     /**
@@ -141,7 +149,7 @@ public class UserRatingManager {
     public static List<UserRating> getUserRatingsByMovie(Movie movie, List<UserRating> ratingList) {
         List<UserRating> returnVal = new ArrayList<>();
         for (UserRating ur : ratingList) {
-            if (ur.getMovie() == movie && ur.getScore() >= 3) {
+            if (ur.getMovie() == movie) {
                 returnVal.add(ur);
             }
         }
