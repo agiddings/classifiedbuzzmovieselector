@@ -111,7 +111,7 @@ public class UserManager {
      *
      */
     public static void updateUser(String currentEmail, String name, String newEmail, String password, String major, String info)
-    throws UserDoesNotExistException, InvalidEmailException, InvalidMajorException {
+            throws UserDoesNotExistException, InvalidMajorException, InvalidPasswordException, InvalidEmailException{
         if (!USERS.containsKey(currentEmail)) {
             throw new UserDoesNotExistException("User does not exist");
         }
@@ -188,7 +188,7 @@ public class UserManager {
      * @param user the user to be unlocked
      */
     public static void  unlockUser(User user) {
-        user.isLocked = false;
+        user.setIsLocked(false);
     }
     /**
      *
@@ -197,7 +197,7 @@ public class UserManager {
      * @param user the user to be locked
      */
     public static void  lockUser(User user) {
-        user.isLocked = true;
+        user.setIsLocked(true);
     }
     /**
      *
@@ -206,7 +206,7 @@ public class UserManager {
      * @param user the user to be banned
      */
     public static void banUser(User user) {
-        user.isBanned = true;
+        user.setIsBanned(true);
     }
 
     /**
@@ -216,21 +216,21 @@ public class UserManager {
      * @param user the user to be unbanned
      */
     public static void unbanUser(User user) {
-        user.isBanned = false;
+        user.setIsBanned(false);
     }
 
     /**
      * Makes a user an admin
      */
     public static void makeAdmin(User user) {
-        user.isAdmin = true;
+        user.setIsAdmin(true);
     }
 
     /**
      * Unmakes an Admin
      */
     public static void unmakeAdmin(User user) {
-        user.isAdmin = false;
+        user.setIsAdmin(false);
     }
 
     /**
