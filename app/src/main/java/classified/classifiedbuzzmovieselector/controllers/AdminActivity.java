@@ -1,18 +1,15 @@
 package classified.classifiedbuzzmovieselector.controllers;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import classified.classifiedbuzzmovieselector.R;
 import classified.classifiedbuzzmovieselector.model.User;
@@ -20,12 +17,14 @@ import classified.classifiedbuzzmovieselector.model.UserManager;
 
 public class AdminActivity extends AppCompatActivity {
 
+    private int adminSwitch = 3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
         ListView userList = (ListView) findViewById(R.id.userListView);
-        ArrayList<User> listOfUsers = UserManager.getUsers();
+        List<User> listOfUsers = UserManager.getUsers();
         userList.setAdapter(new UserAdapter(this, R.layout.user_layout, R.id.username, listOfUsers));
     }
 
@@ -46,7 +45,7 @@ public class AdminActivity extends AppCompatActivity {
     public void adminClickHandler(View v){
         RelativeLayout vwParentRow = (RelativeLayout)v.getParent();
         TextView name = (TextView)vwParentRow.getChildAt(0);
-        Switch admin = (Switch)vwParentRow.getChildAt(3);
+        Switch admin = (Switch)vwParentRow.getChildAt(adminSwitch);
         boolean isAdmin = admin.isChecked();
         if (isAdmin) {
             UserManager.makeAdmin(UserManager.findUserByName(name.getText().toString()));

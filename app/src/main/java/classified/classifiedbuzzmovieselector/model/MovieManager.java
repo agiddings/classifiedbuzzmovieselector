@@ -1,17 +1,9 @@
 package classified.classifiedbuzzmovieselector.model;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import org.json.JSONArray;
-
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import classified.classifiedbuzzmovieselector.model.Exceptions.MovieDoesNotExistException;
 
@@ -33,7 +25,7 @@ public class MovieManager {
      * @param title Title of movie to get
      * @param year Year of movie to get
      * @return The movie
-     * @throws MovieDoesNotExistException
+     * @throws MovieDoesNotExistException The movie isn't in the list
      */
     public static Movie getMovieByTitleAndYear(String title, int year) throws MovieDoesNotExistException {
         for (Movie m : movies) {

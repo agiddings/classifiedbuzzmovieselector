@@ -166,10 +166,8 @@ public class UserRatingManager {
     public static List<UserRating> getUserRatingsByMajor(String major, List<UserRating> ratingList) {
         List<UserRating> returnVal = new ArrayList<>();
         for (UserRating ur : ratingList) {
-            if (ur.getUser().getMajor() != null) {
-                if (ur.getUser().getMajor().equals(major) && ur.getScore() >= 3) {
+            if (ur.getUser().getMajor() != null && ur.getUser().getMajor().equals(major) && ur.getScore() >= 3) {
                     returnVal.add(ur);
-                }
             }
         }
         return returnVal;

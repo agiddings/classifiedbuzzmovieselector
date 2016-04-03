@@ -9,16 +9,16 @@ import java.util.List;
  * Created by steven on 2/5/16.
  */
 public class User {
-    protected String name;
-    protected String email;
-    protected String password;
-    protected String major;
-    protected String info;
-    protected boolean isLocked;
-    protected boolean isBanned;
-    protected int failedAttempts;
-    protected boolean isAdmin;
-    protected List<String> friends;
+    private String name;
+    private String email;
+    private String password;
+    private String major;
+    private String info;
+    private boolean isLocked;
+    private boolean isBanned;
+    private int failedAttempts;
+    private boolean isAdmin;
+    private List<String> friends;
 
     //Add user info, major from profile section
 
@@ -169,6 +169,10 @@ public class User {
 
     public boolean equals(User user) {
         return email.equals(user.email);
+    }
+
+    public int hashCode() {
+        return name.hashCode() + email.hashCode() + password.hashCode();
     }
 
     public boolean isAdmin() {

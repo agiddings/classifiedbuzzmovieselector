@@ -44,4 +44,8 @@ public class UserRating {
     public boolean equals(UserRating ur) {
         return userEmail.equals(ur.userEmail) && movie.equals(ur.movie);
     }
+
+    public int hashCode() {
+        return userEmail.hashCode() + movie.hashCode();
+    }
 }

@@ -2,10 +2,7 @@ package classified.classifiedbuzzmovieselector.controllers;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,9 +11,6 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import android.app.Activity;
-
-
 
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -28,8 +22,6 @@ import classified.classifiedbuzzmovieselector.model.Movie;
 import classified.classifiedbuzzmovieselector.model.MovieManager;
 import classified.classifiedbuzzmovieselector.model.User;
 import classified.classifiedbuzzmovieselector.model.UserManager;
-import classified.classifiedbuzzmovieselector.model.UserRating;
-import classified.classifiedbuzzmovieselector.model.UserRatingManager;
 
 /**
  * This class is the controller for handling recommendations
@@ -37,6 +29,8 @@ import classified.classifiedbuzzmovieselector.model.UserRatingManager;
 public class RecommendationActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private ListView movieList;
+    //This variable was made for log statements
+    private static String logRecommend = "RECOMMENDATIONACTIVITY";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,12 +67,12 @@ public class RecommendationActivity extends AppCompatActivity implements Adapter
      * @param view Recommendation activity
      */
     public void onUserRecommendButtonPressed(View view) {
-        Log.d("RecommendationActivity", "Button was pressed!");
+        Log.d(logRecommend, "Button was pressed!");
         String user = ((TextView) findViewById(R.id.user_recommendation)).getText().toString();
-        Log.d("RecommendationActivity", user);
+        Log.d(logRecommend, user);
         User u = UserManager.findUserByName(user);
         if (u != null) {
-            Log.d("RecommendationActivity", "Found a user!");
+            Log.d(logRecommend, "Found a user!");
             List<Movie> movies = MovieManager.getBestMoviesByFriendRating(u);
             changeView(movies);
         }
@@ -90,7 +84,7 @@ public class RecommendationActivity extends AppCompatActivity implements Adapter
      * @param listOfMovies The results of the recommendations, movies to show user
      */
     private void changeView(List<Movie> listOfMovies) {
-        Log.d("RECOMMENDATION ACTIVITY", "Going to display results.");
+        Log.d(logRecommend, "Going to display results.");
         HashSet<Movie> noDuplicates = new HashSet<Movie>();
         for (Movie m : listOfMovies) {
             noDuplicates.add(m);
@@ -102,7 +96,7 @@ public class RecommendationActivity extends AppCompatActivity implements Adapter
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Log.d("RecommendationActivity", "Item was clicked.");
+        Log.d(logRecommend, "Item was clicked.");
         Intent intent = new Intent(RecommendationActivity.this, MovieInformationActivity.class);
         intent.putExtra("position", position);
         startActivity(intent);
@@ -113,7 +107,7 @@ public class RecommendationActivity extends AppCompatActivity implements Adapter
      * @param v The current view
      */
     public void onBackToHome(View v){
-        Log.d("Recommendationactivity", "Go to Home.");
+        Log.d(logRecommend, "Go to Home.");
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
