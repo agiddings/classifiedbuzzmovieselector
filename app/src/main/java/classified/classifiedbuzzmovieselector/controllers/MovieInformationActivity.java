@@ -86,7 +86,6 @@ public class MovieInformationActivity extends AppCompatActivity {
                 listOfRatings.add(r);
                 myAdapter.notifyDataSetChanged();
             }
-
         } catch (Exception e) {
             CharSequence message;
             message = "Rating was unsuccessful. Please try again.";
