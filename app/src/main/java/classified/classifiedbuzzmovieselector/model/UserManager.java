@@ -35,7 +35,6 @@ public class UserManager {
     /*
      * Constructor A user manager that deals with USERS
      * also creates temporary user for testing
-     *
      */
     public UserManager() {
     }
