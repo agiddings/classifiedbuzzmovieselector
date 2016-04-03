@@ -61,6 +61,15 @@ public class MovieInformationActivity extends AppCompatActivity {
         ListView ratingList = (ListView) findViewById(R.id.ratingListView);
         myAdapter = new RatingAdapter(this,R.layout.rating_layout,R.id.ratingUsername, listOfRatings);
         ratingList.setAdapter(myAdapter);
+        //getSupportActionBar().setTitle("Movie Detail");
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        Intent intent = new Intent(this, SearchActivity.class);
+        startActivity(intent);
+        return true;
     }
 
     /**
