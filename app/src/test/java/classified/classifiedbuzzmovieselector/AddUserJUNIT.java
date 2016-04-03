@@ -46,4 +46,3 @@ public class AddUserJUNIT {
         assert(UserManager.findUserByEmail("l@mail.com").equals(UserManager.findUserByName("Lauren")));
     }
 }
-

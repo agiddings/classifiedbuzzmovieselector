@@ -10,7 +10,6 @@ import android.widget.TextView;
 import java.util.List;
 
 import classified.classifiedbuzzmovieselector.R;
-import classified.classifiedbuzzmovieselector.model.Movie;
 import classified.classifiedbuzzmovieselector.model.UserRating;
 
 /**

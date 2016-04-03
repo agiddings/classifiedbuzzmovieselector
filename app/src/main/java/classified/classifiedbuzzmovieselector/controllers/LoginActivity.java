@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import classified.classifiedbuzzmovieselector.R;
@@ -24,6 +23,9 @@ public class LoginActivity extends AppCompatActivity {
      * We used monostate - All data for user manager is static
      */
     private static UserManager manager;
+
+    //This variable was made for log statements
+    private static String logClass = "LOGINACTIVITY";
 
     private static UserRatingManager ratingManager;
 
@@ -71,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
             byte[] input = new byte[fis.available()];
             while (fis.read(input) != -1) {
                 json += new String(input);
-                Log.d("Login Activity", json);
+                Log.d(logClass, json);
             }
             manager = new UserManager(json);
         } catch (IOException e) {
@@ -83,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
             byte[] input = new byte[fis.available()];
             while (fis.read(input) != -1) {
                 json += new String(input);
-                Log.d("Login Activity", json);
+                Log.d(logClass, json);
             }
             ratingManager = new UserRatingManager(json);
         } catch (IOException e) {
@@ -97,13 +99,13 @@ public class LoginActivity extends AppCompatActivity {
      * @param v The current view
      */
     public void onLoginButtonPressed(View v) {
-        Log.d("LoginActivity", "Login Button Pressed");
-        Log.d("LoginActivity", manager.toString());
+        Log.d(logClass, "Login Button Pressed");
+        Log.d(logClass, manager.toString());
         EditText emailBox = (EditText) findViewById(R.id.loginEmail);
         EditText passBox = (EditText) findViewById(R.id.loginPassword);
         CharSequence text;
         if (manager.handleLoginRequest(emailBox.getText().toString(), passBox.getText().toString())) {
-            Log.d("LoginActivity", "Login Successful");
+            Log.d(logClass, "Login Successful");
             text = "Login Successful";
             if(manager == null){
                 manager = new UserManager();
@@ -113,7 +115,7 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         } else {
             text = "Login Failed";
-            Log.d("LoginActivity", "Login Failed");
+            Log.d(logClass, "Login Failed");
         }
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
@@ -126,7 +128,7 @@ public class LoginActivity extends AppCompatActivity {
      * @param v The current view seen by the user
      */
     public void onRegistrationLinkPressed(View v){
-        Log.d("LoginActivity", "Registration Link Pressed");
+        Log.d(logClass, "Registration Link Pressed");
         Intent intent = new Intent(this, RegistrationActivity.class);
         startActivity(intent);
     }
@@ -135,17 +137,6 @@ public class LoginActivity extends AppCompatActivity {
     public void onForgotPasswordLinkPressed(View v){
         Intent intent = new Intent(this, UnableLoginActivity.class);
         startActivity(intent);
-    }
-
-    //Makes this the first screen that appears
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
     }
 
     @Override
