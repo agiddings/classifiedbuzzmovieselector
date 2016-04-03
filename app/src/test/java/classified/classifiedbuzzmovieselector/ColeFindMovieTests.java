@@ -8,7 +8,7 @@ import classified.classifiedbuzzmovieselector.model.Movie;
 import classified.classifiedbuzzmovieselector.model.MovieManager;
 
 /**
- * Created by coleb_000 on 4/3/2016.
+ * Created by Cole Bowers on 4/3/2016.
  */
 public class ColeFindMovieTests {
 
