@@ -87,7 +87,7 @@ public class UserManager {
      */
     public static void addUser(String name, String email, String password)
     throws InvalidPasswordException, InvalidEmailException, InvalidNameException, UserAlreadyExistsException {
-        if(name == null) {
+        if (name == null) {
             throw new InvalidNameException();
         } else if (email == null || !email.matches("(.*)@(.*).(.*)")) { // rough email check
             throw new InvalidEmailException();
