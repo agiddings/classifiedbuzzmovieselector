@@ -8,76 +8,71 @@
     android:nestedScrollingEnabled="true">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="770px"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Welcomeback"
         android:id="@+id/welcomeMsg"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="0.09"
         android:textStyle="normal"
         android:textAlignment="center"
         android:layout_marginTop="25dp" />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
+    <Button
+        android:layout_width="770px"
         android:layout_height="wrap_content"
+        android:text="Search"
+        android:id="@+id/search"
+        android:onClick="onGoToSearchButtonClicked"
+        android:background="#FA9B16"
+        android:textColor="#ffffff"
         android:layout_gravity="center_horizontal"
-        android:gravity="right"
-        android:dividerPadding="5dp">
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Search"
-            android:id="@+id/search"
-            android:layout_weight="0.09"
-            android:onClick="onGoToSearchButtonClicked"
-            android:background="#FA9B16"
-            android:textColor="#ffffff"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Edit Profile"
-            android:id="@+id/EditProfile"
-            android:layout_weight="0.09"
-            android:onClick="onEditProfileButtonClicked"
-            android:background="#FA9B16"
-            android:textColor="#ffffff"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Log Out"
-            android:id="@+id/button"
-            android:onClick="onLogoutButtonClicked"
-            android:background="#FA9B16"
-            android:textColor="#ffffff"/>
-
-    </LinearLayout>
+        android:layout_marginTop="50px" />
 
     <Button
-        android:layout_width="281dp"
+        android:layout_width="770px"
         android:layout_height="wrap_content"
         android:text="Recommendations"
         android:id="@+id/button5"
         android:onClick="onRecommendationButtonClicked"
         android:layout_gravity="center_horizontal"
         android:background="#FA9B16"
-        android:textColor="#ffffff" />
+        android:textColor="#ffffff"
+        android:layout_marginTop="50px" />
+
+    <Button
+        android:layout_width="770px"
+        android:layout_height="wrap_content"
+        android:text="Edit Profile"
+        android:id="@+id/EditProfile"
+        android:onClick="onEditProfileButtonClicked"
+        android:background="#FA9B16"
+        android:textColor="#ffffff"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50px" />
+
+    <Button
+        android:layout_width="770px"
+        android:layout_height="wrap_content"
+        android:text="Log Out"
+        android:id="@+id/button"
+        android:onClick="onLogoutButtonClicked"
+        android:background="#FA9B16"
+        android:textColor="#ffffff"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50px" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
+        android:layout_width="770px"
         android:layout_height="wrap_content"
         android:text="Admin"
         android:id="@+id/goToAdmin"
-        android:layout_gravity="right"
+        android:layout_gravity="center_horizontal"
         android:visibility="invisible"
         android:onClick="onAdminButtonClicked"
         android:background="#FA9B16"
-        android:textColor="#ffffff"/>
+        android:textColor="#ffffff"
+        android:layout_marginTop="50px" />
 
 </LinearLayout>
