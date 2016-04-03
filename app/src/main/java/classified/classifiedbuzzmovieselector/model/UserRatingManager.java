@@ -22,9 +22,9 @@ import classified.classifiedbuzzmovieselector.model.Exceptions.MovieDoesNotExist
 public class UserRatingManager {
 
     /**
-     * This is the list of userRatings
+     * This is the list of USER_RATINGS
      */
-    private static final List<UserRating> userRatings = new ArrayList<>();
+    private static final List<UserRating> USER_RATINGS = new ArrayList<>();
 
     /**
      * Everything is static so it's not instantiated
@@ -52,8 +52,8 @@ public class UserRatingManager {
      * This is a getter
      * @return Returns the list of all user ratings
      */
-    public static List<UserRating> getUserRatings () {
-        return userRatings;
+    public List<UserRating> getUserRatings () {
+        return USER_RATINGS;
     }
 
     /**
@@ -61,17 +61,17 @@ public class UserRatingManager {
      * @param ur The user rating to add to the list
      */
     public static void addUserRating(UserRating ur) {
-        int index = userRatings.indexOf(ur);
+        int index = USER_RATINGS.indexOf(ur);
         if (index < 0) {
-            userRatings.add(ur);
+            USER_RATINGS.add(ur);
         } else {
-            userRatings.get(index).setComment(ur.getComment());
-            userRatings.get(index).setScore(ur.getScore());
+            USER_RATINGS.get(index).setComment(ur.getComment());
+            USER_RATINGS.get(index).setScore(ur.getScore());
         }
         try {
             MovieManager.getMovie(ur.getMovie()).setAvgRating(getAvgMovieUserRating(ur.getMovie()));
-            //Log.d("USER_RATING_MANAGER", ur.getScore() + "");
-            //Log.d("USER_RATING_MANAGER", MovieManager.getMovie(ur.getMovie()).getAvgRating() + "");
+            Log.d("USER_RATING_MANAGER", ur.getScore() + "");
+            Log.d("USER_RATING_MANAGER", MovieManager.getMovie(ur.getMovie()).getAvgRating() + "");
         } catch (MovieDoesNotExistException e) {
             //this literally cannot happen
             Log.e("USER_RATING_MANAGER", "YELL AT STEVE");
@@ -84,7 +84,7 @@ public class UserRatingManager {
      * @return The list of ratings the user has
      */
     public static List<UserRating> getUserRatingsByUser(User user) {
-        return getUserRatingsByUser(user, userRatings);
+        return getUserRatingsByUser(user, USER_RATINGS);
     }
 
     /**
@@ -97,7 +97,7 @@ public class UserRatingManager {
 
         List<UserRating> returnVal = new ArrayList<>();
         for (UserRating ur : ratingList) {
-            if (ur.getUser() == user && ur.getScore() >= 3) {
+            if (ur.getUser().equals(user)) {
                 returnVal.add(ur);
             }
         }
@@ -110,7 +110,7 @@ public class UserRatingManager {
      * @return The average rating
      */
     public static double getAvgMovieUserRating (Movie movie) {
-        return getAvgMovieUserRating(movie, userRatings);
+        return getAvgMovieUserRating(movie, USER_RATINGS);
     }
 
     /**
@@ -137,7 +137,7 @@ public class UserRatingManager {
      * @return A list of user ratings
      */
     public static List<UserRating> getUserRatingsByMovie(Movie movie) {
-        return getUserRatingsByMovie(movie, userRatings);
+        return getUserRatingsByMovie(movie, USER_RATINGS);
     }
 
     /**
@@ -149,7 +149,7 @@ public class UserRatingManager {
     public static List<UserRating> getUserRatingsByMovie(Movie movie, List<UserRating> ratingList) {
         List<UserRating> returnVal = new ArrayList<>();
         for (UserRating ur : ratingList) {
-            if (ur.getMovie() == movie) {
+            if (ur.getMovie().equals(movie)) {
                 returnVal.add(ur);
             }
         }
@@ -162,7 +162,7 @@ public class UserRatingManager {
      * @return A list of user ratings
      */
     public static List<UserRating> getUserRatingsByMajor(String major) {
-        return getUserRatingsByMajor(major, userRatings);
+        return getUserRatingsByMajor(major, USER_RATINGS);
     }
 
     /**
@@ -174,10 +174,8 @@ public class UserRatingManager {
     public static List<UserRating> getUserRatingsByMajor(String major, List<UserRating> ratingList) {
         List<UserRating> returnVal = new ArrayList<>();
         for (UserRating ur : ratingList) {
-            if (ur.getUser().getMajor() != null) {
-                if (ur.getUser().getMajor().equals(major) && ur.getScore() >= 3) {
+            if (ur.getUser().getMajor() != null && ur.getUser().getMajor().equals(major)) {
                     returnVal.add(ur);
-                }
             }
         }
         return returnVal;
@@ -189,7 +187,7 @@ public class UserRatingManager {
      * @return A list of user ratings
      */
     public static List<UserRating> getUserRatingsByFriends(User user) {
-        return getUserRatingsByFriends(user, userRatings);
+        return getUserRatingsByFriends(user, USER_RATINGS);
     }
 
     /**
@@ -201,8 +199,8 @@ public class UserRatingManager {
      */
     public static List<UserRating> getUserRatingsByFriends(User user, List<UserRating> ratingList) {
         List<UserRating> returnVal = new ArrayList<>();
-        for (UserRating ur : userRatings) {
-            if (user.getName().equals(ur.getUser().getName()) && ur.getScore() >= 3) {
+        for (UserRating ur : USER_RATINGS) {
+            if (user.getName().equals(ur.getUser().getName()) && ur.getScore() >= rating3) {
                 returnVal.add(ur);
             }
         }
@@ -210,7 +208,7 @@ public class UserRatingManager {
     }
 
     public static List<Movie> getBestMoviesFromUserRatings() {
-        return getBestMoviesFromUserRatings(userRatings);
+        return getBestMoviesFromUserRatings(USER_RATINGS);
     }
 
     /**
@@ -222,7 +220,7 @@ public class UserRatingManager {
         Set<Movie> moviesSet = new HashSet<>();
         List<Movie> movies;
         for (UserRating rating : ratingList) {
-            if (rating.getScore() >= 3) {
+            if (rating.getScore() >= rating3) {
                 moviesSet.add(rating.getMovie());
             }
         }
@@ -242,7 +240,7 @@ public class UserRatingManager {
 
 
     public static List<Movie> getWorstMoviesFromUserRatings() {
-        return getWorstMoviesFromUserRatings(userRatings);
+        return getWorstMoviesFromUserRatings(USER_RATINGS);
     }
 
     /**
@@ -290,7 +288,7 @@ public class UserRatingManager {
      * @return The list of user ratings, sorted
      */
     public static List<UserRating> sortRatingsLowToHigh() {
-        return sortRatingsLowToHigh(userRatings);
+        return sortRatingsLowToHigh(USER_RATINGS);
     }
 
     /**
@@ -313,6 +311,6 @@ public class UserRatingManager {
      * @return The list of user ratings
      */
     public static List<UserRating> sortRatingsHighToLow() {
-        return sortRatingsHighToLow(userRatings);
+        return sortRatingsHighToLow(USER_RATINGS);
     }
 }

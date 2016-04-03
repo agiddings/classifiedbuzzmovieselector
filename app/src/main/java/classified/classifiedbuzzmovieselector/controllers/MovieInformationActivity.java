@@ -3,12 +3,7 @@ package classified.classifiedbuzzmovieselector.controllers;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
@@ -18,14 +13,12 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
-import org.w3c.dom.Text;
-
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import classified.classifiedbuzzmovieselector.R;
-import classified.classifiedbuzzmovieselector.model.Exceptions.MovieDoesNotExistException;
 import classified.classifiedbuzzmovieselector.model.Movie;
 import classified.classifiedbuzzmovieselector.model.MovieManager;
 import classified.classifiedbuzzmovieselector.model.User;
@@ -40,19 +33,19 @@ import classified.classifiedbuzzmovieselector.model.UserRatingManager;
 public class MovieInformationActivity extends AppCompatActivity {
 
     private Movie movie;
-    private double mUserRating;
-    private String mCriticsRating;
     private RatingAdapter myAdapter;
-    private ArrayList<UserRating> listOfRatings;
+    private List<UserRating> listOfRatings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_information);
+        double mUserRating;
+        String mCriticsRating;
         int position = getIntent().getIntExtra("position", 1);
         movie = MovieManager.getMovies().get(position);
         mUserRating = UserRatingManager.getAvgMovieUserRating(movie);
-        mCriticsRating = movie.getMpaa_rating();
+        mCriticsRating = movie.getMpaaRating();
         ((TextView) findViewById(R.id.movie_title)).setText(movie.getTitle());
         ((TextView) findViewById(R.id.movie_year)).setText(movie.getYear() + "");
         ((TextView) findViewById(R.id.critics_rating)).setText(mCriticsRating);
@@ -61,6 +54,15 @@ public class MovieInformationActivity extends AppCompatActivity {
         ListView ratingList = (ListView) findViewById(R.id.ratingListView);
         myAdapter = new RatingAdapter(this,R.layout.rating_layout,R.id.ratingUsername, listOfRatings);
         ratingList.setAdapter(myAdapter);
+        //getSupportActionBar().setTitle("Movie Detail");
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        Intent intent = new Intent(this, SearchActivity.class);
+        startActivity(intent);
+        return true;
     }
 
     /**

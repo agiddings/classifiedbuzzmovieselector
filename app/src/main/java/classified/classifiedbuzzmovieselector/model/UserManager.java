@@ -1,7 +1,5 @@
 package classified.classifiedbuzzmovieselector.model;
 
-import android.content.SharedPreferences;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -12,7 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import classified.classifiedbuzzmovieselector.R;
 import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidEmailException;
 import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidMajorException;
 import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidNameException;
@@ -24,7 +21,7 @@ import classified.classifiedbuzzmovieselector.model.Exceptions.UserDoesNotExistE
  * Created by Steven on 2/5/16.
  */
 public class UserManager {
-    private static final Map<String, User> users = new HashMap<>();
+    private static final Map<String, User> USERS = new HashMap<>();
     private static User loggedUser;
     private static String[] majorsArray = {"Architecture", "Industrial Design", "Computational Media", "Computer Science",
         "Aerospace Engineering", "Biomedical Engineering", "Chem and Biomolecular", "Civil Engineering", "Computer Engineering",
@@ -36,9 +33,8 @@ public class UserManager {
     //For profile class, add a remove user and/or edit user method
 
     /*
-     * Constructor A user manager that deals with users
+     * Constructor A user manager that deals with USERS
      * also creates temporary user for testing
-     *
      */
     public UserManager() {
     }
@@ -48,12 +44,12 @@ public class UserManager {
         Type collectionType = new TypeToken<Collection<User>>(){}.getType();
         Collection<User> userCollection = gson.fromJson(json, collectionType);
         for (User user : userCollection) {
-            users.put(user.getEmail(), user);
+            USERS.put(user.getEmail(), user);
         }
     }
 
     public static Collection<User> getAllUsers() {
-        return users.values();
+        return USERS.values();
 
     }
 
@@ -65,11 +61,11 @@ public class UserManager {
      *
      */
     public static User findUserByEmail(String email) {
-        return users.get(email);
+        return USERS.get(email);
     }
 
     public static User findUserByName(String name) {
-        for (User u : users.values()) {
+        for (User u : USERS.values()) {
             if (u.getName().equals(name)) {
                 return u;
             }
@@ -87,17 +83,17 @@ public class UserManager {
      */
     public static void addUser(String name, String email, String password)
     throws InvalidPasswordException, InvalidEmailException, InvalidNameException, UserAlreadyExistsException {
-        if(name == null) {
+        if (name == null) {
             throw new InvalidNameException();
         } else if (email == null || !email.matches("(.*)@(.*).(.*)")) { // rough email check
             throw new InvalidEmailException();
         } else if (password == null) {
             throw new InvalidPasswordException();
-        } else if (users.containsKey(email)) {
+        } else if (USERS.containsKey(email)) {
             throw new UserAlreadyExistsException(email + " is already registered");
         }
         User user = new User(name, email, password);
-        users.put(email, user);
+        USERS.put(email, user);
         loggedUser = user;
     }
 
@@ -114,11 +110,11 @@ public class UserManager {
      *
      */
     public static void updateUser(String currentEmail, String name, String newEmail, String password, String major, String info)
-    throws UserDoesNotExistException, InvalidEmailException, InvalidMajorException {
-        if (!users.containsKey(currentEmail)) {
+            throws UserDoesNotExistException, InvalidMajorException, InvalidPasswordException, InvalidEmailException{
+        if (!USERS.containsKey(currentEmail)) {
             throw new UserDoesNotExistException("User does not exist");
         }
-        User toUpdate = users.get(currentEmail);
+        User toUpdate = USERS.get(currentEmail);
         if (name != null && name.length() != 0) {
             toUpdate.setName(name);
         }
@@ -146,12 +142,12 @@ public class UserManager {
                 throw new InvalidEmailException("Invalid Email");
             }
 
-            if (users.containsKey(newEmail) && !newEmail.equals(currentEmail)) {
+            if (USERS.containsKey(newEmail) && !newEmail.equals(currentEmail)) {
                 throw new InvalidEmailException("Email already exists");
             }
             toUpdate.setEmail(newEmail);
-            users.remove(currentEmail);
-            users.put(newEmail, toUpdate);
+            USERS.remove(currentEmail);
+            USERS.put(newEmail, toUpdate);
         }
     }
 
@@ -166,8 +162,8 @@ public class UserManager {
      */
     public static boolean handleLoginRequest(String email, String pass) {
         //if the email is recorded before
-        if (users.containsKey(email)) {
-            User user = users.get(email);
+        if (USERS.containsKey(email)) {
+            User user = USERS.get(email);
             if (user.passwordMatched(pass) && !user.isBanned() && !user.isLocked()) {
                 loggedUser = user;
                 return true;
@@ -191,7 +187,7 @@ public class UserManager {
      * @param user the user to be unlocked
      */
     public static void  unlockUser(User user) {
-        user.isLocked = false;
+        user.setIsLocked(false);
     }
     /**
      *
@@ -200,7 +196,7 @@ public class UserManager {
      * @param user the user to be locked
      */
     public static void  lockUser(User user) {
-        user.isLocked = true;
+        user.setIsLocked(true);
     }
     /**
      *
@@ -209,7 +205,7 @@ public class UserManager {
      * @param user the user to be banned
      */
     public static void banUser(User user) {
-        user.isBanned = true;
+        user.setIsBanned(true);
     }
 
     /**
@@ -219,28 +215,28 @@ public class UserManager {
      * @param user the user to be unbanned
      */
     public static void unbanUser(User user) {
-        user.isBanned = false;
+        user.setIsBanned(false);
     }
 
     /**
      * Makes a user an admin
      */
     public static void makeAdmin(User user) {
-        user.isAdmin = true;
+        user.setIsAdmin(true);
     }
 
     /**
      * Unmakes an Admin
      */
     public static void unmakeAdmin(User user) {
-        user.isAdmin = false;
+        user.setIsAdmin(false);
     }
 
     /**
      *
-     * @return list of users
+     * @return list of USERS
      */
-    public static ArrayList<User> getUsers(){
-        return new ArrayList<User>(users.values());
+    public static List<User> getUsers(){
+        return new ArrayList<User>(USERS.values());
     }
 }

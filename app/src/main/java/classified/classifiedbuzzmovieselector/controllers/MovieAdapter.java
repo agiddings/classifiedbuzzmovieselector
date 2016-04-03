@@ -1,12 +1,8 @@
 package classified.classifiedbuzzmovieselector.controllers;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
@@ -24,9 +20,6 @@ import classified.classifiedbuzzmovieselector.model.Movie;
  */
 public class MovieAdapter extends ArrayAdapter<Movie> {
 
-    //The list of movies to display
-    private List<Movie> movieList;
-
     /**
      * This method sets the view for the list of movies
      * @param position The position of a movie in the list
@@ -36,7 +29,7 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
      */
     public View getView(int position, View convertView, ViewGroup parent){
         View view = super.getView(position, convertView, parent);
-        Movie movie = (Movie)getItem(position);
+        Movie movie = getItem(position);
         TextView year = (TextView) view.findViewById(R.id.movieLayoutYear);
         TextView name = (TextView) view.findViewById(R.id.movieLayoutName);
         //WebView poster = (WebView) view.findViewById(R.id.movieLayoutPoster);

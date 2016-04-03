@@ -31,11 +31,14 @@ import classified.classifiedbuzzmovieselector.model.MovieManager;
  * Created by Allie on 2/16/2016.
  */
 public class SearchActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
-    final static String KEY = "yedukp76ffytfuy24zsqk7f5";
-    final static String rottenTomatoesURL = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=%s&page_limit=%d&page=1&apikey=%s";
-    final static int pagelimit = 15;
-    private SearchView search;
-    public static JSONArray movies;
+    static final String KEY = "yedukp76ffytfuy24zsqk7f5";
+    static final String ROTTENTOMATOESURL = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=%s&page_limit=%d&page=1&apikey=%s";
+    static final int PAGELIMIT = 15;
+    private static JSONArray movies;
+
+    //Variable made for log statements
+    private static String logSearch = "SEARCHACTIVITY";
+    private static String ratings = "ratings";
 
     private RequestQueue queue;
     private ListView movieList;
@@ -53,6 +56,8 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
+        SearchView search;
 
         movieList = (ListView) findViewById(R.id.movieResultList);
         movieList.setOnItemClickListener(this);
@@ -84,7 +89,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
                 Toast input = Toast.makeText(getBaseContext(), "Searching " + userInput,
                         Toast.LENGTH_SHORT);
                 input.show();
-                SearchButtonPressed(userInput);
+                searchButtonPressed(userInput);
                 return false;
             }
             @Override
@@ -98,27 +103,27 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
      * define behavior after a user clicks on search button with input
      * @param userInput The input the user typed into the search box
      */
-    public void SearchButtonPressed(String userInput) {
-        userInput = userInput.replaceAll(" ", "+");
+    public void searchButtonPressed(String userInput) {
+        String newUserInput = userInput.replaceAll(" ", "+");
         //so the search query(userInput in this case) should pass to the url string below
         String url = String.format(
-                rottenTomatoesURL,
-                userInput,
-                pagelimit, KEY);
+                ROTTENTOMATOESURL,
+                newUserInput,
+                PAGELIMIT, KEY);
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.GET, url, "", new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject resp) {
-                        Log.d("SearchActivity", "Request Recieved.");
+                        Log.d(logSearch, "Request Recieved.");
 
                         try {
                             movies = resp.getJSONArray("movies");
-                            Log.d("SearchActivity", "get movies");
+                            Log.d(logSearch, "get movies");
                             JSONObject current = null;
                             MovieManager.clear();
                             for (int i = 0; i < movies.length(); i++) {
                                 current = movies.getJSONObject(i);
-                                Log.d("SearchActivity", String.format("got Movie %d",i));
+                                Log.d(logSearch, String.format("got Movie %d",i));
                                 String runtime = current.getString("runtime");
                                 int runtimeInt = 0;
                                 if(!runtime.equals("")){
@@ -128,26 +133,24 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
                                         Integer.parseInt(current.get("year").toString()),
                                         current.getString("mpaa_rating"),
                                         runtimeInt,
-                                        current.getJSONObject("ratings").getInt("audience_score"),
-                                        current.getJSONObject("ratings").getInt("critics_score")
+                                        current.getJSONObject(ratings).getInt("audience_score"),
+                                        current.getJSONObject(ratings).getInt("critics_score")
 
                                 );
-                                Log.d("SearchActivity", String.format("made Movie %d",i));
+                                Log.d(logSearch, String.format("made Movie %d",i));
                                 m.setPoster(current.getJSONObject("posters").getString("thumbnail"));
                                 MovieManager.add(m);
                             }
                             changeView(MovieManager.getMovies());
-                        } catch (NullPointerException e) {
-                            Log.d("SearchActivity", "Null Error.");
                         } catch (JSONException e) {
-                            Log.d("Searchactivity", "JSON Error.");
+                            Log.d(logSearch, "JSON Error.");
                         }
                     }
                 }, new Response.ErrorListener() {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.d("SearchActivity", "Request Error.");
+                        Log.d(logSearch, "Request Error.");
                     }
                 });
         queue = Volley.newRequestQueue(this);
@@ -159,12 +162,12 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
      * @param v current view
      */
     public void onSearchNewReleases(View v) {
-        String url = String.format("http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=%d&page=1&country=us&apikey=%s", pagelimit, KEY);
+        String url = String.format("http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=%d&page=1&country=us&apikey=%s", PAGELIMIT, KEY);
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
             (Request.Method.GET, url, "", new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject resp) {
-                    Log.d("SearchActivity", "Request Recieved.");
+                    Log.d(logSearch, "Request Recieved.");
                     //resp is the response JSON Obj
                     try {
                         JSONArray movies = resp.getJSONArray("movies");
@@ -177,8 +180,8 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
                                     Integer.parseInt(current.get("year").toString()),
                                     current.getString("mpaa_rating"),
                                     current.getInt("runtime"),
-                                    current.getJSONObject("ratings").getInt("audience_score"),
-                                    current.getJSONObject("ratings").getInt("critics_score")
+                                    current.getJSONObject(ratings).getInt("audience_score"),
+                                    current.getJSONObject(ratings).getInt("critics_score")
 
                             );
                             m.setPoster(current.getJSONObject("posters").getString("thumbnail"));
@@ -186,14 +189,14 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
                         }
                         changeView(MovieManager.getMovies());
                     } catch(JSONException e) {
-                        Log.d("SearchActivity", "JSON Error.");
+                        Log.d(logSearch, "JSON Error.");
                     }
                 }
             }, new Response.ErrorListener() {
 
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.d("SearchActivity", "Request Error.");
+                    Log.d(logSearch, "Request Error.");
                 }
             });
         queue =  Volley.newRequestQueue(this);
@@ -205,12 +208,12 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
      * @param v current view
      */
     public void onSearchNewDVDs(View v) {
-        String url = String.format("http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?page_limit=%d&page=1&country=us&apikey=%s", pagelimit, KEY);
+        String url = String.format("http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?page_limit=%d&page=1&country=us&apikey=%s", PAGELIMIT, KEY);
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
             (Request.Method.GET, url, "", new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject resp) {
-                    Log.d("SearchActivity", "Request Recieved.");
+                    Log.d(logSearch, "Request Recieved.");
                     //resp is the response JSON Obj
                     try {
                         MovieManager.clear();
@@ -223,21 +226,21 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
                                     Integer.parseInt(current.get("year").toString()),
                                     current.getString("mpaa_rating"),
                                     current.getInt("runtime"),
-                                    current.getJSONObject("ratings").getInt("audience_score"),
-                                    current.getJSONObject("ratings").getInt("critics_score")
+                                    current.getJSONObject(ratings).getInt("audience_score"),
+                                    current.getJSONObject(ratings).getInt("critics_score")
                                         );
                             m.setPoster(current.getJSONObject("posters").getString("thumbnail"));
                             MovieManager.add(m);
                         }
                         changeView(MovieManager.getMovies());
                     } catch(JSONException e) {
-                        Log.d("SearchActivity", "JSON Error.");
-                    };
+                        Log.d(logSearch, "JSON Error.");
+                    }
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.d("SearchActivity", "Request Error.");
+                    Log.d(logSearch, "Request Error.");
                 }
             });
         queue =  Volley.newRequestQueue(this);
@@ -264,7 +267,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Log.d("SearchActivity", "Item was clicked.");
+        Log.d(logSearch, "Item was clicked.");
         Intent intent = new Intent(SearchActivity.this, MovieInformationActivity.class);
         intent.putExtra("position", position);
         startActivity(intent);

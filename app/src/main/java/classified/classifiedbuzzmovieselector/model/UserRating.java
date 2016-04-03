@@ -1,7 +1,5 @@
 package classified.classifiedbuzzmovieselector.model;
 
-import java.util.Objects;
-
 /**
  * Created by steven on 2/20/16.
  */
@@ -43,10 +41,7 @@ public class UserRating {
         return UserManager.findUserByEmail(userEmail);
     }
 
-    public boolean equals(Object ur) {
-        if (ur instanceof UserRating) {
-            return userEmail.equals(((UserRating) ur).userEmail) && movie.equals(((UserRating) ur).movie);
-        }
-        return false;
+    public boolean equals(UserRating ur) {
+        return userEmail.equals(ur.userEmail) && movie.equals(ur.movie);
     }
 }

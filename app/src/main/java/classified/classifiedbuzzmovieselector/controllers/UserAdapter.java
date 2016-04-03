@@ -10,26 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Switch;
 import android.widget.TextView;
-
 import java.util.List;
-
-import classified.classifiedbuzzmovieselector.R;
-import classified.classifiedbuzzmovieselector.model.Movie;
-
-//package classified.classifiedbuzzmovieselector.controllers;
-
-import android.content.Context;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.webkit.WebView;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
-
-import java.util.List;
-
 import classified.classifiedbuzzmovieselector.R;
 import classified.classifiedbuzzmovieselector.model.User;
 
@@ -38,8 +19,6 @@ import classified.classifiedbuzzmovieselector.model.User;
  * MovieAdapter is the controller for displaying the search results
  */
 public class UserAdapter extends ArrayAdapter<User> {
-    //The list of movies to display
-    private List<User> userList;
 
     /**
      * This method sets the view for the list of users
@@ -50,7 +29,7 @@ public class UserAdapter extends ArrayAdapter<User> {
      */
     public View getView(int position, View convertView, ViewGroup parent){
         View view = super.getView(position, convertView, parent);
-        User user = (User)getItem(position);
+        User user = getItem(position);
         Boolean isAdmin = user.isAdmin();
         Boolean isLocked = user.isLocked();
         Boolean isBanned = user.isBanned();

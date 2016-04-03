@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class Movie implements Serializable {
     private String title;
     private int year;
-    private String mpaa_rating;
+    private String mpaaRating;
     private int runtime; // runtime in minutes
     private double avgRating;
     private Rating ratings;
@@ -27,13 +27,13 @@ public class Movie implements Serializable {
      * @param title
      * @param year
      */
-    public Movie(String title, int year, String mpaa_rating, int runtime, double avgRating, int audience_score) {
+    public Movie(String title, int year, String mpaaRating, int runtime, double avgRating, int audienceScore) {
         this.title = title;
         this.year = year;
-        this.mpaa_rating = mpaa_rating;
+        this.mpaaRating = mpaaRating;
         this.runtime = runtime;
         this.avgRating = avgRating;
-        this.ratings = new Rating(audience_score);
+        this.ratings = new Rating(audienceScore);
     }
 
     /**
@@ -43,14 +43,14 @@ public class Movie implements Serializable {
      * @param year year of release
      *
      */
-    public Movie(String title, int year, String mpaa_rating, int runtime, int audience_score) {
+    public Movie(String title, int year, String mpaaRating, int runtime, int audienceScore) {
         this.title = title;
         this.year = year;
-        this.mpaa_rating = mpaa_rating;
+        this.mpaaRating = mpaaRating;
         this.runtime = runtime;
         this.avgRating = UserRatingManager.getAvgMovieUserRating(
-                new Movie(title, year, mpaa_rating, runtime, 0));
-        this.ratings = new Rating(audience_score);
+                new Movie(title, year, mpaaRating, runtime, 0, audienceScore));
+        this.ratings = new Rating(audienceScore);
     }
 
     /**
@@ -96,8 +96,8 @@ public class Movie implements Serializable {
      *
      * @return MPAA rating for that movie
      */
-    public String getMpaa_rating() {
-        return mpaa_rating;
+    public String getMpaaRating() {
+        return mpaaRating;
     }
 
     /**
@@ -124,7 +124,7 @@ public class Movie implements Serializable {
      * @return An int representing the average rating of the movie
      */
     public int getAudienceScore() {
-        return ratings.audience_score;
+        return ratings.audienceScore;
     }
 
     /**
@@ -150,10 +150,10 @@ public class Movie implements Serializable {
 
     private class Rating {
 
-        private int audience_score;
+        private int audienceScore;
 
-        public Rating(int audience_score) {
-            this.audience_score = audience_score;
+        public Rating(int audienceScore) {
+            this.audienceScore = audienceScore;
         }
     }
 
