@@ -41,12 +41,10 @@ public class UserRating {
         return UserManager.findUserByEmail(userEmail);
     }
 
-    @Override
     public boolean equals(Object ur) {
-        return userEmail.equals(((UserRating) ur).userEmail) && movie.equals(((UserRating) ur).movie);
-    }
-
-    public int hashCode() {
-        return userEmail.hashCode() + movie.hashCode();
+        if (ur instanceof Object) {
+            return userEmail.equals(((UserRating) ur).userEmail) && movie.equals(((UserRating) ur).movie);
+        }
+        return false;
     }
 }

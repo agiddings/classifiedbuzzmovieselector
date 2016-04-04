@@ -49,7 +49,7 @@ public class Movie implements Serializable {
         this.mpaaRating = mpaaRating;
         this.runtime = runtime;
         this.avgRating = UserRatingManager.getAvgMovieUserRating(
-                new Movie(title, year, mpaaRating, runtime, 0));
+                new Movie(title, year, mpaaRating, runtime, 0, audienceScore));
         this.ratings = new Rating(audienceScore);
     }
 
@@ -134,9 +134,11 @@ public class Movie implements Serializable {
      * @return  whether two movies are equal
      *
      */
-    @Override
     public boolean equals(Object movie) {
-        return (this.title.equals(((Movie) movie).title)) && (this.year == ((Movie) movie).year);
+        if (movie instanceof Movie) {
+            return (this.title.equals(((Movie) movie).title)) && (this.year == ((Movie) movie).year);
+        }
+        return false;
     }
 
     /**

@@ -25,7 +25,7 @@ public class UserRatingManager {
      * This is the list of USER_RATINGS
      */
     private static final List<UserRating> USER_RATINGS = new ArrayList<>();
-    //Number of stars needed for a rating
+
     private static int rating3 = 3;
 
     /**
@@ -44,10 +44,17 @@ public class UserRatingManager {
     }
 
     /**
+     * clears the list of UserRatings
+     */
+    public static void clear() {
+        USER_RATINGS.clear();
+    }
+
+    /**
      * This is a getter
      * @return Returns the list of all user ratings
      */
-    public List<UserRating> getUserRatings () {
+    public static List<UserRating> getUserRatings () {
         return USER_RATINGS;
     }
 
@@ -65,8 +72,6 @@ public class UserRatingManager {
         }
         try {
             MovieManager.getMovie(ur.getMovie()).setAvgRating(getAvgMovieUserRating(ur.getMovie()));
-            Log.d("USER_RATING_MANAGER", ur.getScore() + "");
-            Log.d("USER_RATING_MANAGER", MovieManager.getMovie(ur.getMovie()).getAvgRating() + "");
         } catch (MovieDoesNotExistException e) {
             //this literally cannot happen
             Log.e("USER_RATING_MANAGER", "YELL AT STEVE");
@@ -92,7 +97,7 @@ public class UserRatingManager {
 
         List<UserRating> returnVal = new ArrayList<>();
         for (UserRating ur : ratingList) {
-            if (ur.getUser() == user && ur.getScore() >= rating3) {
+            if (ur.getUser().equals(user)) {
                 returnVal.add(ur);
             }
         }
@@ -122,7 +127,8 @@ public class UserRatingManager {
             count++;
             sum += ur.getScore();
         }
-        return ((double) sum)/count;
+        double rating = (count == 0) ? 0 : ((double) sum) / count;
+        return rating;
     }
 
     /**
@@ -143,7 +149,7 @@ public class UserRatingManager {
     public static List<UserRating> getUserRatingsByMovie(Movie movie, List<UserRating> ratingList) {
         List<UserRating> returnVal = new ArrayList<>();
         for (UserRating ur : ratingList) {
-            if (ur.getMovie() == movie && ur.getScore() >= rating3) {
+            if (ur.getMovie().equals(movie)) {
                 returnVal.add(ur);
             }
         }
@@ -168,7 +174,7 @@ public class UserRatingManager {
     public static List<UserRating> getUserRatingsByMajor(String major, List<UserRating> ratingList) {
         List<UserRating> returnVal = new ArrayList<>();
         for (UserRating ur : ratingList) {
-            if (ur.getUser().getMajor() != null && ur.getUser().getMajor().equals(major) && ur.getScore() >= rating3) {
+            if (ur.getUser().getMajor() != null && ur.getUser().getMajor().equals(major)) {
                     returnVal.add(ur);
             }
         }
