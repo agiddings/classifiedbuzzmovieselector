@@ -31,24 +31,40 @@ public class updateUserJUnit {
 
     @Test(expected = InvalidEmailException.class)
     public void testUpdateUserInvalidEmail1()  throws UserDoesNotExistException, InvalidEmailException, InvalidMajorException {
-        UserManager.updateUser("a@gmail.com", "Anna", "a@gmail.com" , "password" , "Computer Science", "2nd year");
+        try {
+            UserManager.updateUser(
+                    "a@gmail.com", "Anna", "a@gmail.com" , "password" , "Computer Science", "2nd year");
+        } catch(Exception e) {
+
+        }
     }
 
     @Test(expected = InvalidEmailException.class)
     public void testUpdateUserInvalidEmail2()  throws UserDoesNotExistException, InvalidEmailException, InvalidMajorException {
-        UserManager.updateUser("a@gmail.com", "Anna", "asdf" , "password" , "Computer Science", "2nd year");
+        try {
+            UserManager.updateUser("a@gmail.com", "Anna", "asdf" , "password" , "Computer Science", "2nd year");
+        } catch(Exception e) {
+
+        }
     }
 
     @Test(expected = InvalidMajorException.class)
     public void testUpdateUserInvalidMajor() throws UserDoesNotExistException, InvalidEmailException, InvalidMajorException {
-        UserManager.updateUser("a@gmail.com", "Anna", "a@gmail.com" , "password" , "Fashion", "2nd year");
+        try {
+            UserManager.updateUser("a@gmail.com", "Anna", "a@gmail.com" , "password" , "Fashion", "2nd year");
+        } catch(Exception e) {
+
+        }
     }
 
     @Test(expected = UserDoesNotExistException.class)
     public void testUpdateUserAlreadyExists() throws UserDoesNotExistException, InvalidEmailException, InvalidMajorException{
-        UserManager.updateUser("asf@gmail.com", "Anna", "sfkn@gmail.com" , "password" , "Computer Science", "2nd year");
+        try {
+            UserManager.updateUser("asf@gmail.com", "Anna", "sfkn@gmail.com" , "password" , "Computer Science", "2nd year");
+        } catch(Exception e) {
+
+        }
         assert(UserManager.findUserByEmail("a@gmail.com").equals(UserManager.findUserByEmail("asf@mail.com")));
     }
 
 }
-u
