@@ -60,6 +60,17 @@ public class RecommendationActivity extends AppCompatActivity implements Adapter
             }
         });
     }
+//        getSupportActionBar().setTitle("Movie Recommendation");
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//    }
+//
+//    @Override
+//    public boolean onSupportNavigateUp(){
+//        //finish();
+//        Intent intent = new Intent(this, HomeActivity.class);
+//        startActivity(intent);
+//        return true;
+//    }
 
     /**
      * This loads the list of recommendations for a particular user

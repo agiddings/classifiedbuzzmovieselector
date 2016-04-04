@@ -67,4 +67,16 @@ public class passwordMatchedTest {
         boolean actual = testUser.passwordMatched("julia");
         assertEquals(expected, actual);
     }
+
+    //testLocked
+    @Test(timeout = TIMEOUT)
+    public void testLocked() {
+        boolean expected = true;
+        testUser.passwordMatched("julia1");
+        testUser.passwordMatched("julia2");
+        testUser.passwordMatched("julia3");
+        testUser.passwordMatched("julia4");
+        boolean actual = testUser.isLocked();
+        assertEquals(expected, actual);
+    }
 }
