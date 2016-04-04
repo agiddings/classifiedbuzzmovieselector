@@ -1,6 +1,11 @@
 package classified.classifiedbuzzmovieselector;
 
+import org.junit.Before;
 import org.junit.Test;
+
+import classified.classifiedbuzzmovieselector.model.Exceptions.MovieDoesNotExistException;
+import classified.classifiedbuzzmovieselector.model.Movie;
+import classified.classifiedbuzzmovieselector.model.MovieManager;
 
 import static org.junit.Assert.*;
 
@@ -13,3 +18,5 @@ public class ExampleUnitTest {
         assertEquals(4, 2 + 2);
     }
 }
+
+

@@ -6,16 +6,14 @@ package classified.classifiedbuzzmovieselector.controllers;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import classified.classifiedbuzzmovieselector.model.User;
 
 
 import classified.classifiedbuzzmovieselector.R;
 public class UserActivity extends AppCompatActivity{
 
-    protected boolean isLocked;
-    protected boolean isBanned;
-    protected boolean isAdmin;
-
+    private boolean isLocked;
+    private boolean isBanned;
+    private boolean isAdmin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

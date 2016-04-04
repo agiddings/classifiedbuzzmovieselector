@@ -41,7 +41,10 @@ public class UserRating {
         return UserManager.findUserByEmail(userEmail);
     }
 
-    public boolean equals(UserRating ur) {
-        return userEmail.equals(ur.userEmail) && movie.equals(ur.movie);
+    public boolean equals(Object ur) {
+        if (ur instanceof Object) {
+            return userEmail.equals(((UserRating) ur).userEmail) && movie.equals(((UserRating) ur).movie);
+        }
+        return false;
     }
 }

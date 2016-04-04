@@ -17,6 +17,7 @@ import java.io.IOException;
 import classified.classifiedbuzzmovieselector.R;
 import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidEmailException;
 import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidMajorException;
+import classified.classifiedbuzzmovieselector.model.Exceptions.InvalidPasswordException;
 import classified.classifiedbuzzmovieselector.model.Exceptions.UserDoesNotExistException;
 import classified.classifiedbuzzmovieselector.model.UserManager;
 
@@ -108,6 +109,11 @@ public class ProfileActivity extends AppCompatActivity{
                     Toast output = Toast.makeText(context, e.getMessage(), duration);
                     output.show();
                 } catch(InvalidMajorException e) {
+                    Context context = getApplicationContext();
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast output = Toast.makeText(context, e.getMessage(), duration);
+                    output.show();
+                } catch (InvalidPasswordException e) {
                     Context context = getApplicationContext();
                     int duration = Toast.LENGTH_SHORT;
                     Toast output = Toast.makeText(context, e.getMessage(), duration);

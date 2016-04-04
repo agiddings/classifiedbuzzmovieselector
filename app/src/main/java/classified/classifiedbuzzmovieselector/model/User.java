@@ -9,16 +9,17 @@ import java.util.List;
  * Created by steven on 2/5/16.
  */
 public class User {
-    protected String name;
-    protected String email;
-    protected String password;
-    protected String major;
-    protected String info;
-    protected boolean isLocked;
-    protected boolean isBanned;
-    protected int failedAttempts;
-    protected boolean isAdmin;
-    protected List<String> friends;
+    private String name;
+    private int maxAttempts = 3;
+    private String email;
+    private String password;
+    private String major;
+    private String info;
+    private boolean isLocked;
+    private boolean isBanned;
+    private int failedAttempts;
+    private boolean isAdmin;
+    private List<String> friends;
 
     //Add user info, major from profile section
 
@@ -47,7 +48,7 @@ public class User {
         } else {
             ++failedAttempts;
             Log.d("USER", failedAttempts + "");
-            if (failedAttempts >= 3) {
+            if (failedAttempts >= maxAttempts) {
                 this.isLocked = true;
                 Log.d("USER", "User is locked.");
             }
@@ -128,6 +129,30 @@ public class User {
     }
 
     /**
+     * set isAdmin
+     * @param truth true or false
+     */
+    public void setIsAdmin(boolean truth) {
+        isAdmin = truth;
+    }
+
+    /**
+     * set isBanned
+     * @param truth true or false
+     */
+    public void setIsBanned(boolean truth) {
+        isBanned = truth;
+    }
+
+    /**
+     * set isBanned
+     * @param truth true or false
+     */
+    public void setIsLocked(boolean truth) {
+        isLocked = truth;
+    }
+
+    /**
      * checks if the user account is locked
      * @return a boolean representing whether or not the user account is locked
      */
@@ -167,8 +192,13 @@ public class User {
         return friends.remove(friend.getEmail());
     }
 
-    public boolean equals(User user) {
-        return email.equals(user.email);
+    @Override
+    public boolean equals(Object user) {
+        return email.equals(((User) user).email);
+    }
+
+    public int hashCode() {
+        return name.hashCode() + email.hashCode() + password.hashCode();
     }
 
     public boolean isAdmin() {
