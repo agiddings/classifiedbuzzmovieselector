@@ -73,8 +73,7 @@ public class UserRatingManager {
         try {
             MovieManager.getMovie(ur.getMovie()).setAvgRating(getAvgMovieUserRating(ur.getMovie()));
         } catch (MovieDoesNotExistException e) {
-            //this literally cannot happen
-            Log.e("USER_RATING_MANAGER", "YELL AT STEVE");
+            //this only happens when loading ratings from storage
         }
     }
 

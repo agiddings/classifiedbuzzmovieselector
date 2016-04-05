@@ -23,6 +23,7 @@ public class StevenJUnit {
     MovieManager movieManager = new MovieManager();
     Movie movie = new Movie("movie", 2000, "R", 90, 0, 50);
     Movie movie2 = new Movie("movie2", 20000, "R", 900, 0, 500);
+    Movie movie3 = new Movie("movie3", 200000, "R", 9000, 0, 5000);
 
     private UserRatingManager userRatingManager = new UserRatingManager();
     User u1 = new User("u1", "u1@u1.com", "u1");
@@ -38,7 +39,16 @@ public class StevenJUnit {
     UserRating userRating5 = new UserRating("woow", 1, movie2, u2);
     UserRating userRating6 = new UserRating("woow", 1, movie2, u1);
 
-    private static final int TIMEOUT = 100;
+    UserRating userRating7 = new UserRating("woow", 1, movie3, u1);
+
+    @Test
+    public void testMovieDoesNotExistInMovieManager() {
+        UserRatingManager.clear();
+        UserRatingManager.addUserRating(userRating7);
+        List<UserRating> expected = new ArrayList<>();
+        expected.add(userRating7);
+        assertEquals(expected, UserRatingManager.getUserRatings());
+    }
 
     @Test
     public void testSingleAdd() {
@@ -48,7 +58,7 @@ public class StevenJUnit {
         UserRatingManager.addUserRating(userRating);
         List<UserRating> expected = new ArrayList<>();
         expected.add(userRating);
-        assertEquals(UserRatingManager.getUserRatings(), expected);
+        assertEquals( expected, UserRatingManager.getUserRatings());
     }
 
     @Test
@@ -65,7 +75,7 @@ public class StevenJUnit {
         expected.add(userRating3);
         expected.add(userRating5);
         expected.add(userRating6);
-        assertEquals(UserRatingManager.getUserRatings(), expected);
+        assertEquals(expected, UserRatingManager.getUserRatings());
     }
 
     @Test
@@ -97,7 +107,7 @@ public class StevenJUnit {
         List<UserRating> expected = new ArrayList<>();
         expected.add(userRating2);
         expected.add(userRating4);
-        assertEquals(UserRatingManager.getUserRatings(), expected);
+        assertEquals(expected, UserRatingManager.getUserRatings());
     }
 
     private void printList(List<UserRating> list) {
