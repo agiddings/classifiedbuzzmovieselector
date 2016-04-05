@@ -9,6 +9,24 @@ import classified.classifiedbuzzmovieselector.model.MovieManager;
 
 /**
  * Created by Cole Bowers on 4/3/2016.
+ *
+ * Tests for getMovieByTitleAndYear(String title, int year) in MovieManager.java
+ * Method shown for convenience
+ *
+ * public static Movie getMovieByTitleAndYear(String title, int year) throws MovieDoesNotExistException {
+ *    if(title == null) {
+ *        throw new IllegalArgumentException("Invalid Title passed in");
+ *    }
+ *    for (Movie m : movies) {
+ *        if (m.getYear() == year && m.getTitle().equals(title)) {
+ *            return m;
+ *        }
+ *    }
+ *    throw new MovieDoesNotExistException("This movie is not in the list");
+ * }
+
+
+
  */
 public class ColeFindMovieTests {
 
@@ -27,21 +45,26 @@ public class ColeFindMovieTests {
 
     //Branch Coverage Tests
 
+    //Enters the first conditional checking for  valid arguments
     @Test(expected = IllegalArgumentException.class)
     public void testTitleNull() throws Exception{
         String s = null;
         MovieManager.getMovieByTitleAndYear(s, 0);
     }
 
-    @Test(expected = MovieDoesNotExistException.class)
-    public void testMovieDoesNotExist() throws Exception {
-           MovieManager.getMovieByTitleAndYear("four", 0);
-    }
 
+
+    //returns form within the for loop, checks to make sure it returns the correct movie
     @Test
-    public void testMovie() throws Exception{
+    public void testMovie() throws Exception {
         Movie found = MovieManager.getMovieByTitleAndYear("Three", 2003);
         assert(found.equals(new Movie("Three" , 2003)));
+    }
+
+    //completes for loop without finding movie
+    @Test(expected = MovieDoesNotExistException.class)
+    public void testMovieDoesNotExist() throws Exception {
+        MovieManager.getMovieByTitleAndYear("four", 0);
     }
 
     //Additional Tests
