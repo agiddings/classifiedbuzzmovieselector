@@ -26,10 +26,11 @@ public class MovieManager {
      * @param year Year of movie to get
      * @return The movie
      * @throws MovieDoesNotExistException The movie isn't in the list
+     * @throws  IllegalArgumentException if movie titel is null
      */
     public static Movie getMovieByTitleAndYear(String title, int year) throws MovieDoesNotExistException {
         if(title == null) {
-            throw new IllegalArgumentException("This movie is not in the list");
+            throw new IllegalArgumentException("Invalid Title passed in");
         }
         for (Movie m : movies) {
             if (m.getYear() == year && m.getTitle().equals(title)) {

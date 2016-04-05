@@ -97,6 +97,16 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
                 return false;
             }
         });
+        getSupportActionBar().setTitle("Movie Search");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        //finish();
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+        return true;
     }
 
     /**

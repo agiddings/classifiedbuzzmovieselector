@@ -5,7 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="classified.classifiedbuzzmovieselector.controllers.RecommendationActivity">
+    tools:context="classified.classifiedbuzzmovieselector.controllers.RecommendationActivity"
+    >
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:orientation="vertical" android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:background="#fcfcfc"-->
+    <!--android:weightSum="1"-->
+    <!--android:minHeight="36dp"-->
+    <!--android:minWidth="72dp">-->
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:orientation="vertical"
@@ -17,22 +26,24 @@
             android:background="@mipmap/back_button"
             android:layout_marginLeft="10dp"
             android:onClick="onBackToHome"
-            android:layout_gravity="right" />
+            android:layout_gravity="left" />
 
         <Spinner
             android:id="@+id/spinner1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="770px"
+            android:layout_height="70dp"
             android:background="@android:drawable/btn_dropdown"
-            android:spinnerMode="dropdown" />
+            android:spinnerMode="dropdown"
+            android:layout_gravity="center_horizontal" />
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal">
 
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
@@ -58,3 +69,4 @@
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
+<!--</LinearLayout>-->
