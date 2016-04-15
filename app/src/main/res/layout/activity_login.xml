@@ -16,8 +16,7 @@
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:weightSum="1"
-        android:label="@string/label_login"
-        android:onClick="onForgotPasswordLinkPressed">
+        android:label="@string/label_login">
 
 
         <ImageView android:id="@+id/splashscreen" android:layout_width="wrap_content"
